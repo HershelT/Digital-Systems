@@ -1,0 +1,75 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/5/CPU.hdl
+/**
+ * The Hack Central Processing unit (CPU).
+ * Parses the binary code in the instruction input and executes it according to the
+ * Hack machine language specification. In the case of a C-instruction, computes the
+ * function specified by the instruction. If the instruction specifies to read a memory
+ * value, the inM input is expected to contain this value. If the instruction specifies
+ * to write a value to the memory, sets the outM output to this value, sets the addressM
+ * output to the target address, and asserts the writeM output (when writeM = 0, any
+ * value may appear in outM).
+ * If the reset input is 0, computes the address of the next instruction and sets the
+ * pc output to that value. If the reset input is 1, sets pc to 0.
+ * Note: The outM and writeM outputs are combinational: they are affected by the
+ * instruction's execution during the current cycle. The addressM and pc outputs are
+ * clocked: although they are affected by the instruction's execution, they commit to
+ * their new values only in the next cycle.
+ */
+CHIP CPU {
+
+    IN  inM[16],         // M value input  (M = contents of RAM[A])
+        instruction[16], // Instruction for execution
+        reset;           // Signals whether to re-start the current
+                         // program (reset==1) or continue executing
+                         // the current program (reset==0).
+
+    OUT outM[16],        // M value output
+        writeM,          // Write to M? 
+        addressM[15],    // Address in data memory (of M)
+        pc[15];          // address of next instruction
+
+    PARTS:
+	//// Replace this comment with your code.
+    // Mux16 t0 A Register
+    Mux16(a= instruction, b= ALUOutput, sel= instruction[15], out= Mux16ToA);
+    Not(in=instruction[15], out=NotInstruction);
+    Or(a= NotInstruction, b= instruction[5], out= NotInstructionOR);
+    ARegister(in= Mux16ToA, load= NotInstructionOR, out= ARegisterToMux16PC, out[0..14] = addressM);
+
+    //Going to DRegister using the significant byte in instruction
+    And(a= instruction[15], b= instruction[4], out= AndToDRegister);
+    //D Register to ALU
+    DRegister(in=ALUOutput , load= AndToDRegister, out= DRegisterToALU);
+
+    //Use Mux gate with instruction[12] to set the pins
+    Mux16(a= ARegisterToMux16PC, b=inM, sel= instruction[12], out= MuxToALU);
+    //ALU to get output and pins to send around on next tick tock
+    ALU(x= DRegisterToALU, y= MuxToALU, zx= instruction[11], nx= instruction[10], zy=instruction[9],ny=instruction[8], f=instruction[7], no=instruction[6], out=ALUOutput,out=outM, zr=zr,ng=ng);
+
+    //Writing to M depending on instructions
+    And(a= instruction[3], b=instruction[15], out= writeM);
+
+    //Getting the order of jumps for further instruction
+    And(a=instruction[15], b=instruction[0], out=jump3);
+    And(a=instruction[15], b=instruction[1], out=jump2);
+    And(a=instruction[15], b=instruction[2], out=jump1);
+
+    //Use not and And gates to get position to use later in PC
+    Not(in= zr, out= notZR);
+    Not(in= ng, out= notNG);
+    And(a= notZR, b= notNG, out= PositionForJump3);
+
+    And(a= jump1, b= ng, out= lPin1);
+    And(a= jump2, b= zr, out= lPin2);
+    And(a= jump3, b= PositionForJump3, out= lPin3);
+
+    //Use Or gates to set load
+    Or(a=lPin1, b=lPin2, out = outOne);
+    Or(a=outOne,b=lPin3, out=load);
+
+    //Finally, use the PC with increment set to tru to load into pc 
+    PC(in=ARegisterToMux16PC, reset=reset, load=load, inc=true, out[0..14]=pc);
+}
