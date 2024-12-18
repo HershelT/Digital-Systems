@@ -225,7 +225,7 @@ class CodeWriter:
         # Reposition LCL = SP
         self.output.append(f"@SP\nD=M\n@LCL\nM=D")
         # Goto function_name
-        self.output.append(f"@{function_name}\n0;JMP")
+        self.output.append(f"@{self.current_file}.{function_name}\n0;JMP")
         # inject the label for the return address
         self.output.append(f"({return_address})")
 
