@@ -214,7 +214,7 @@ class CodeWriter:
     #Write the assembly code that is the translation of the given function command
     def writeFunction(self, function_name : str, number_args : int):
         self.current_function = function_name
-        self.output.append(f"({self.current_file}.{function_name})")
+        self.output.append(f"({function_name})")
         # Put 0 in the local segment for the number of args
         for _ in range(number_args):
             self.WritePushPop("C_PUSH", "constant", 0, self.current_file)
