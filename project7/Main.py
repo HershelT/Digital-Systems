@@ -1,9 +1,9 @@
 #Virtual Machine Translator
 #Usage: python Main.py <filename.vm>
 #Output: <filename.asm>
-#Build a more advanced version of the VM translator that can handle more complex programs
-#This version will be able to handle branching and function calls
-#The VM translator will translate the VM code into Hack assembly code
+#Build a basic VM translator that implements the arithmetic-logical and push/pop commands of the
+# VM language. For the purpose of this project, we assume that the source VM code is error-free.
+#Convert a VM command into Hack assembly code.
 
 import sys
 import os
@@ -46,15 +46,8 @@ CONVERT_SYMBOLS = {
 # Define the instruction type:
 instruction_type = {
     "C_ARITHMETIC": ["add", "sub", "neg", "eq", "gt", "lt", "and", "or", "not"],
-    "push" : "C_PUSH",
-    "pop" : "C_POP",
-    # More VM commands to be added
-    "label" : "C_LABEL",
-    "goto" : "C_GOTO",
-    "if-goto" : "C_IF",
-    "function" : "C_FUNCTION",
-    "return" : "C_RETURN",
-    "call" : "C_CALL",
+    "C_PUSH": ["push"],
+    "C_POP": ["pop"],
 }
 
 class Parser:
@@ -63,11 +56,14 @@ class Parser:
         self.lines = []
         with open(filename, "r") as f:
             for line in f:
-                # Check if line is comment or empty
-                line = line.strip()
-                if not line.startswith("//") and line != "":
+                # Remove comments and empty lines
+                if not line.startswith("//"):
+                    #Check if empty line
+                    if line.strip() == "":
+                        continue
                     line = line.split("//")[0].strip()
                     self.lines.append(line)
+            # self.lines = f.readlines()
         self.current_line = 0
 
     # Checks if there are more lines to parse
@@ -82,17 +78,16 @@ class Parser:
         line : str = self.lines[self.current_line]
         if line in instruction_type["C_ARITHMETIC"]:
             return "C_ARITHMETIC"
-        
-        # check if line in instruction_type
-        line = line.split(" ")[0]
-        if line in instruction_type:
-            return instruction_type[line]
+        if line.startswith("push"):
+            return "C_PUSH"
+        elif line.startswith("pop"):
+            return "C_POP"
         else:
             print(f"Failing here, line: {line}")
             return None
     
     # Returns the first argument of the current command
-    def arg1(self) -> str: #Should not be called if the current command is C_RETURN
+    def arg1(self) -> str:
         line = self.lines[self.current_line]
         command_type = self.commandType()
         if command_type == "C_ARITHMETIC":
@@ -105,7 +100,6 @@ class Parser:
         command_type = self.commandType()
         if command_type == "C_ARITHMETIC":
             return None
-        # Impleting new commands for function and call
         return int(self.lines[self.current_line].split(" ")[2])
 
     
@@ -130,24 +124,6 @@ class CodeWriter:
         self.output = []
         # Label count for eq, gt, lt
         self.label_count = 0
-        # Current file being translated
-        self.current_file = os.path.splitext(os.path.basename(filename))[0]
-        # Function count for function calls
-        self.function_count = 0
-        #Store current function name
-        self.current_function = None
-        #Check if init has been written
-        self.has_written_init = False
-    
-    # Informs tyranslation of new file
-    def setFileName(self, filename : str):
-        self.current_file = os.path.splitext(os.path.basename(filename))[0]
-
-    #Write the Init code for the VM
-    def writeInit(self):
-        self.output.append("@256\nD=A\n@SP\nM=D")
-        self.writeCall("Sys.init", 0)
-        self.has_written_init = True
 
     #Writes the assembly code that is the translation of the given arithmetic command
     def writeArithmetic(self, command : str):
@@ -174,9 +150,9 @@ class CodeWriter:
                 self.output.append(f"@{3 + index}\nD=M\n{command_to_hack[command]}")
             #Create a unique label for each static variable
             elif segment == "static":
-                # currentFile = currentFile.split("/")[-1].split("\\")[-1]
-                print(f"       Current File: {self.current_file}")
-                self.output.append(f"@{self.current_file}.{index}\nD=M\n{command_to_hack[command]}")
+                currentFile = currentFile.split("/")[-1].split("\\")[-1]
+                print(f"       Current File: {currentFile.split('.')[0]}")
+                self.output.append(f"@{currentFile.split('.')[0]}.{index}\nD=M\n{command_to_hack[command]}")
         elif command == "C_POP":
             command = "pop"
             if segment in ["local", "argument", "this", "that"]:
@@ -188,73 +164,13 @@ class CodeWriter:
                 self.output.append(f"@{3 + index}\nD=A\n@R13\nM=D\n@SP\nAM=M-1\nD=M\n@R13\nA=M\nM=D")
             #Create a unique label for each static variable
             elif segment == "static":
-                print(f"       Current File: {self.current_file}")
-                self.output.append(f"@SP\nAM=M-1\nD=M\n@{self.current_file}.{index}\nM=D")
+                currentFile = currentFile.split("/")[-1].split("\\")[-1]
+                print(f"       Current File: {currentFile.split('.')[0]}")
+                self.output.append(f"@SP\nAM=M-1\nD=M\n@{currentFile.split('.')[0]}.{index}\nM=D")
         else:
             #Only runs if code is invalid
             print(f"       Invalid command: {command}")
     
-    #Write the assembly code that is the translation of the given label command
-    def writeLabel(self, label : str):
-        self.output.append(f"({self.current_file}.{self.current_function}${label})")
-    
-    #Write the assembly code that is the translation of the given goto command
-    def writeGoto(self, label : str):
-        self.output.append(f"@{self.current_file}.{self.current_function}${label}\n0;JMP")
-    
-    #Write the assembly code that is the translation of the given if-goto command
-    def writeIf(self, label : str):
-        dollar_label = f"{self.current_file}.{self.current_function}${label}"
-        self.output.append(f"@SP\nAM=M-1\nD=M\n@{dollar_label}\nD;JNE")
-
-
-    #STUFF IF BREAKING HERE
-
-    #More advanced commands for project 8
-    #Write the assembly code that is the translation of the given function command
-    def writeFunction(self, function_name : str, number_args : int):
-        self.current_function = function_name
-        self.output.append(f"({self.current_file}.{function_name})")
-        # Put 0 in the local segment for the number of args
-        for _ in range(number_args):
-            self.WritePushPop("C_PUSH", "constant", 0, self.current_file)
-
-    #Write the assembly code that is the translation of the given call command
-    def writeCall(self, function_name : str, num_args : int):
-        # Genrate and push the return address
-        return_label = f"{self.current_file}.{function_name}$ret.{self.function_count}"
-        self.function_count += 1
-        self.output.append(f"@{return_label}\nD=A\n{command_to_hack['push']}")
-        # Push LCL, ARG, THIS, THAT
-        for segment in ["LCL", "ARG", "THIS", "THAT"]:
-            self.output.append(f"@{segment}\nD=M\n{command_to_hack['push']}")
-        # Reposition ARG = SP - 5 - num_args
-        self.output.append(f"@SP\nD=M\n@{5 + num_args}\nD=D-A\n@ARG\nM=D")
-        # Reposition LCL = SP
-        self.output.append(f"@SP\nD=M\n@LCL\nM=D")
-        # Goto function_name
-        self.output.append(f"@{function_name}\n0;JMP")
-        # inject the label for the return address
-        self.output.append(f"({return_label})")
-
-    #Write the assembly code that is the translation of the given return command
-    def writeReturn(self):
-        # Get the address at the frame's end (Stores in R13)
-        self.output.append("@LCL\nD=M\n@R13\nM=D")
-        # Get the return address (Stores in R14)
-        self.output.append("@5\nA=D-A\nD=M\n@R14\nM=D")
-        # puts the return value for the caller in the ARG[0]
-        self.output.append("@SP\nAM=M-1\nD=M\n@ARG\nA=M\nM=D")
-        # reposistion the SP of the caller
-        self.output.append("@ARG\nD=M+1\n@SP\nM=D")
-        # Restore [THAT, THIS, ARG, LCL] of the caller
-        offset = 1
-        for segment in ["THAT", "THIS", "ARG", "LCL"]:
-            self.output.append(f"@R13\nD=M\n@{offset}\nA=D-A\nD=M\n@{segment}\nM=D")
-            offset += 1
-        # Goto the return address
-        self.output.append("@R14\nA=M\n0;JMP")
-
     #Write the output to the file and clear the output for the next file
     def close(self):
         with open(self.filename, "w") as f:
@@ -275,23 +191,13 @@ def main(path):
     print("VM Files: ", vm_files, "\n")
     #Make a single .asm file for all the .vm files (super weird requirement)
     codeWriter = CodeWriter(asm_filename)
-    if len(vm_files) > 1:
-        codeWriter.writeInit()
     #Go through each file and convert to assembly
     for vm_file in vm_files:
-        codeWriter.setFileName(vm_file)
         parser = Parser(vm_file)
         print("Translating file: ", vm_file, "\n"*3)
         while parser.hasMoreLines():
             print(f"Parser Line {parser.current_line}: ", parser.lines[parser.current_line])
             command_type = parser.commandType()
-            # Doesnt run if command_type is Return
-            if command_type == "C_RETURN":
-                print("       RETURN")
-                codeWriter.writeReturn()
-                parser.advance()
-                continue
-            
             command = parser.arg1()
             if command_type == "C_ARITHMETIC":
                 print("       ARITHMETIC: ", command)
@@ -301,31 +207,6 @@ def main(path):
                 index = parser.arg2()
                 print("       PUSHPOP: ", command_type, segment, index)
                 codeWriter.WritePushPop(command_type, segment, index, currentFile=vm_file)
-            # Working on new commands for writing for project 8
-            elif command_type == "C_LABEL":
-                label = parser.arg1()
-                print("       LABEL: ", label)
-                codeWriter.writeLabel(label)
-            elif command_type == "C_GOTO":
-                label = parser.arg1()
-                print("       GOTO: ", label)
-                codeWriter.writeGoto(label)
-            elif command_type == "C_IF":
-                label = parser.arg1()
-                print("       IF-GOTO: ", label)
-                codeWriter.writeIf(label)
-            elif command_type == "C_FUNCTION":
-                function_name = parser.arg1()
-                number_args = parser.arg2()
-                print("       FUNCTION: ", function_name, number_args)
-                codeWriter.writeFunction(function_name, number_args)
-            elif command_type == "C_CALL":
-                function_name = parser.arg1()
-                num_args = parser.arg2()
-                print("       CALL: ", function_name, num_args)
-                codeWriter.writeCall(function_name, num_args)
-            else:
-                print("       Invalid command type")
             parser.advance()
         print("\n"*3, "Done translating file: ", vm_file, "\n"*2, "-"*35, "\n"*2)
     codeWriter.close()
