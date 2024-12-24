@@ -174,8 +174,7 @@ class CodeWriter:
                 self.output.append(f"@{3 + index}\nD=M\n{command_to_hack[command]}")
             #Create a unique label for each static variable
             elif segment == "static":
-                # currentFile = currentFile.split("/")[-1].split("\\")[-1]
-                print(f"       Current File: {self.current_file}")
+                print(f"       Static Variable: {self.current_file}.{index}")
                 self.output.append(f"@{self.current_file}.{index}\nD=M\n{command_to_hack[command]}")
         elif command == "C_POP":
             command = "pop"
@@ -188,7 +187,7 @@ class CodeWriter:
                 self.output.append(f"@{3 + index}\nD=A\n@R13\nM=D\n@SP\nAM=M-1\nD=M\n@R13\nA=M\nM=D")
             #Create a unique label for each static variable
             elif segment == "static":
-                print(f"       Current File: {self.current_file}")
+                print(f"       Static Variable: {self.current_file}.{index}")
                 self.output.append(f"@SP\nAM=M-1\nD=M\n@{self.current_file}.{index}\nM=D")
         else:
             #Only runs if code is invalid
@@ -208,9 +207,8 @@ class CodeWriter:
         self.output.append(f"@SP\nAM=M-1\nD=M\n@{dollar_label}\nD;JNE")
 
 
-    #STUFF IF BREAKING HERE
+    # PROJECT 8 (FULL FUNCTIONALITY)
 
-    #More advanced commands for project 8
     #Write the assembly code that is the translation of the given function command
     def writeFunction(self, function_name : str, number_args : int):
         self.current_function = function_name
@@ -301,6 +299,7 @@ def main(path):
                 index = parser.arg2()
                 print("       PUSHPOP: ", command_type, segment, index)
                 codeWriter.WritePushPop(command_type, segment, index, currentFile=vm_file)
+            
             # Working on new commands for writing for project 8
             elif command_type == "C_LABEL":
                 label = parser.arg1()
@@ -326,6 +325,7 @@ def main(path):
                 codeWriter.writeCall(function_name, num_args)
             else:
                 print("       Invalid command type")
+            # print(f"       Output:\n{codeWriter.output[-1]}\n")
             parser.advance()
         print("\n"*3, "Done translating file: ", vm_file, "\n"*2, "-"*35, "\n"*2)
     codeWriter.close()
