@@ -7,6 +7,13 @@ class CookieClicker {
     field int cookieRow; // Row where the cookie will be drawn
     field boolean isDrawingFullCookie; //Flag to track if cookie is pressed
 
+    //Displays cookie count at once
+    field boolean displayVisualOfCookies; //Flag to track if cookie is pressed
+    field boolean displayVisualOfUpgrades; //Flag to track if cookie is pressed
+
+    //Prev ent spamming with checking if any key is pressed
+    field boolean isAnyKeyPressed; // Flag to track if any key is pressed
+
     // count of upgrades
     field int fullCookieTimer; //Timer to track how long the cookie is shown for after pressed
     
@@ -30,8 +37,14 @@ class CookieClicker {
         let cookieWidth = 32;
         let screenMid = 128 - (cookieWidth / 2); //middle of the screen
         let cookieRow = 32; // Row where the cookie will be drawn
-        
+
+        let displayVisualOfCookies = false; // Initialize to false
+
+        let isAnyKeyPressed = false; // Initialize to false
+
         let isDrawingFullCookie = false;
+        let displayVisualOfUpgrades = false;
+
         let fullCookieTimer = 0;
 
         // Initialize upgrades
@@ -50,8 +63,8 @@ class CookieClicker {
         return this;
     }
 
-    // DisplayCursors method
-    method void displayCursors() {
+    // displayUpgrades method
+    method void displayUpgrades() {
         do Output.moveCursor(0, 0);
         do Output.printString("Cursors: ");
         do Output.printInt(cursors);
@@ -61,6 +74,18 @@ class CookieClicker {
         do Output.printString("Cost: ");
         do Output.printInt(cursorUpgrade.getCost());
         do Output.printString("        ");
+
+        // Output the number of grandmas
+        do Output.moveCursor(2, 0);
+        do Output.printString("Grandmas: ");
+        do Output.printInt(grandmas);
+        do Output.printString("        ");
+        // Output price of grandma
+        do Output.moveCursor(3, 0);
+        do Output.printString("Cost: ");
+        do Output.printInt(grandmaUpgrade.getCost());
+        do Output.printString("        ");
+
         return;
     }
 
@@ -68,7 +93,7 @@ class CookieClicker {
         do Output.moveCursor(0, 28);
         do Output.printString("Cookies: ");
         do Output.printInt(cookies);
-        do Output.printString("        ");
+        do Output.printString("            ");
         return;
     }
 
@@ -79,8 +104,8 @@ class CookieClicker {
             if (cursorTimer > 20) { // Every 20 frames (1 second)
                 let cookies = cookies + cursors * cursorUpgrade.worth();
                 let cursorTimer = 0;
-                // Output the number of cursors
-                do displayCursors();
+                // update flag to display the number of cookies
+                let displayVisualOfCookies = true;
             }
         }
 
@@ -90,8 +115,8 @@ class CookieClicker {
             if (grandmaTimer > 100) { // Every 100 frames (5 seconds)
                 let cookies = cookies + grandmas* grandmaUpgrade.worth();
                 let grandmaTimer = 0;
-                // Output the number of cookies
-                do displayCookies();
+                // update flag to display the number of cookies
+                let displayVisualOfCookies = true;
             }
         }
 
@@ -116,51 +141,71 @@ class CookieClicker {
         do Output.moveCursor(1, 24);
         do Output.printString("Spacebar for cookies!");
         do displayCookies(); // Display the number of cookies
-        do displayCursors(); // Display the number of cursors
+        do displayUpgrades(); // Display the number of cursors
 
         while (true) {
             let key = Keyboard.keyPressed();
-            let currentSpacebarState = (key = 32); // Check if spacebar is currently down
-            // Check for *new* press of spacebar
-            if (currentSpacebarState) { 
-                if (~spacebarPressed) { // If spacebar was not pressed before
-                    let cookies = cookies + 1;
-                    let isDrawingFullCookie = true; // Set flag to draw full cookie
-                    let fullCookieTimer = 0; // Reset timer
-                }
+
+            //Handles updating of visuals 
+            if (displayVisualOfCookies) {
+                do displayCookies();
+                let displayVisualOfCookies = false;
             }
 
-            let spacebarPressed = currentSpacebarState; // Update previous state
-
-            // Handle upgrades LOGIC
-
-            // Cursor upgrade
-            if (key = 99) { // c key
-                let cursorCost = cursorUpgrade.getCost();
-                if (cookies > (cursorCost - 1)) {
-                    let cookies = cookies - cursorCost; // Deduct cost
-                    let cursors = cursors + 1; // Add cursor
-                    do cursorUpgrade.upgrade(costToUpgradeCursor); // Upgrade cursor cost
-                }
+            if (displayVisualOfUpgrades) {
+                do displayUpgrades();
+                let displayVisualOfUpgrades = false;
             }
 
-            // Grandma upgrade
-            if (key = 103) { // g key
-                let grandmaCost = grandmaUpgrade.getCost();
-                if (cookies > (grandmaCost - 1)) {
-                    let cookies = cookies - grandmaCost; // Deduct cost
-                    let grandmas = grandmas + 1; // Add grandma
-                    do grandmaUpgrade.upgrade(costToUpgradeGrandma); // Upgrade grandma cost
+
+            // Handle key presses
+            if (key=0) { // If no key is pressed
+                let isAnyKeyPressed = false; // Set flag to false
+            } else {
+                if (~isAnyKeyPressed) { // If no key was pressed before
+                    let isAnyKeyPressed = true; // Set flag to true
+                
+                    // Check for *new* press of spacebar
+                    if (key = 32) { // Spacebar
+                        let cookies = cookies + 1;
+                        let isDrawingFullCookie = true; // Set flag to draw full cookie
+                        let fullCookieTimer = 0; // Reset timer
+                        let displayVisualOfCookies = true; // Set flag to display cookies
+                    }
+
+                    // Handle upgrades key presses
+
+                    // Cursor upgrade
+                    if (key = 99) { // c key
+                        let cursorCost = cursorUpgrade.getCost();
+                        if (cookies > (cursorCost - 1)) {
+                            let cookies = cookies - cursorCost; // Deduct cost
+                            let cursors = cursors + 1; // Add cursor
+                            do cursorUpgrade.upgrade(costToUpgradeCursor); // Upgrade cursor cost
+                            let displayVisualOfUpgrades = true; // Set flag to display upgrades
+                            do Sys.wait(5);
+                        }
+                    }
+
+                    // Grandma upgrade
+                    if (key = 103) { // g key
+                        let grandmaCost = grandmaUpgrade.getCost();
+                        if (cookies > (grandmaCost - 1)) {
+                            let cookies = cookies - grandmaCost; // Deduct cost
+                            let grandmas = grandmas + 1; // Add grandma
+                            do grandmaUpgrade.upgrade(costToUpgradeGrandma); // Upgrade grandma cost
+                            let displayVisualOfUpgrades = true; // Set flag to display upgrades
+                            do Sys.wait(5); // Prevents spamming of keys
+                        }
+                    }
                 }
             }
-
             // Handle logic for upgrades
             do handleUpgradeLogic(); // Handle cursor logic
 
 
             let frameCounter = frameCounter + 1;
             if (frameCounter > 10) {
-                do displayCookies(); // Display the number of cookies
                 //Reset frame counter
                 let frameCounter = 0;
             }
