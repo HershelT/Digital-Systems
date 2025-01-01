@@ -1,0 +1,24 @@
+class Upgrades {
+    field int costOfUpgrade;
+    field int worthOfUpgrade;
+
+    // Initialize with set cost given to Upgrades
+    constructor Upgrades new(int cost, int worth) {
+        let costOfUpgrade = cost;
+        let worthOfUpgrade = worth;
+        return this;
+    }
+
+    method int getCost() {
+        return costOfUpgrade;
+    }
+
+    method int worth() {
+        return worthOfUpgrade;
+    }
+
+    method void upgrade(int upgradeCost) {
+        let costOfUpgrade = costOfUpgrade + upgradeCost;
+        return;
+    }
+}
