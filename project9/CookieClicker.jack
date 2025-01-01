@@ -27,7 +27,8 @@ class CookieClicker {
         
         //Draw the starting cookie that is not filled in
         do CookieDrawings.drawPressedCookie(screenMid + (cookieRow * 32));
-        
+        do Output.moveCursor(1, 24);
+        do Output.printString("Press spacebar to make cookies!");
         while (true) {
             let key = Keyboard.keyPressed();
             let currentSpacebarState = (key = 32); // Check if spacebar is currently down
@@ -49,12 +50,10 @@ class CookieClicker {
                 do Output.moveCursor(0, 28);
                 do Output.printString("Cookies: ");
                 do Output.printInt(cookies);
-
-                
-                
-                //Draw the cookie
+                //Reset frame counter
                 let frameCounter = 0;
             }
+            // Check if cookie is being pressed and draw the full cookie
             else {
                 if (isDrawingFullCookie) {
                     do CookieDrawings.drawCookie(screenMid + (cookieRow * 32));

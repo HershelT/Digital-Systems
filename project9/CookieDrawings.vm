@@ -577,33 +577,33 @@ function CookieDrawings.drawPressedCookie 1
     push local 0
     push constant 672
     add
-    push constant 9281
+    push constant 9285
     neg
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 704
     add
-    push constant 13503
+    push constant 13495
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 736
     add
-    push constant 6462
+    push constant 6406
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 768
     add
-    push constant 12228
+    push constant 11204
     neg
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 800
     add
-    push constant 32584
+    push constant 31560
     neg
     call Memory.poke 2
     pop temp 0
@@ -753,68 +753,68 @@ function CookieDrawings.drawPressedCookie 1
     push local 0
     push constant 513
     add
-    push constant 14737
+    push constant 31121
     neg
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 545
     add
-    push constant 2465
+    push constant 18849
     neg
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 577
     add
-    push constant 2190
+    push constant 26766
     neg
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 609
     add
-    push constant 1121
+    push constant 9313
     neg
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 641
     add
-    push constant 1113
+    push constant 13401
     neg
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 673
     add
-    push constant 733
+    push constant 10973
     neg
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 705
     add
-    push constant 990
+    push constant 6110
     neg
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 737
     add
-    push constant 32222
+    push constant 29150
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 769
     add
-    push constant 15487
+    push constant 12543
     call Memory.poke 2
     pop temp 0
     push local 0
     push constant 801
     add
-    push constant 7251
+    push constant 7507
     call Memory.poke 2
     pop temp 0
     push local 0

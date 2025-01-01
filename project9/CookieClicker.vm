@@ -32,7 +32,7 @@ function CookieClicker.run 2
     push constant 32
     call Math.multiply 2
     add
-    call CookieDrawings.drawCookie 1
+    call CookieDrawings.drawPressedCookie 1
     pop temp 0
 label CookieClicker_0
     push constant 1
