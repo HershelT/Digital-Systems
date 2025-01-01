@@ -1,0 +1,81 @@
+class CookieClicker {
+    field int cookies;
+    field int frameCounter;
+    field boolean spacebarPressed; // New: Tracks spacebar state
+    field int cookieWidth;
+    field int screenMid;
+    field int cookieRow; // Row where the cookie will be drawn
+    field boolean isDrawingFullCookie; //Flag to track if cookie is pressed
+    field int fullCookieTimer; //Timer to track how long the cookie is shown for after pressed
+
+    constructor CookieClicker new() {
+        let cookies = 0;
+        let frameCounter = 0;
+        let spacebarPressed = false; // Initialize to false
+        let cookieWidth = 32;
+        let screenMid = 128 - (cookieWidth / 2); //middle of the screen
+        let cookieRow = 32; // Row where the cookie will be drawn
+        
+        let isDrawingFullCookie = false;
+        let fullCookieTimer = 0;
+        return this;
+    }
+
+    method void run() {
+        var char key;
+        var boolean currentSpacebarState; // Current state of spacebar
+        
+        //Draw the starting cookie
+        do CookieDrawings.drawFullCookie(screenMid + (cookieRow * 32));
+        
+        while (true) {
+            let key = Keyboard.keyPressed();
+            let currentSpacebarState = (key = 32); // Check if spacebar is currently down
+            // Check for *new* press of spacebar
+            if (currentSpacebarState) { 
+                if (spacebarPressed = false) {
+                    let cookies = cookies + 1;
+                    let isDrawingFullCookie = true; // Set flag to draw full cookie
+                    let fullCookieTimer = 0; // Reset timer
+                }
+            }
+
+            let spacebarPressed = currentSpacebarState; // Update previous state
+
+            let frameCounter = frameCounter + 1;
+            if (frameCounter > 10) {
+                // do Output.moveCursor(0, 0);
+                // Move cursor to top of middle of the screen
+                do Output.moveCursor(0, 28);
+                do Output.printString("Cookies: ");
+                do Output.printInt(cookies);
+
+                if (isDrawingFullCookie) {
+                    do CookieDrawings.drawPressedCookie(screenMid + (cookieRow * 32));
+                    let fullCookieTimer = fullCookieTimer + 1;
+                    if (fullCookieTimer > 20) { // Show cookie for 20 frames (1 second)
+                        let isDrawingFullCookie = false; // Stop drawing full cookie
+                    }
+                    else {
+                        //Redraw the cookie
+                        do CookieDrawings.drawFullCookie(screenMid + (cookieRow * 32));
+                    }
+                }
+                
+                //Draw the cookie
+                let frameCounter = 0;
+            }
+
+            if (key = 140) { // Escape
+                return;
+            }
+            do Sys.wait(5);
+        }
+        return;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}
