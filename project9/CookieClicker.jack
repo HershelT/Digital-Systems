@@ -25,15 +25,15 @@ class CookieClicker {
         var char key;
         var boolean currentSpacebarState; // Current state of spacebar
         
-        //Draw the starting cookie
-        do CookieDrawings.drawFullCookie(screenMid + (cookieRow * 32));
+        //Draw the starting cookie that is not filled in
+        do CookieDrawings.drawPressedCookie(screenMid + (cookieRow * 32));
         
         while (true) {
             let key = Keyboard.keyPressed();
             let currentSpacebarState = (key = 32); // Check if spacebar is currently down
             // Check for *new* press of spacebar
             if (currentSpacebarState) { 
-                if (spacebarPressed = false) {
+                if (~spacebarPressed) { // If spacebar was not pressed before
                     let cookies = cookies + 1;
                     let isDrawingFullCookie = true; // Set flag to draw full cookie
                     let fullCookieTimer = 0; // Reset timer
@@ -50,20 +50,21 @@ class CookieClicker {
                 do Output.printString("Cookies: ");
                 do Output.printInt(cookies);
 
-                if (isDrawingFullCookie) {
-                    do CookieDrawings.drawPressedCookie(screenMid + (cookieRow * 32));
-                    let fullCookieTimer = fullCookieTimer + 1;
-                    if (fullCookieTimer > 20) { // Show cookie for 20 frames (1 second)
-                        let isDrawingFullCookie = false; // Stop drawing full cookie
-                    }
-                    else {
-                        //Redraw the cookie
-                        do CookieDrawings.drawFullCookie(screenMid + (cookieRow * 32));
-                    }
-                }
+                
                 
                 //Draw the cookie
                 let frameCounter = 0;
+            }
+            else {
+                if (isDrawingFullCookie) {
+                    do CookieDrawings.drawCookie(screenMid + (cookieRow * 32));
+                    let fullCookieTimer = fullCookieTimer + 1;
+                    if (fullCookieTimer > 5) { // Show cookie for 20 frames (1 second)
+                        let isDrawingFullCookie = false; // Stop drawing full cookie
+                        do CookieDrawings.drawPressedCookie(screenMid + (cookieRow * 32));
+                        let fullCookieTimer = 0; // Reset timer
+                    }
+                }
             }
 
             if (key = 140) { // Escape

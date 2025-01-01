@@ -1,4 +1,4 @@
-function CookieDrawings.drawPressedCookie 1
+function CookieDrawings.drawCookie 1
     push constant 16384
     push argument 0
     add
@@ -433,7 +433,7 @@ function CookieDrawings.drawPressedCookie 1
     pop temp 0
     push constant 0
     return
-function CookieDrawings.drawFullCookie 1
+function CookieDrawings.drawPressedCookie 1
     push constant 16384
     push argument 0
     add

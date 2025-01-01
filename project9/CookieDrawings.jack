@@ -1,5 +1,5 @@
 class CookieDrawings {
-    function void drawPressedCookie(int location) {
+    function void drawCookie(int location) {
         var int memAddress; 
         let memAddress = 16384+location;
         // column 0
@@ -70,8 +70,8 @@ class CookieDrawings {
         do Memory.poke(memAddress +993, 127);
         return;
     }
-
-    function void drawFullCookie(int location) {
+    //Function that fills in cookie
+    function void drawPressedCookie(int location) {
         var int memAddress; 
         let memAddress = 16384+location;
         // column 0

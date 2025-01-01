@@ -1,5 +1,5 @@
 function CookieClicker.new 0
-    push constant 6
+    push constant 8
     call Memory.alloc 1
     pop pointer 0
     push constant 0
@@ -18,6 +18,10 @@ function CookieClicker.new 0
     pop this 4
     push constant 32
     pop this 5
+    push constant 0
+    pop this 6
+    push constant 0
+    pop this 7
     push pointer 0
     return
 function CookieClicker.run 2
@@ -28,7 +32,7 @@ function CookieClicker.run 2
     push constant 32
     call Math.multiply 2
     add
-    call CookieDrawings.drawFullCookie 1
+    call CookieDrawings.drawCookie 1
     pop temp 0
 label CookieClicker_0
     push constant 1
@@ -45,14 +49,18 @@ label CookieClicker_0
     not
     if-goto CookieClicker_3
     push this 2
-    push constant 0
-    eq
+    not
     not
     if-goto CookieClicker_5
     push this 0
     push constant 1
     add
     pop this 0
+    push constant 1
+    neg
+    pop this 6
+    push constant 0
+    pop this 7
     goto CookieClicker_4
 label CookieClicker_5
 label CookieClicker_4
@@ -99,6 +107,31 @@ label CookieClicker_2
     push this 0
     call Output.printInt 1
     pop temp 0
+    push constant 0
+    pop this 1
+    goto CookieClicker_6
+label CookieClicker_7
+    push this 6
+    not
+    if-goto CookieClicker_9
+    push this 4
+    push this 5
+    push constant 32
+    call Math.multiply 2
+    add
+    call CookieDrawings.drawCookie 1
+    pop temp 0
+    push this 7
+    push constant 1
+    add
+    pop this 7
+    push this 7
+    push constant 5
+    gt
+    not
+    if-goto CookieClicker_11
+    push constant 0
+    pop this 6
     push this 4
     push this 5
     push constant 32
@@ -107,20 +140,24 @@ label CookieClicker_2
     call CookieDrawings.drawPressedCookie 1
     pop temp 0
     push constant 0
-    pop this 1
-    goto CookieClicker_6
-label CookieClicker_7
+    pop this 7
+    goto CookieClicker_10
+label CookieClicker_11
+label CookieClicker_10
+    goto CookieClicker_8
+label CookieClicker_9
+label CookieClicker_8
 label CookieClicker_6
     push local 0
     push constant 140
     eq
     not
-    if-goto CookieClicker_9
+    if-goto CookieClicker_13
     push constant 0
     return
-    goto CookieClicker_8
-label CookieClicker_9
-label CookieClicker_8
+    goto CookieClicker_12
+label CookieClicker_13
+label CookieClicker_12
     push constant 5
     call Sys.wait 1
     pop temp 0
