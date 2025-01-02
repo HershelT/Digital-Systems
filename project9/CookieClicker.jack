@@ -34,26 +34,27 @@ class CookieClicker {
         let screenMid = 128 - (32 / 2); //middle of the screen
         let cookieRow = 32; // Row where the cookie will be drawn
 
-        let displayVisualOfCookies = false; // Initialize to false
 
         let isAnyKeyPressed = false; // Initialize to false
 
-        let isDrawingFullCookie = false;
-        let displayVisualOfUpgrades = false;
+        let isDrawingFullCookie = false; // Variable for flickering cookie
+
+        let displayVisualOfCookies = true; // Initialize to false
+        let displayVisualOfUpgrades = true;
 
         let fullCookieTimer = 0;
 
         // Initialize upgrades
 
-        // Create new Upgrades object of cursor for (cost, worth, multiplier)
+        // Create new Upgrades object of cursor for (cost, worth, multiplier, amountToStart, cookiesPerSecond)
         let cursorTimer = 0;
         let cursor = Upgrades.new(15, 1, 115, 0, 1); // Create new Upgrades object
         
-        // Create new Upgrades object of grandma for (cost, worth, multiplier)
+        // Create new Upgrades object of grandma for (cost, worth, multiplier, amountToStart, cookiesPerSecond)
         let grandmaTimer = 0;
         let grandma = Upgrades.new(100, 10, 115, 0, 2); // Create new Upgrades object
 
-        // Create new Upgrades object of farm for (cost, worth, multiplier)
+        // Create new Upgrades object of farm for (cost, worth, multiplier, amountToStart, cookiesPerSecond)
         let farmTimer = 0;
         let farm = Upgrades.new(1000, 50, 115, 0, 5); // Create new Upgrades object
 
@@ -63,44 +64,54 @@ class CookieClicker {
 
     // HandleCursorLogic()
     method void handleUpgradeLogic() {
-        if (cursor.getAmount() > 0) {
+        if (cursor.getTotalCount() > 0) {
             let cursorTimer = cursorTimer + 1;
-            if (cursorTimer > 45) { // Every 45 frames (1 second)
-                let cookies = cookies + (cursor.getAmount() * cursor.getWorth());
+            if (cursorTimer > 45) { 
                 let cursorTimer = 0;
-                // update flag to display the number of cookies
+                let cookies = cookies + cps();
                 let displayVisualOfCookies = true;
-            }
-        }
+                let isDrawingFullCookie = true;
 
-        // Handle grandma logic
-        if (grandma.getAmount() > 0) {
-            let grandmaTimer = grandmaTimer + 1;
-            if (grandmaTimer > 225) { // Every 45*5= 225 frames (5 seconds)
-                let cookies = cookies + (grandma.getAmount() * grandma.getWorth());
-                let grandmaTimer = 0;
-                // update flag to display the number of cookies
-                let displayVisualOfCookies = true;
             }
         }
+        // if (cursor.getAmount() > 0) {
+        //     let cursorTimer = cursorTimer + 1;
+        //     if (cursorTimer > 45) { // Every 45 frames (1 second)
+        //         let cookies = cookies + (cursor.getAmount() * cursor.getWorth());
+        //         let cursorTimer = 0;
+        //         // update flag to display the number of cookies
+        //         let displayVisualOfCookies = true;
+        //     }
+        // }
 
-        // Handle farm logic
-        if (farm.getAmount() > 0) {
-            let farmTimer = farmTimer + 1;
-            if (farmTimer > 450) { // Every 45*10= 450 frames (10 seconds)
-                let cookies = cookies + (farm.getAmount() * farm.getWorth());
-                let farmTimer = 0;
-                // update flag to display the number of cookies
-                let displayVisualOfCookies = true;
-            }
-        }
+        // // Handle grandma logic
+        // if (grandma.getAmount() > 0) {
+        //     let grandmaTimer = grandmaTimer + 1;
+        //     if (grandmaTimer > 225) { // Every 45*5= 225 frames (5 seconds)
+        //         let cookies = cookies + (grandma.getAmount() * grandma.getWorth());
+        //         let grandmaTimer = 0;
+        //         // update flag to display the number of cookies
+        //         let displayVisualOfCookies = true;
+        //     }
+        // }
+
+        // // Handle farm logic
+        // if (farm.getAmount() > 0) {
+        //     let farmTimer = farmTimer + 1;
+        //     if (farmTimer > 450) { // Every 45*10= 450 frames (10 seconds)
+        //         let cookies = cookies + (farm.getAmount() * farm.getWorth());
+        //         let farmTimer = 0;
+        //         // update flag to display the number of cookies
+        //         let displayVisualOfCookies = true;
+        //     }
+        // }
 
         return;
     }
 
 
     method int cps() {
-        return cursor.getCPS() + grandma.getCPS();
+        return cursor.getCPS() + grandma.getCPS() + farm.getCPS();
     }
 
 
@@ -112,26 +123,12 @@ class CookieClicker {
         do CookieDrawings.drawPressedCookie(screenMid + (cookieRow * 32));
         do Output.moveCursor(2, 24);
         do Output.printString("Spacebar for cookies!");
-
-        // Display the starting amount of cookies and upgrades
-        do ScoreBoard.printCookies(cookies);
-        do ScoreBoard.printUpgrades(cps(), cursor, grandma);
-
+        
+        // Main game loop
         while (true) {
             let key = Keyboard.keyPressed();
 
-            //Handles updating of visuals 
-            if (displayVisualOfCookies) {
-                do ScoreBoard.printCookies(cookies);
-                let displayVisualOfCookies = false;
-                do Sys.wait(1);
-            }
-
-            if (displayVisualOfUpgrades) {
-                do ScoreBoard.printUpgrades(cps(), cursor, grandma);
-                let displayVisualOfUpgrades = false;
-                do Sys.wait(1);
-            }
+            
 
 
             // Handle key presses
@@ -158,7 +155,7 @@ class CookieClicker {
                             let cookies = cookies - cursor.getCost(); // Deduct cost
                             do cursor.getUpgrade(); // Upgrade cursor cost and add a cursor
                             let displayVisualOfUpgrades = true; // Set flag to display upgrades
-                            do Sys.wait(5);
+                            // do Sys.wait(5);
                         }
                     }
 
@@ -168,7 +165,7 @@ class CookieClicker {
                             let cookies = cookies - grandma.getCost(); // Deduct cost
                             do grandma.getUpgrade(); // Upgrade grandma cost and add a grandma
                             let displayVisualOfUpgrades = true; // Set flag to display upgrades
-                            do Sys.wait(5); // Prevents spamming of keys
+                            // do Sys.wait(5); // Prevents spamming of keys
                         }
                     }
 
@@ -178,8 +175,9 @@ class CookieClicker {
                             let cookies = cookies - farm.getCost(); // Deduct cost
                             do farm.getUpgrade(); // Upgrade farm cost and add a farm
                             let displayVisualOfUpgrades = true; // Set flag to display upgrades
-                            do Sys.wait(5); // Prevents spamming of keys
+                            // do Sys.wait(5); // Prevents spamming of keys
                         }
+                    }
 
                 }
             }
@@ -205,6 +203,19 @@ class CookieClicker {
                         do Sys.wait(5); // Prevents spamming of keys
                     }
                 }
+            }
+
+            //Handles updating of visuals 
+            if (displayVisualOfCookies) {
+                do ScoreBoard.printCookies(cookies);
+                let displayVisualOfCookies = false;
+                do Sys.wait(1);
+            }
+
+            if (displayVisualOfUpgrades) {
+                do ScoreBoard.printUpgrades(cps(), cursor, grandma, farm);
+                let displayVisualOfUpgrades = false;
+                do Sys.wait(1);
             }
 
             if (key = 140) { // Escape and leave game

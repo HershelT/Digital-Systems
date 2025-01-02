@@ -36,6 +36,11 @@ function Upgrades.getCPS 0
     pop pointer 0
     push this 5
     return
+function Upgrades.getTotalCount 0
+    push argument 0
+    pop pointer 0
+    push static 0
+    return
 function Upgrades.getUpgrade 0
     push argument 0
     pop pointer 0
@@ -59,5 +64,9 @@ function Upgrades.getUpgrade 0
     push this 3
     call Math.multiply 2
     pop this 5
+    push static 0
+    push constant 1
+    add
+    pop static 0
     push constant 0
     return

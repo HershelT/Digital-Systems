@@ -5,6 +5,7 @@ class Upgrades {
     field int count;
     field int cps;
     field int currentCPS;
+    static int totalCountOfUpgrades; 
 
     // Initialize with set cost given to Upgrades
     constructor Upgrades new(int cost, int worth, int multiply, int amount, int perSecond) {
@@ -33,6 +34,10 @@ class Upgrades {
         return currentCPS;
     }
 
+    method int getTotalCount() {
+        return totalCountOfUpgrades;
+    }
+
     // Upgrade by changing price and amount of upgrade
     method void getUpgrade() {
         // Logic that does not get int overflow
@@ -40,6 +45,7 @@ class Upgrades {
         let costOfUpgrade = costOfUpgrade + (((costOfUpgrade / 100) + 1) * (multiplier - 100));
         let count = count + 1;
         let currentCPS = cps * count;
+        let totalCountOfUpgrades = totalCountOfUpgrades + 1;
         return;
     }
 }
