@@ -31,7 +31,7 @@ class CookieClicker {
     field Upgrades warehouse; // Warehouse upgrade object
 
     constructor CookieClicker new() {
-        let cookies = 20000;
+        let cookies = 0;
         // Position of drawing Cookie
         let screenMid = 112; // Middle of the screen (column  where the cookie will be drawn)
         let cookieRow = 32; // Row where the cookie will be drawn
@@ -54,10 +54,10 @@ class CookieClicker {
 
         // Create new Upgrades object with given (cost, worth, multiplier, amountToStart, cookiesPerSecond)
         let cursor = Upgrades.new(15, 1, 115, 0, 1); // Create new Upgrades object
-        let grandma = Upgrades.new(100, 10, 115, 0, 2); // Create new Upgrades object
-        let farm = Upgrades.new(1000, 50, 115, 0, 5); // Create new Upgrades object
-        let mine = Upgrades.new(5000, 500, 115, 0, 50); // Create new Upgrades object
-        let warehouse = Upgrades.new(10000, 1000, 115, 0, 200); // Create new Upgrades object
+        let grandma = Upgrades.new(100, 10, 115, 0, 7); // Create new Upgrades object
+        let farm = Upgrades.new(1000, 50, 115, 0, 24); // Create new Upgrades object
+        let mine = Upgrades.new(5000, 500, 115, 0, 87); // Create new Upgrades object
+        let warehouse = Upgrades.new(10000, 1000, 115, 0, 263); // Create new Upgrades object
 
 
 
@@ -119,11 +119,14 @@ class CookieClicker {
         var int frameCounter;
         var int i;
         var Upgrades upgradeElement;
+        // Draw text onto scren
+        do Output.moveCursor(0, 24);
+        do Output.printString("Hit 'SPACE' for Cookies!");
+        do Output.moveCursor(1, 28);
+        do Output.printString("Cookies:");
 
         //Draw the starting cookie that is not filled in
         do CookieDrawings.drawBigPressedCookie(screenMid + (cookieRow * 32));
-        do Output.moveCursor(2, 24);
-        do Output.printString("Spacebar for cookies!");
         
         // Main game loop
         while (true) {
@@ -186,13 +189,15 @@ class CookieClicker {
 
             //Handles updating of visuals 
             if (displayVisualOfCookies) {
+                // Display and update the visuals of the cookies
                 do ScoreBoard.printCookies(cookies);
                 let displayVisualOfCookies = false;
                 do Sys.wait(1);
             }
 
             if (displayVisualOfUpgrades) {
-                do ScoreBoard.printUpgrades(cps(), cursor, grandma, farm, mine);
+                // Display and update the visuals of the upgrades
+                do ScoreBoard.printUpgrades(cps(), cursor, grandma, farm, mine, warehouse);
                 let displayVisualOfUpgrades = false;
                 do Sys.wait(1);
             }

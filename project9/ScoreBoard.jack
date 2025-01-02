@@ -1,8 +1,23 @@
 class ScoreBoard {
     function void printCookies(int cookies) {
-        do Output.moveCursor(0, 28);
+        do eraseCookieLine();
+        do Memory.deAlloc(1);
+        // Save space by removing call to erase
+        do Output.moveCursor(2, 28);
         do Output.printInt(cookies);
-        do Output.printString(" Cookies!        ");
+        // do Output.printString(" Cookies!        ");
+        return;
+    }
+    method void eraseCookieLine() {
+        var int i;
+        do Output.moveCursor(2, 28);
+        let i = 0;
+        while (i < 10) {
+            do Output.printString(" ");
+            let i = i + 1;
+        }
+        do Memory.deAlloc(i);
+
         return;
     }
 
@@ -14,34 +29,35 @@ class ScoreBoard {
         do Output.moveCursor(8, 25);
         do Output.printInt(cps);
 
-        // Display Costs underneat
-        do Output.moveCursor(13, 0);
-        do Output.printString("Costs:");
 
         // Output the number of upgrades
 
         // Output the number of cursors
-        do Output.moveCursor(7,0);
-        do Output.printString("Amount of Upgrades: ");
-        do Output.moveCursor(8, 0);
+        do Output.moveCursor(0,0);
+        do Output.printString("UPGRADES AMOUNT: ");
+        do Output.moveCursor(2, 0);
         do Output.printInt(cursors.getAmount());
         do Output.printString(" Cursors 'C'");
         // Output the number of grandmas
-        do Output.moveCursor(9, 0);
+        do Output.moveCursor(3, 0);
         do Output.printInt(grandmas.getAmount());
         do Output.printString(" Grandmas 'G'");
         // Output the number of farms
-        do Output.moveCursor(10, 0);
+        do Output.moveCursor(4, 0);
         do Output.printInt(farms.getAmount());
         do Output.printString(" Farms 'F'");
         // Output the number of mines
-        do Output.moveCursor(11, 0);
+        do Output.moveCursor(5, 0);
         do Output.printInt(mines.getAmount());
         do Output.printString(" Mines 'M'");
         // Output the number of warehouses
-        do Output.moveCursor(12, 0);
+        do Output.moveCursor(6, 0);
         do Output.printInt(warehouses.getAmount());
         do Output.printString(" Warehouses 'W'");
+
+        // Display Costs underneat
+        do Output.moveCursor(12, 0);
+        do Output.printString("COSTS:");
 
         // Output the cost of each upgrade
 
@@ -55,10 +71,10 @@ class ScoreBoard {
         do Output.moveCursor(18, 0);
         do Output.printInt(farms.getCost());
         // output the price of the mine
-        do Output.moveCursor(20, 0);
+        do Output.moveCursor(19, 0);
         do Output.printInt(mines.getCost());
         // output the price of the warehouse
-        do Output.moveCursor(22, 0);
+        do Output.moveCursor(21, 0);
         do Output.printInt(warehouses.getCost());
 
 
