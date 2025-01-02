@@ -1,0 +1,114 @@
+class LargeIntMath {
+
+    /**
+     * Creates an array to represent a large number.
+     * @param size The size of the array.
+     * @return A new array initialized to zero.
+     */
+    function Array createLargeNumber(int size) {
+        var Array number;
+        let number = Array.new(size);
+        return number;
+    }
+
+    function int module(int a, int b) {
+        while (a > b-1) {
+            let a = a - b;
+        }
+        return a;
+    }
+
+    /**
+     * Sets an initial integer value into the large number array.
+     * @param number The large number array.
+     * @param value The integer value to set.
+     */
+    function void setLargeNumber(Array number, int value) {
+        var int i;
+        let i = 0;
+
+        while (i < Array.length(number)) {
+            let number[i] = module(value, 10); // Get the last digit.
+            let value = value / 10;    // Remove the last digit.
+            let i = i + 1;
+        }
+
+        return;
+    }
+
+    /**
+     * Adds two large numbers represented as arrays.
+     * @param num1 The first large number array.
+     * @param num2 The second large number array.
+     * @param result The array to store the result.
+     */
+    function void addLargeNumbers(Array num1, Array num2, Array result) {
+        var int carry;
+        var int i;
+        var int sum;
+
+        let carry = 0;
+        let i = 0;
+
+        while (i < Array.length(num1)) {
+            let sum = num1[i] + num2[i] + carry; // Add digits and carry.
+            let result[i] = module(sum, 10); // Store the digit.
+            let carry = sum / 10;                // Calculate the carry.
+            let i = i + 1;
+        }
+
+        if (i < Array.length(result)) {
+            let result[i] = carry; // Store any remaining carry.
+        }
+
+        return;
+    }
+
+    /**
+     * Subtracts num2 from num1 (assuming num1 >= num2).
+     * @param num1 The first large number array.
+     * @param num2 The second large number array.
+     * @param result The array to store the result.
+     */
+    function void subtractLargeNumbers(Array num1, Array num2, Array result) {
+        var int borrow;
+        var int i;
+        var int diff;
+
+        let borrow = 0;
+        let i = 0;
+
+        while (i < Array.length(num1)) {
+            let diff = num1[i] - num2[i] - borrow; // Subtract digits and borrow.
+
+            if (diff < 0) {
+                let diff = diff + 10; // Adjust for borrow.
+                let borrow = 1;
+            } else {
+                let borrow = 0;
+            }
+
+            let result[i] = diff; // Store the digit.
+            let i = i + 1;
+        }
+
+        return;
+    }
+
+    /**
+     * Prints a large number represented as an array.
+     * @param number The large number array to print.
+     */
+    function void printLargeNumber(Array number) {
+        var int i;
+        let i = Array.length(number) - 1; // Start from the most significant digit.
+
+        while (i > -1) {
+            do Output.printInt(number[i]);
+            let i = i - 1;
+        }
+
+        do Output.println(); // Newline for clarity.
+        return;
+    }
+}

@@ -1,11 +1,13 @@
 function Upgrades.new 0
-    push constant 2
+    push constant 3
     call Memory.alloc 1
     pop pointer 0
     push argument 0
     pop this 0
     push argument 1
     pop this 1
+    push argument 2
+    pop this 2
     push pointer 0
     return
 function Upgrades.getCost 0
@@ -22,8 +24,10 @@ function Upgrades.upgrade 0
     push argument 0
     pop pointer 0
     push this 0
-    push argument 1
-    add
+    push this 2
+    call Math.multiply 2
+    push constant 100
+    call Math.divide 2
     pop this 0
     push constant 0
     return

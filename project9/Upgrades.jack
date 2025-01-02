@@ -1,11 +1,13 @@
 class Upgrades {
     field int costOfUpgrade;
     field int worthOfUpgrade;
+    field int multiplier;
 
     // Initialize with set cost given to Upgrades
-    constructor Upgrades new(int cost, int worth) {
+    constructor Upgrades new(int cost, int worth, int multiply) {
         let costOfUpgrade = cost;
         let worthOfUpgrade = worth;
+        let multiplier = multiply;
         return this;
     }
 
@@ -17,8 +19,8 @@ class Upgrades {
         return worthOfUpgrade;
     }
 
-    method void upgrade(int upgradeCost) {
-        let costOfUpgrade = costOfUpgrade + upgradeCost;
+    method void upgrade() {
+        let costOfUpgrade = (costOfUpgrade * multiplier) / 100;
         return;
     }
 }
