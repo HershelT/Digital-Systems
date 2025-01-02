@@ -34,7 +34,7 @@ class CookieClicker {
     constructor CookieClicker new() {
         let cookies = 10000;
         // Position of drawing Cookie
-        let screenMid = 128 - (32 / 2); //middle of the screen
+        let screenMid = 112; // Middle of the screen (column  where the cookie will be drawn)
         let cookieRow = 32; // Row where the cookie will be drawn
 
         // Flags to prevent spamming of keys
@@ -91,7 +91,6 @@ class CookieClicker {
                 let cookies = cookies + cps();
                 let displayVisualOfCookies = true;
                 let isDrawingFullCookie = true;
-
             }
         }
         return;
@@ -110,7 +109,7 @@ class CookieClicker {
         var Upgrades upgradeElement;
 
         //Draw the starting cookie that is not filled in
-        do CookieDrawings.drawPressedCookie(screenMid + (cookieRow * 32));
+        do CookieDrawings.drawBigPressedCookie(screenMid + (cookieRow * 32));
         do Output.moveCursor(2, 24);
         do Output.printString("Spacebar for cookies!");
         
@@ -132,6 +131,7 @@ class CookieClicker {
                         let fullCookieTimer = 0; // Reset timer
                         let displayVisualOfCookies = true; // Set flag to display cookies
                     }
+                    // Handle logic for pressing keys to buy upgrades
                     else {
                         while (i < totalAmountOf) {
                             if (key = keys[i]) {
@@ -161,11 +161,11 @@ class CookieClicker {
             // Check if cookie is being pressed and draw the full cookie
             else {
                 if (isDrawingFullCookie) {
-                    do CookieDrawings.drawCookie(screenMid + (cookieRow * 32));
+                    do CookieDrawings.drawBigCookie(screenMid + (cookieRow * 32));
                     let fullCookieTimer = fullCookieTimer + 1;
                     if (fullCookieTimer > 4) { // Show cookie for 20 frames (1 second)
                         let isDrawingFullCookie = false; // Stop drawing full cookie
-                        do CookieDrawings.drawPressedCookie(screenMid + (cookieRow * 32));
+                        do CookieDrawings.drawBigPressedCookie(screenMid + (cookieRow * 32));
                         let fullCookieTimer = 0; // Reset timer
                         do Sys.wait(5); // Prevents spamming of keys
                     }

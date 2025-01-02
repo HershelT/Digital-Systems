@@ -7,39 +7,65 @@ class ScoreBoard {
     }
 
     function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas, Upgrades farms) {
+        var int amount;
         // Display Cookies per Second
         do Output.moveCursor(7,25);
         do Output.printString("CPS: ");
+        do Output.moveCursor(8, 25);
         do Output.printInt(cps);
 
-        do Output.moveCursor(0, 0);
+        // Display Costs underneat
+        do Output.moveCursor(13, 0);
+        do Output.printString("Costs:");
+
+        // Output the number of upgrades
+
+        // Output the number of cursors
+        do Output.moveCursor(7,0);
+        do Output.printString("Amount of Upgrades: ");
+        do Output.moveCursor(8, 0);
         do Output.printInt(cursors.getAmount());
-        do Output.printString(" : Cursors!");
-        // Output price of cursor
-        do Output.moveCursor(1, 0);
-        do Output.printInt(cursors.getCost());
-        do Output.printString(" <- Cost");
-
+        do Output.printString(" Cursors 'C'");
         // Output the number of grandmas
-        do Output.moveCursor(2, 0);
+        do Output.moveCursor(9, 0);
         do Output.printInt(grandmas.getAmount());
-        do Output.printString(" : Grandmas!");
-        // Output price of grandma
-        do Output.moveCursor(3, 0);
-        do Output.printInt(grandmas.getCost());
-        do Output.printString(" <- Cost");
-
+        do Output.printString(" Grandmas 'G'");
         // Output the number of farms
-        do Output.moveCursor(4, 0);
+        do Output.moveCursor(10, 0);
         do Output.printInt(farms.getAmount());
-        do Output.printString(" : Farms!");
-        // Output price of farm
-        do Output.moveCursor(5, 0);
+        do Output.printString(" Farms 'F'");
+
+        // Output the cost of each upgrade
+
+        // output the price of the cursor
+        do Output.moveCursor(14, 0);
+        do Output.printInt(cursors.getCost());
+        // output the price of the grandma
+        do Output.moveCursor(16, 0);
+        do Output.printInt(grandmas.getCost());
+        // output the price of the farm
+        do Output.moveCursor(18, 0);
         do Output.printInt(farms.getCost());
-        do Output.printString(" <- Cost");
 
 
-
+        // Draw as many cursors as we have
+        let amount = 0;
+        while (amount < cursors.getAmount()) {
+            do UpgradeDrawings.drawCursor((32*10*16) + amount + 2);
+            let amount = amount + 1;
+        }
+        // Draw as many grandmas as we have
+        let amount = 0;
+        while (amount < grandmas.getAmount()) {
+            do UpgradeDrawings.drawGrandma((32*11*16+64) + amount + 2);
+            let amount = amount + 1;
+        }
+        // Draw as many farms as we have
+        let amount = 0;
+        while (amount < farms.getAmount()) {
+            do UpgradeDrawings.drawFarm((32*12*16+64) + amount + 2);
+            let amount = amount + 1;
+        }
         return;
     }
     
