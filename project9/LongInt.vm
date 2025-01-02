@@ -5,18 +5,18 @@ function LongInt.new 0
     push argument 0
     call Array.new 1
     pop this 0
-    push pointer 0
-    call LongInt.fillWithZeros 1
-    pop temp 0
     push argument 0
     pop this 1
+    push pointer 0
+    call LongInt.fillWithNull 1
+    pop temp 0
     push pointer 0
     push argument 1
     call LongInt.setLargeNumber 2
     pop temp 0
     push pointer 0
     return
-function LongInt.fillWithZeros 1
+function LongInt.fillWithNull 1
     push argument 0
     pop pointer 0
     push constant 0
@@ -30,7 +30,10 @@ label LongInt_0
     push local 0
     push this 0
     add
-    push constant 0
+    push constant 1
+    call String.new 1
+    push constant 63
+    call String.appendChar 2
     pop temp 0
     pop pointer 1
     push temp 0
@@ -61,22 +64,6 @@ label LongInt_2
     not
     if-goto LongInt_3
     push local 0
-    push this 1
-    gt
-    push constant 1
-    sub
-    not
-    if-goto LongInt_5
-    push pointer 0
-    push this 1
-    push constant 2
-    call Math.multiply 2
-    call LongInt.resize 2
-    pop temp 0
-    goto LongInt_4
-label LongInt_5
-label LongInt_4
-    push local 0
     push this 0
     add
     push argument 1
@@ -99,17 +86,32 @@ label LongInt_3
 function LongInt.print 1
     push argument 0
     pop pointer 0
-    push this 1
-    push constant 1
-    sub
+    push constant 0
     pop local 0
-label LongInt_6
+label LongInt_4
     push local 0
+    push this 1
+    lt
+    not
+    if-goto LongInt_5
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
     push constant 1
-    neg
-    gt
+    call String.new 1
+    push constant 63
+    call String.appendChar 2
+    eq
     not
     if-goto LongInt_7
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto LongInt_6
+label LongInt_7
     push local 0
     push this 0
     add
@@ -121,10 +123,11 @@ label LongInt_6
     pop temp 0
     push local 0
     push constant 1
-    sub
+    add
     pop local 0
-    goto LongInt_6
-label LongInt_7
+label LongInt_6
+    goto LongInt_4
+label LongInt_5
     push constant 0
     return
 function LongInt.getElement 0
@@ -168,7 +171,9 @@ label LongInt_9
 function LongInt.resize 2
     push argument 0
     pop pointer 0
-    push argument 1
+    push this 1
+    push constant 2
+    call Math.multiply 2
     call Array.new 1
     pop local 0
     push constant 0
@@ -199,7 +204,9 @@ label LongInt_10
 label LongInt_11
     push local 0
     pop this 0
-    push argument 1
+    push this 1
+    push constant 2
+    call Math.multiply 2
     pop this 1
     push constant 0
     return
@@ -227,8 +234,6 @@ function LongInt.add 3
     pop pointer 0
     push constant 0
     pop local 0
-    push constant 0
-    pop local 1
     push argument 1
     call LongInt.getSize 1
     push this 1
@@ -236,19 +241,20 @@ function LongInt.add 3
     not
     if-goto LongInt_15
     push pointer 0
-    push argument 1
-    call LongInt.getSize 1
-    push constant 2
-    call Math.multiply 2
-    call LongInt.resize 2
+    call LongInt.resize 1
     pop temp 0
     goto LongInt_14
 label LongInt_15
 label LongInt_14
+    push this 1
+    push constant 1
+    sub
+    pop local 1
 label LongInt_16
     push local 1
-    push this 1
-    lt
+    push constant 1
+    neg
+    gt
     not
     if-goto LongInt_17
     push local 1
@@ -280,10 +286,70 @@ label LongInt_16
     pop local 0
     push local 1
     push constant 1
-    add
+    sub
     pop local 1
     goto LongInt_16
 label LongInt_17
+    push local 1
+    push constant 1
+    neg
+    eq
+    not
+    if-goto LongInt_19
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto LongInt_21
+    push constant 0
+    return
+    goto LongInt_20
+label LongInt_21
+label LongInt_20
+    push pointer 0
+    call LongInt.resize 1
+    pop temp 0
+    push this 1
+    push constant 1
+    sub
+    pop local 1
+label LongInt_22
+    push local 1
+    push constant 0
+    gt
+    not
+    if-goto LongInt_23
+    push local 1
+    push this 0
+    add
+    push local 1
+    push constant 1
+    sub
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 1
+    push constant 1
+    sub
+    pop local 1
+    goto LongInt_22
+label LongInt_23
+    push constant 0
+    push this 0
+    add
+    push local 0
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    goto LongInt_18
+label LongInt_19
+label LongInt_18
     push constant 0
     return
 function LongInt.subtract 3
@@ -293,12 +359,12 @@ function LongInt.subtract 3
     pop local 0
     push constant 0
     pop local 1
-label LongInt_18
+label LongInt_24
     push local 1
     push this 1
     lt
     not
-    if-goto LongInt_19
+    if-goto LongInt_25
     push local 1
     push this 0
     add
@@ -330,7 +396,7 @@ label LongInt_18
     push constant 1
     add
     pop local 1
-    goto LongInt_18
-label LongInt_19
+    goto LongInt_24
+label LongInt_25
     push constant 0
     return

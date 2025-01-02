@@ -1,0 +1,288 @@
+function LargeInteger.new 2
+    push constant 2
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    call String.length 1
+    pop this 1
+    push this 1
+    call Array.new 1
+    pop this 0
+    push constant 0
+    pop local 0
+label LargeInteger_0
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto LargeInteger_1
+    push argument 0
+    push this 1
+    push constant 1
+    sub
+    push local 0
+    sub
+    call String.charAt 2
+    push constant 48
+    sub
+    pop local 1
+    push local 0
+    push this 0
+    add
+    push local 1
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto LargeInteger_0
+label LargeInteger_1
+    push pointer 0
+    return
+function LargeInteger.getLength 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function LargeInteger.getDigit 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push constant 0
+    lt
+    push argument 1
+    push this 1
+    gt
+    push constant 1
+    sub
+    or
+    not
+    if-goto LargeInteger_3
+    push constant 1
+    neg
+    return
+    goto LargeInteger_2
+label LargeInteger_3
+label LargeInteger_2
+    push argument 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    return
+function LargeInteger.toString 2
+    push argument 0
+    pop pointer 0
+    push this 1
+    call String.new 1
+    pop local 0
+    push this 1
+    push constant 1
+    sub
+    pop local 1
+label LargeInteger_4
+    push local 1
+    push constant 1
+    neg
+    gt
+    not
+    if-goto LargeInteger_5
+    push local 0
+    push local 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    push constant 48
+    add
+    call String.appendChar 2
+    pop temp 0
+    push local 1
+    push constant 1
+    sub
+    pop local 1
+    goto LargeInteger_4
+label LargeInteger_5
+    push local 0
+    return
+function LargeInteger.modulo 2
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push argument 2
+    call Math.divide 2
+    pop local 0
+    push argument 1
+    push local 0
+    push argument 2
+    call Math.multiply 2
+    sub
+    pop local 1
+    push local 1
+    return
+function LargeInteger.add 6
+    push argument 0
+    pop pointer 0
+    push this 1
+    push argument 1
+    call LargeInteger.getLength 1
+    gt
+    not
+    if-goto LargeInteger_7
+    push this 1
+    pop local 0
+    goto LargeInteger_6
+label LargeInteger_7
+    push argument 1
+    call LargeInteger.getLength 1
+    pop local 0
+label LargeInteger_6
+    push local 0
+    push constant 1
+    add
+    call Array.new 1
+    pop local 4
+    push constant 0
+    pop local 1
+    push constant 0
+    pop local 3
+label LargeInteger_8
+    push local 1
+    push local 0
+    lt
+    not
+    if-goto LargeInteger_9
+    push local 3
+    pop local 2
+    push local 1
+    push this 1
+    lt
+    not
+    if-goto LargeInteger_11
+    push local 2
+    push local 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    add
+    pop local 2
+    goto LargeInteger_10
+label LargeInteger_11
+label LargeInteger_10
+    push local 1
+    push argument 1
+    call LargeInteger.getLength 1
+    lt
+    not
+    if-goto LargeInteger_13
+    push local 2
+    push argument 1
+    push local 1
+    call LargeInteger.getDigit 2
+    add
+    pop local 2
+    goto LargeInteger_12
+label LargeInteger_13
+label LargeInteger_12
+    push local 1
+    push local 4
+    add
+    push pointer 0
+    push local 2
+    push constant 10
+    call LargeInteger.modulo 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 2
+    push constant 10
+    call Math.divide 2
+    pop local 3
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto LargeInteger_8
+label LargeInteger_9
+    push local 3
+    push constant 0
+    gt
+    not
+    if-goto LargeInteger_15
+    push local 0
+    push local 4
+    add
+    push local 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push pointer 0
+    push local 4
+    push local 0
+    push constant 1
+    add
+    call LargeInteger.fromArray 3
+    pop local 5
+    goto LargeInteger_14
+label LargeInteger_15
+    push pointer 0
+    push local 4
+    push local 0
+    call LargeInteger.fromArray 3
+    pop local 5
+label LargeInteger_14
+    push local 5
+    return
+function LargeInteger.fromArray 2
+    push argument 0
+    pop pointer 0
+    push argument 2
+    call String.new 1
+    pop local 0
+    push argument 2
+    push constant 1
+    sub
+    pop local 1
+label LargeInteger_16
+    push local 1
+    push constant 1
+    neg
+    gt
+    not
+    if-goto LargeInteger_17
+    push local 0
+    push local 1
+    push argument 1
+    add
+    pop pointer 1
+    push that 0
+    push constant 48
+    add
+    call String.appendChar 2
+    pop temp 0
+    push local 1
+    push constant 1
+    sub
+    pop local 1
+    goto LargeInteger_16
+label LargeInteger_17
+    push local 0
+    call LargeInteger.new 1
+    return
+function LargeInteger.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    call Array.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

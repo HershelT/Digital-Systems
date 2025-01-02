@@ -1,0 +1,112 @@
+class LargeInteger {
+    field Array digits;
+    field int length;
+
+    constructor LargeInteger new(String value) {
+        var int i;
+        var int digit;
+        let length = value.length();
+        let digits = Array.new(length);
+        let i = 0;
+        while (i < length) {
+            let digit = value.charAt(length - 1 - i) - 48; // Convert char to int
+            let digits[i] = digit;
+            let i = i + 1;
+        }
+        return this;
+    }
+
+    method int getLength() {
+        return length;
+    }
+
+    method int getDigit(int index) {
+        if ((index < 0) | (index > length - 1)) {
+            return -1; // Indicate invalid index
+        }
+        return digits[index];
+    }
+
+    method String toString() {
+        var String result;
+        var int i;
+        let result = String.new(length);
+        let i = length - 1;
+        while (i > -1) {
+            do result.appendChar(digits[i] + 48); // Convert int to char and append
+            let i = i - 1;
+        }
+        return result;
+    }
+
+    // Create a module operation
+    method int modulo(int a, int b) {
+        var int quotient;
+        var int remainder;
+
+        let quotient = a / b;     // Integer division
+        let remainder = a - (quotient * b); // Calculate remainder
+
+        return remainder;
+    }
+
+    method LargeInteger add(LargeInteger other) {
+        var int maxLength, i, sum, carry;
+        var Array resultDigits;
+        var LargeInteger result;
+
+        if (length > other.getLength()) {
+            let maxLength = length;
+        } else {
+            let maxLength = other.getLength();
+        }
+
+        // Create a new array to store the result
+        let resultDigits = Array.new(maxLength + 1); // +1 for potential carry
+        let i = 0;
+        let carry = 0;
+
+        // Add the digits
+        while (i < maxLength) {
+            let sum = carry;
+            if (i < length) {
+                let sum = sum + digits[i];
+            }
+            if (i < other.getLength()) {
+                let sum = sum + other.getDigit(i);
+            }
+            let resultDigits[i] = modulo(sum, 10);
+            let carry = sum / 10;
+            let i = i + 1;
+        }
+
+
+        // This part is for the last carry in order to add the last digit 
+        if (carry > 0) {
+            let resultDigits[maxLength] = carry;
+            let result = fromArray(resultDigits, maxLength + 1);
+        } else {
+            let result = fromArray(resultDigits, maxLength);
+        }
+        return result;
+    }
+
+    method LargeInteger fromArray(Array arr, int len) {
+        var String value;
+        var int i;
+        let value = String.new(len);
+        let i = len - 1;
+        while (i > -1) {
+            do value.appendChar(arr[i] + 48);
+            let i = i - 1;
+        }
+        return LargeInteger.new(value);
+    }
+
+    method void dispose() {
+        do digits.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}
+

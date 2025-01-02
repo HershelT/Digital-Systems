@@ -6,15 +6,35 @@ class Main {
         // do game.dispose();
 
         // Test LongInt
-        var LongInt test;
-        var LongInt test2;
-        do Output.moveCursor(1,2);
-        let test = LongInt.new(10, "20");
-        let test2 = LongInt.new(10, "3");
+        // var LongInt test;
+        // var LongInt test2;
+        // let test = LongInt.new(5, "23234");
+        // let test2 = LongInt.new(5, "33333");
 
-        // do test.add(test2);
-        do Output.moveCursor(0,0);
-        do test.print();
+        // // do test.add(test2);
+        // do Output.moveCursor(2,2);
+        // do test.print();
+        // return;
+
+
+        var LargeInteger num1, num2, sum;
+        var int i;
+        let num1 = LargeInteger.new("8");
+        let num2 = LargeInteger.new("1");
+        let sum = num1.add(num2);
+        let i = 0;
+        do Output.moveCursor(2,3);
+        do Output.printString("Sum: ");
+        do Output.printString(sum.toString());
+        // while (i < sum.getLength()) {
+        //     do Output.printInt(sum.getDigit(i));
+        //     let i = i + 1;
+        // }
+        do Output.println();
+
+        do num1.dispose();
+        do num2.dispose();
+        do sum.dispose();
         return;
     }
 }
