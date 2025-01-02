@@ -39,7 +39,6 @@ class LargeInteger {
         return result;
     }
 
-    // Create a module operation
     method int modulo(int a, int b) {
         var int quotient;
         var int remainder;
@@ -72,16 +71,19 @@ class LargeInteger {
             if (i < length) {
                 let sum = sum + digits[i];
             }
-            if (i < other.getLength()) {
-                let sum = sum + other.getDigit(i);
-            }
-            let resultDigits[i] = modulo(sum, 10);
-            let carry = sum / 10;
+            else {
+                if (i < other.getLength()) {
+                    let sum = sum + other.getDigit(i);
+                }
+            }        
+
+
+            let resultDigits[i] = modulo(sum, 10); // Fix: Store only the last digit
+            let carry = sum / 10; // Integer division for carry
             let i = i + 1;
         }
 
-
-        // This part is for the last carry in order to add the last digit 
+        // Handle the final carry
         if (carry > 0) {
             let resultDigits[maxLength] = carry;
             let result = fromArray(resultDigits, maxLength + 1);
@@ -91,17 +93,21 @@ class LargeInteger {
         return result;
     }
 
-    method LargeInteger fromArray(Array arr, int len) {
-        var String value;
-        var int i;
-        let value = String.new(len);
-        let i = len - 1;
-        while (i > -1) {
-            do value.appendChar(arr[i] + 48);
-            let i = i - 1;
-        }
-        return LargeInteger.new(value);
+    method void setArray(Array arr, int len) {
+        do digits.dispose();
+        let digits = arr;
+        let length = len;
+        return;
     }
+
+    method LargeInteger fromArray(Array arr, int len) {
+        var LargeInteger result;
+        let result = LargeInteger.new("0"); // Create a placeholder LargeInteger
+        do result.setArray(arr,len);
+        return result;
+    }
+
+
 
     method void dispose() {
         do digits.dispose();
@@ -109,4 +115,3 @@ class LargeInteger {
         return;
     }
 }
-

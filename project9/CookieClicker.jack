@@ -16,13 +16,13 @@ class CookieClicker {
     // count of upgrades
     field int fullCookieTimer; //Timer to track how long the cookie is shown for after pressed
     
-    field int cursors; // Number of cursors
+    // field int cursors; // Number of cursors
     field int cursorTimer; // Timer for cursors
-    field Upgrades cursorUpgrade; // Cursor upgrade object
+    field Upgrades cursor; // Cursor upgrade object
 
-    field int grandmas; // Number of grandmas
+    // field int grandmas; // Number of grandmas
     field int grandmaTimer; // Timer for grandmas
-    field Upgrades grandmaUpgrade; // Grandma upgrade object
+    field Upgrades grandma; // Grandma upgrade object
 
 
     constructor CookieClicker new() {
@@ -42,55 +42,23 @@ class CookieClicker {
         let fullCookieTimer = 0;
 
         // Initialize upgrades
-        let cursors = 0;
         let cursorTimer = 0;
         // Create new Upgrades object of cursor for (cost, worth, multiplier)
-        let cursorUpgrade = Upgrades.new(15, 1, 115); // Create new Upgrades object
+        let cursor = Upgrades.new(15, 1, 115, 0); // Create new Upgrades object
         
-        let grandmas = 0;
         let grandmaTimer = 0;
         // Create new Upgrades object of grandma for (cost, worth, multiplier)
-        let grandmaUpgrade = Upgrades.new(100, 10, 115); // Create new Upgrades object
+        let grandma = Upgrades.new(100, 10, 115, 0); // Create new Upgrades object
 
         return this;
     }
 
-    // displayUpgrades method
-    method void displayUpgrades() {
-        do Output.moveCursor(0, 0);
-        do Output.printInt(cursors);
-        do Output.printString(" - Cursors!");
-        // Output price of cursor
-        do Output.moveCursor(1, 0);
-        do Output.printInt(cursorUpgrade.getCost());
-        do Output.printString(" - Cost");
-
-        // Output the number of grandmas
-        do Output.moveCursor(2, 0);
-        do Output.printInt(grandmas);
-        do Output.printString(" - Grandmas!");
-        // Output price of grandma
-        do Output.moveCursor(3, 0);
-        do Output.printInt(grandmaUpgrade.getCost());
-        do Output.printString(" - Cost");
-        return;
-    }
-
-    // method void displayCookies() {
-    //     do Output.moveCursor(0, 28);
-    //     do Output.printString("Cookies: ");
-    //     do Output.printInt(cookies);
-    //     do Output.printString("            ");
-    //     do Sys.wait(10);
-    //     return;
-    // }
-
     // HandleCursorLogic()
     method void handleUpgradeLogic() {
-        if (cursors > 0) {
+        if (cursor.getAmount() > 0) {
             let cursorTimer = cursorTimer + 1;
             if (cursorTimer > 20) { // Every 20 frames (1 second)
-                let cookies = cookies + (cursors * cursorUpgrade.worth());
+                let cookies = cookies + (cursor.getAmount() * cursor.getWorth());
                 let cursorTimer = 0;
                 // update flag to display the number of cookies
                 let displayVisualOfCookies = true;
@@ -98,10 +66,10 @@ class CookieClicker {
         }
 
         // Handle grandma logic
-        if (grandmas > 0) {
+        if (grandma.getAmount() > 0) {
             let grandmaTimer = grandmaTimer + 1;
             if (grandmaTimer > 100) { // Every 100 frames (5 seconds)
-                let cookies = cookies + (grandmas * grandmaUpgrade.worth());
+                let cookies = cookies + (grandma.getAmount() * grandma.getWorth());
                 let grandmaTimer = 0;
                 // update flag to display the number of cookies
                 let displayVisualOfCookies = true;
@@ -112,57 +80,35 @@ class CookieClicker {
     }
 
 
+    method int cps() {
+        return cursor.getAmount() * cursor.getWorth() + grandma.getAmount() * grandma.getWorth();
+    }
+
 
     method void run() {
         var char key;
         var int frameCounter;
-        
-        // Cost of upgrades
-        var int cursorCost;
-        var int grandmaCost;
 
         //Draw the starting cookie that is not filled in
         do CookieDrawings.drawPressedCookie(screenMid + (cookieRow * 32));
         do Output.moveCursor(1, 24);
         do Output.printString("Spacebar for cookies!");
+
+        // Display the starting amount of cookies and upgrades
         do ScoreBoard.printCookies(cookies);
-        do displayUpgrades(); // Display the number of cursors
+        do ScoreBoard.printUpgrades(cps(), cursor, grandma);
 
         while (true) {
             let key = Keyboard.keyPressed();
 
             //Handles updating of visuals 
             if (displayVisualOfCookies) {
-                // do displayCookies();
                 do ScoreBoard.printCookies(cookies);
                 let displayVisualOfCookies = false;
             }
 
             if (displayVisualOfUpgrades) {
-                // do displayUpgrades();
-                do Output.moveCursor(0, 0);
-                do Output.printString("Cursors: ");
-                do Output.printInt(cursors);
-                do Output.printString("        ");
-                do Sys.wait(5);
-                // Output price of cursor
-                do Output.moveCursor(1, 0);
-                do Output.printString("Cost: ");
-                do Output.printInt(cursorUpgrade.getCost());
-                do Output.printString("        ");
-                do Sys.wait(5);
-                // Output the number of grandmas
-                do Output.moveCursor(2, 0);
-                do Output.printString("Grandmas: ");
-                do Output.printInt(grandmas);
-                do Output.printString("        ");
-                do Sys.wait(5);
-                // Output price of grandma
-                do Output.moveCursor(3, 0);
-                do Output.printString("Cost: ");
-                do Output.printInt(grandmaUpgrade.getCost());
-                do Output.printString("        ");
-                do Sys.wait(10);
+                do ScoreBoard.printUpgrades(cps(), cursor, grandma);
                 let displayVisualOfUpgrades = false;
             }
 
@@ -187,11 +133,9 @@ class CookieClicker {
 
                     // Cursor upgrade
                     if (key = 99) { // c key
-                        let cursorCost = cursorUpgrade.getCost();
-                        if (cookies > (cursorCost - 1)) {
-                            let cookies = cookies - cursorCost; // Deduct cost
-                            let cursors = cursors + 1; // Add cursor
-                            do cursorUpgrade.upgrade(); // Upgrade cursor cost
+                        if (cookies > (cursor.getCost() - 1)) {
+                            let cookies = cookies - cursor.getCost(); // Deduct cost
+                            do cursor.getUpgrade(); // Upgrade cursor cost and add a cursor
                             let displayVisualOfUpgrades = true; // Set flag to display upgrades
                             do Sys.wait(5);
                         }
@@ -199,11 +143,9 @@ class CookieClicker {
 
                     // Grandma upgrade
                     if (key = 103) { // g key
-                        let grandmaCost = grandmaUpgrade.getCost();
-                        if (cookies > (grandmaCost - 1)) {
-                            let cookies = cookies - grandmaCost; // Deduct cost
-                            let grandmas = grandmas + 1; // Add grandma
-                            do grandmaUpgrade.upgrade(); // Upgrade grandma cost
+                        if (cookies > (grandma.getCost() - 1)) {
+                            let cookies = cookies - grandma.getCost(); // Deduct cost
+                            do grandma.getUpgrade(); // Upgrade grandma cost and add a grandma
                             let displayVisualOfUpgrades = true; // Set flag to display upgrades
                             do Sys.wait(5); // Prevents spamming of keys
                         }

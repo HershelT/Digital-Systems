@@ -1,56 +1,11 @@
-function Main.main 4
-    push constant 1
-    call String.new 1
-    push constant 56
-    call String.appendChar 2
-    call LargeInteger.new 1
+function Main.main 1
+    call CookieClicker.new 0
     pop local 0
-    push constant 2
-    call String.new 1
-    push constant 45
-    call String.appendChar 2
-    push constant 49
-    call String.appendChar 2
-    call LargeInteger.new 1
-    pop local 1
     push local 0
-    push local 1
-    call LargeInteger.add 2
-    pop local 2
-    push constant 0
-    pop local 3
-    push constant 2
-    push constant 3
-    call Output.moveCursor 2
-    pop temp 0
-    push constant 5
-    call String.new 1
-    push constant 83
-    call String.appendChar 2
-    push constant 117
-    call String.appendChar 2
-    push constant 109
-    call String.appendChar 2
-    push constant 58
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    call Output.printString 1
-    pop temp 0
-    push local 2
-    call LargeInteger.toString 1
-    call Output.printString 1
-    pop temp 0
-    call Output.println 0
+    call CookieClicker.run 1
     pop temp 0
     push local 0
-    call LargeInteger.dispose 1
-    pop temp 0
-    push local 1
-    call LargeInteger.dispose 1
-    pop temp 0
-    push local 2
-    call LargeInteger.dispose 1
+    call CookieClicker.dispose 1
     pop temp 0
     push constant 0
     return

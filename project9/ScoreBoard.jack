@@ -6,5 +6,30 @@ class ScoreBoard {
         // do Sys.wait(10);
         return;
     }
+
+    function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas) {
+
+        do Output.moveCursor(2,24);
+        do Output.printString("CPS: ");
+        do Output.printInt(cps);
+
+        do Output.moveCursor(0, 0);
+        do Output.printInt(cursors.getAmount());
+        do Output.printString(" : Cursors!");
+        // Output price of cursor
+        do Output.moveCursor(1, 0);
+        do Output.printInt(cursors.getCost());
+        do Output.printString(" <- Cost");
+
+        // Output the number of grandmas
+        do Output.moveCursor(2, 0);
+        do Output.printInt(grandmas.getAmount());
+        do Output.printString(" : Grandmas!");
+        // Output price of grandma
+        do Output.moveCursor(3, 0);
+        do Output.printInt(grandmas.getCost());
+        do Output.printString(" <- Cost");
+        return;
+    }
     
 }

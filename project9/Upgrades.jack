@@ -2,12 +2,14 @@ class Upgrades {
     field int costOfUpgrade;
     field int worthOfUpgrade;
     field int multiplier;
+    field int count;
 
     // Initialize with set cost given to Upgrades
-    constructor Upgrades new(int cost, int worth, int multiply) {
-        let costOfUpgrade = cost;
-        let worthOfUpgrade = worth;
-        let multiplier = multiply;
+    constructor Upgrades new(int cost, int worth, int multiply, int amount) {
+        let costOfUpgrade = cost; //Cost of upgrade
+        let worthOfUpgrade = worth; //How much you get interval
+        let multiplier = multiply; // How much to increase costOfUpgrade by
+        let count = amount; // Number of upgrades
         return this;
     }
 
@@ -15,12 +17,18 @@ class Upgrades {
         return costOfUpgrade;
     }
 
-    method int worth() {
+    method int getAmount() {
+        return count;
+    }
+
+    method int getWorth() {
         return worthOfUpgrade;
     }
 
-    method void upgrade() {
-        let costOfUpgrade = costOfUpgrade * (multiplier / 100);
+    // Upgrade by changing price and amount of upgrade
+    method void getUpgrade() {
+        let costOfUpgrade = costOfUpgrade + (costOfUpgrade / 100 * (multiplier - 100));
+        let count = count + 1;
         return;
     }
 }

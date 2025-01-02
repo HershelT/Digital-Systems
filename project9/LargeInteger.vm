@@ -172,7 +172,6 @@ label LargeInteger_8
     pop local 2
     goto LargeInteger_10
 label LargeInteger_11
-label LargeInteger_10
     push local 1
     push argument 1
     call LargeInteger.getLength 1
@@ -188,6 +187,7 @@ label LargeInteger_10
     goto LargeInteger_12
 label LargeInteger_13
 label LargeInteger_12
+label LargeInteger_10
     push local 1
     push local 4
     add
@@ -239,41 +239,33 @@ label LargeInteger_15
 label LargeInteger_14
     push local 5
     return
-function LargeInteger.fromArray 2
+function LargeInteger.setArray 0
     push argument 0
     pop pointer 0
-    push argument 2
-    call String.new 1
-    pop local 0
-    push argument 2
-    push constant 1
-    sub
-    pop local 1
-label LargeInteger_16
-    push local 1
-    push constant 1
-    neg
-    gt
-    not
-    if-goto LargeInteger_17
-    push local 0
-    push local 1
-    push argument 1
-    add
-    pop pointer 1
-    push that 0
-    push constant 48
-    add
-    call String.appendChar 2
+    push this 0
+    call Array.dispose 1
     pop temp 0
-    push local 1
+    push argument 1
+    pop this 0
+    push argument 2
+    pop this 1
+    push constant 0
+    return
+function LargeInteger.fromArray 1
+    push argument 0
+    pop pointer 0
     push constant 1
-    sub
-    pop local 1
-    goto LargeInteger_16
-label LargeInteger_17
-    push local 0
+    call String.new 1
+    push constant 48
+    call String.appendChar 2
     call LargeInteger.new 1
+    pop local 0
+    push local 0
+    push argument 1
+    push argument 2
+    call LargeInteger.setArray 3
+    pop temp 0
+    push local 0
     return
 function LargeInteger.dispose 0
     push argument 0
