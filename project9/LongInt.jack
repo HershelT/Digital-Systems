@@ -1,0 +1,162 @@
+class LongInt {
+    // A class to store infinitely large numbers.
+    // Example [1, 2, 3, 4, 5] represents 54321.
+    // Example [0, 0, 0, 0, 0] represents 0.
+    // Example [0, 0, 9, 8] represents 8900.
+    // Example [1, 0, 0, 0, 0] represents 1.
+    // Example [1, 0, 0, 0, 0, 0] represents 1.
+
+    // fields
+    field Array number;
+    field int size;
+    field int length;
+
+    // constructor
+    constructor LongInt new(int initialSize, String stringOfNumber) {
+        let number = Array.new(initialSize);
+        let size = initialSize;
+        let length = lengthOf(stringOfNumber);
+        do setLargeNumber(stringOfNumber);
+
+        return this;
+    }
+    // Getters
+
+    method int getLength() {
+        return length;
+    }
+
+
+    method int lengthOf(String stringOfNumber) {
+        var int i;
+        let i = 0;
+
+        while (~stringOfNumber.charAt(i)) {
+            let i = i + 1;
+        }
+
+        return i;
+    }
+
+    // Convert string to large number
+    method void setLargeNumber(String stringOfNumber) {
+        var int i;
+        let i = 0;
+
+        while (i < lengthOf(stringOfNumber)) {
+            if (i > size-1) {
+                do resize(size * 2); // Double the size if needed
+            }
+            let number[i] = stringOfNumber.charAt(i) - 48; // Convert char to int
+            let i = i + 1;
+        }
+
+        let length = i;
+        return;
+    }
+
+    method int getElement(int index) {
+        return number[index];
+    }
+
+    //Prune the trailing zeros (For example) [1,2,3,4,5,0,0,0] -> [1,2,3,4,5]
+    method void prune() {
+        var int i;
+        let i = length - 1;
+
+        while (number[i] = 0) {
+            let i = i - 1;
+        }
+
+        let length = i + 1;
+        return;
+    }
+
+
+    // Resize the array to a new size
+    method void resize(int newSize) {
+        var Array newArray;
+        var int i;
+
+        let newArray = Array.new(newSize);
+        let i = 0;
+
+        while (i < size) {
+            let newArray[i] = number[i];
+            let i = i + 1;
+        }
+
+        let number = newArray;
+        let size = newSize;
+        return;
+    }
+
+    // Add operations here
+    method int module(int a, int b) {
+        while (a > b-1) {
+            let a = a - b;
+        }
+        return a;
+    }
+
+    // method void add(largeNumber other) {
+    method void add(LongInt other) {
+        var int carry;
+        var int i;
+        var int sum;
+
+        let carry = 0;
+        let i = 0;
+        // Check if we need to resize the array
+        if (other.getLength() > length) {
+            do resize(other.getLength());
+        }        
+
+        while (i < length) {
+            let sum = number[i] + other.getElement(i) + carry; // Add digits and carry.
+            let number[i] = module(sum, 10); // Store the digit.
+            let carry = sum / 10; // Store the carry.
+            let i = i + 1;
+        }
+
+        // Prune the trailing zeros
+        do prune();
+
+        return;
+    }
+
+    //Subtract operations here
+    method void subtract(LongInt other) {
+        var int borrow;
+        var int i;
+        var int difference;
+
+        let borrow = 0;
+        let i = 0;
+
+        while (i < length) {
+            let difference = number[i] - other.getElement(i) - borrow; // Subtract digits and borrow.
+            let number[i] = module(difference, 10); // Store the digit.
+            let borrow = difference / 10; // Store the borrow.
+            let i = i + 1;
+        }
+
+        // Prune the trailing zeros
+        do prune();
+
+        return;
+    }
+
+
+}
+
+// Example usage
+// var LongInt number1;
+// var LongInt number2;
+// var LongInt result;
+// let number1 = LongInt.new(5, "12345");
+// let number2 = LongInt.new(5, "54321");
+// let result = LongInt.new(5, "0");
+// do number1.add(number2);
+// do number1.subtract(number2);
+// do number1.add(number2);

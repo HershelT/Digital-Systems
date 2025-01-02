@@ -58,37 +58,32 @@ class CookieClicker {
     // displayUpgrades method
     method void displayUpgrades() {
         do Output.moveCursor(0, 0);
-        do Output.printString("Cursors: ");
         do Output.printInt(cursors);
-        do Output.printString("        ");
+        do Output.printString(" - Cursors!");
         // Output price of cursor
         do Output.moveCursor(1, 0);
-        do Output.printString("Cost: ");
         do Output.printInt(cursorUpgrade.getCost());
-        do Output.printString("        ");
+        do Output.printString(" - Cost");
 
         // Output the number of grandmas
         do Output.moveCursor(2, 0);
-        do Output.printString("Grandmas: ");
         do Output.printInt(grandmas);
-        do Output.printString("        ");
+        do Output.printString(" - Grandmas!");
         // Output price of grandma
         do Output.moveCursor(3, 0);
-        do Output.printString("Cost: ");
         do Output.printInt(grandmaUpgrade.getCost());
-        do Output.printString("        ");
-
+        do Output.printString(" - Cost");
         return;
     }
 
-    method void displayCookies() {
-        do Output.moveCursor(0, 28);
-        do Output.printString("Cookies: ");
-        do Output.printInt(cookies);
-        do Output.printString("            ");
-        do Sys.wait(10);
-        return;
-    }
+    // method void displayCookies() {
+    //     do Output.moveCursor(0, 28);
+    //     do Output.printString("Cookies: ");
+    //     do Output.printInt(cookies);
+    //     do Output.printString("            ");
+    //     do Sys.wait(10);
+    //     return;
+    // }
 
     // HandleCursorLogic()
     method void handleUpgradeLogic() {

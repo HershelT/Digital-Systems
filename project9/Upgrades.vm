@@ -25,9 +25,9 @@ function Upgrades.upgrade 0
     pop pointer 0
     push this 0
     push this 2
-    call Math.multiply 2
     push constant 100
     call Math.divide 2
+    call Math.multiply 2
     pop this 0
     push constant 0
     return

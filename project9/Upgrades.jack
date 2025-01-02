@@ -20,7 +20,7 @@ class Upgrades {
     }
 
     method void upgrade() {
-        let costOfUpgrade = (costOfUpgrade * multiplier) / 100;
+        let costOfUpgrade = costOfUpgrade * (multiplier / 100);
         return;
     }
 }

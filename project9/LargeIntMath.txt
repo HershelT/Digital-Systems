@@ -11,12 +11,23 @@ class LargeIntMath {
         return number;
     }
 
-    function int module(int a, int b) {
+    method int module(int a, int b) {
         while (a > b-1) {
             let a = a - b;
         }
         return a;
     }
+
+    method int length(Array arr) {
+        var int i;
+        let i = 0;
+        while (~arr[i]) {
+            let i = i + 1;
+        }
+        return i;
+    }
+
+    
 
     /**
      * Sets an initial integer value into the large number array.
@@ -27,7 +38,7 @@ class LargeIntMath {
         var int i;
         let i = 0;
 
-        while (i < Array.length(number)) {
+        while (i < length(number)) {
             let number[i] = module(value, 10); // Get the last digit.
             let value = value / 10;    // Remove the last digit.
             let i = i + 1;
@@ -50,14 +61,14 @@ class LargeIntMath {
         let carry = 0;
         let i = 0;
 
-        while (i < Array.length(num1)) {
+        while (i < length(num1)) {
             let sum = num1[i] + num2[i] + carry; // Add digits and carry.
             let result[i] = module(sum, 10); // Store the digit.
             let carry = sum / 10;                // Calculate the carry.
             let i = i + 1;
         }
 
-        if (i < Array.length(result)) {
+        if (i < length(result)) {
             let result[i] = carry; // Store any remaining carry.
         }
 
@@ -78,7 +89,7 @@ class LargeIntMath {
         let borrow = 0;
         let i = 0;
 
-        while (i < Array.length(num1)) {
+        while (i < length(num1)) {
             let diff = num1[i] - num2[i] - borrow; // Subtract digits and borrow.
 
             if (diff < 0) {
@@ -101,7 +112,7 @@ class LargeIntMath {
      */
     function void printLargeNumber(Array number) {
         var int i;
-        let i = Array.length(number) - 1; // Start from the most significant digit.
+        let i = length(number) - 1; // Start from the most significant digit.
 
         while (i > -1) {
             do Output.printInt(number[i]);

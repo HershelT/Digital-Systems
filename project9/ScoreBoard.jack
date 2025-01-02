@@ -1,9 +1,9 @@
 class ScoreBoard {
-    function void printCookies(int cookies) {
-        var int memAddress;
-        //Let memory address be row 0, collumn 28
-        let memAddress = 16384 + (160 + 1)
-        do Memory.poke(memAddress, cookies);
+    function void printCookies(Long cookies) {
+        do Output.moveCursor(0, 28);
+        do Output.printInt(cookies);
+        do Output.printString(" Cookies!        ");
+        // do Sys.wait(10);
         return;
     }
     
