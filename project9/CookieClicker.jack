@@ -28,6 +28,7 @@ class CookieClicker {
     field Upgrades grandma; // Grandma upgrade object
     field Upgrades farm; // Farm upgrade object
     field Upgrades mine; // Mine upgrade object
+    field Upgrades warehouse; // Warehouse upgrade object
 
     constructor CookieClicker new() {
         let cookies = 20000;
@@ -51,32 +52,32 @@ class CookieClicker {
         let globalTimer = 0;
         // Initialize upgrades
 
-        // Create new Upgrades object of cursor for (cost, worth, multiplier, amountToStart, cookiesPerSecond)
+        // Create new Upgrades object with given (cost, worth, multiplier, amountToStart, cookiesPerSecond)
         let cursor = Upgrades.new(15, 1, 115, 0, 1); // Create new Upgrades object
-        // Create new Upgrades object of grandma for (cost, worth, multiplier, amountToStart, cookiesPerSecond)
         let grandma = Upgrades.new(100, 10, 115, 0, 2); // Create new Upgrades object
-        // Create new Upgrades object of farm for (cost, worth, multiplier, amountToStart, cookiesPerSecond)
         let farm = Upgrades.new(1000, 50, 115, 0, 5); // Create new Upgrades object
-        // Create new Upgrades object of mine for (cost, worth, multiplier, amountToStart, cookiesPerSecond)
         let mine = Upgrades.new(5000, 500, 115, 0, 50); // Create new Upgrades object
+        let warehouse = Upgrades.new(10000, 1000, 115, 0, 200); // Create new Upgrades object
+
+
 
         // Store keys in an array and corresponding upgrades (making a map)
-        let totalAmountOf = 4; // Total amount of upgrades - keys you can get
+        let totalAmountOf = 5; // Total amount of upgrades - keys you can get
         let keys = Array.new(totalAmountOf); // Create new Array object
         let upgrades = Array.new(totalAmountOf); // Create new Array object
 
-        // Set keys and upgrades
+        // Set keys 
         let keys[0] = 99; // c key
         let keys[1] = 103; // g key
         let keys[2] = 102; // f key
         let keys[3] = 109; // m key
-
+        let keys[4] = 119; // w key
+        // Set upgrades
         let upgrades[0] = cursor; // Cursor upgrade
         let upgrades[1] = grandma; // Grandma upgrade
         let upgrades[2] = farm; // Farm upgrade
         let upgrades[3] = mine; // Mine upgrade
-
-
+        let upgrades[4] = warehouse; // Warehouse upgrade
 
         return this;
     }

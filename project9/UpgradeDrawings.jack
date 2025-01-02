@@ -91,4 +91,28 @@ class UpgradeDrawings {
         do Memory.poke(memAddress +416, 4095);
         return;
     }
+
+    // Draws a warehouse at the given location
+    function void drawWarehouse(int location) {
+        var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress +32, 4);
+        do Memory.poke(memAddress, 0);
+        do Memory.poke(memAddress +64, 14);
+        do Memory.poke(memAddress +96, 14);
+        do Memory.poke(memAddress +128, 14);
+        do Memory.poke(memAddress +160, 511);
+        do Memory.poke(memAddress +192, 511);
+        do Memory.poke(memAddress +224, 511);
+        do Memory.poke(memAddress +256, 443);
+        do Memory.poke(memAddress +288, 427);
+        do Memory.poke(memAddress +320, 455);
+        do Memory.poke(memAddress +352, 511);
+        do Memory.poke(memAddress +384, 455);
+        do Memory.poke(memAddress +416, 455);
+        do Memory.poke(memAddress +448, 455);
+        do Memory.poke(memAddress +480, 511);
+        return;
+    }
 }

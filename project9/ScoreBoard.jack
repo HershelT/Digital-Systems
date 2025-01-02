@@ -6,7 +6,7 @@ class ScoreBoard {
         return;
     }
 
-    function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas, Upgrades farms, Upgrades mines) {
+    function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas, Upgrades farms, Upgrades mines, Upgrades warehouses) {
         var int amount;
         // Display Cookies per Second
         do Output.moveCursor(7,25);
@@ -38,6 +38,10 @@ class ScoreBoard {
         do Output.moveCursor(11, 0);
         do Output.printInt(mines.getAmount());
         do Output.printString(" Mines 'M'");
+        // Output the number of warehouses
+        do Output.moveCursor(12, 0);
+        do Output.printInt(warehouses.getAmount());
+        do Output.printString(" Warehouses 'W'");
 
         // Output the cost of each upgrade
 
@@ -53,6 +57,10 @@ class ScoreBoard {
         // output the price of the mine
         do Output.moveCursor(20, 0);
         do Output.printInt(mines.getCost());
+        // output the price of the warehouse
+        do Output.moveCursor(22, 0);
+        do Output.printInt(warehouses.getCost());
+
 
 
         // Draw as many cursors as we have
@@ -73,11 +81,16 @@ class ScoreBoard {
             do UpgradeDrawings.drawFarm((32*12*16+64) + amount + 3);
             let amount = amount + 1;
         }
-
         // Draw as many mines as we have
         let amount = 0;
         while (amount < mines.getAmount()) {
             do UpgradeDrawings.drawMine((32*13*16+64) + amount + 3);
+            let amount = amount + 1;
+        }
+        // Draw as many warehouses as we have
+        let amount = 0;
+        while (amount < warehouses.getAmount()) {
+            do UpgradeDrawings.drawWarehouse((32*14*16+64) + amount + 3);
             let amount = amount + 1;
         }
 
