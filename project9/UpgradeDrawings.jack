@@ -69,4 +69,26 @@ class UpgradeDrawings {
         do Memory.poke(memAddress +512, 510);
         return;
     }
+
+    // Draws a mine at the given location
+    function void drawMine(int location) {
+	    var int memAddress; 
+        let memAddress = 16384+location;
+        // column 0
+        do Memory.poke(memAddress +32, 504);
+        do Memory.poke(memAddress, 0);
+        do Memory.poke(memAddress +64, 1020);
+        do Memory.poke(memAddress +96, 3999);
+        do Memory.poke(memAddress +128, 3855);
+        do Memory.poke(memAddress +160, 3591);
+        do Memory.poke(memAddress +192, 3075);
+        do Memory.poke(memAddress +224, 3075);
+        do Memory.poke(memAddress +256, 3075);
+        do Memory.poke(memAddress +288, 3075);
+        do Memory.poke(memAddress +320, 3075);
+        do Memory.poke(memAddress +352, 3219);
+        do Memory.poke(memAddress +384, 3219);
+        do Memory.poke(memAddress +416, 4095);
+        return;
+    }
 }

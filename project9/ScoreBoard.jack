@@ -6,7 +6,7 @@ class ScoreBoard {
         return;
     }
 
-    function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas, Upgrades farms) {
+    function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas, Upgrades farms, Upgrades mines) {
         var int amount;
         // Display Cookies per Second
         do Output.moveCursor(7,25);
@@ -34,6 +34,10 @@ class ScoreBoard {
         do Output.moveCursor(10, 0);
         do Output.printInt(farms.getAmount());
         do Output.printString(" Farms 'F'");
+        // Output the number of mines
+        do Output.moveCursor(11, 0);
+        do Output.printInt(mines.getAmount());
+        do Output.printString(" Mines 'M'");
 
         // Output the cost of each upgrade
 
@@ -46,26 +50,37 @@ class ScoreBoard {
         // output the price of the farm
         do Output.moveCursor(18, 0);
         do Output.printInt(farms.getCost());
+        // output the price of the mine
+        do Output.moveCursor(20, 0);
+        do Output.printInt(mines.getCost());
 
 
         // Draw as many cursors as we have
         let amount = 0;
         while (amount < cursors.getAmount()) {
-            do UpgradeDrawings.drawCursor((32*10*16) + amount + 2);
+            do UpgradeDrawings.drawCursor((32*10*16) + amount + 3);
             let amount = amount + 1;
         }
         // Draw as many grandmas as we have
         let amount = 0;
         while (amount < grandmas.getAmount()) {
-            do UpgradeDrawings.drawGrandma((32*11*16+64) + amount + 2);
+            do UpgradeDrawings.drawGrandma((32*11*16+64) + amount + 3);
             let amount = amount + 1;
         }
         // Draw as many farms as we have
         let amount = 0;
         while (amount < farms.getAmount()) {
-            do UpgradeDrawings.drawFarm((32*12*16+64) + amount + 2);
+            do UpgradeDrawings.drawFarm((32*12*16+64) + amount + 3);
             let amount = amount + 1;
         }
+
+        // Draw as many mines as we have
+        let amount = 0;
+        while (amount < mines.getAmount()) {
+            do UpgradeDrawings.drawMine((32*13*16+64) + amount + 3);
+            let amount = amount + 1;
+        }
+
         return;
     }
     

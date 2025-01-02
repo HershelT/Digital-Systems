@@ -22,17 +22,15 @@ class CookieClicker {
     field Array upgrades;
     
     field int globalTimer; // Timer for cursors
-    // field int cursors; // Number of cursors
+
+    // UPGRADES 
     field Upgrades cursor; // Cursor upgrade object
-
-    // field int grandmas; // Number of grandmas
     field Upgrades grandma; // Grandma upgrade object
-
-    //Working on farm
     field Upgrades farm; // Farm upgrade object
+    field Upgrades mine; // Mine upgrade object
 
     constructor CookieClicker new() {
-        let cookies = 10000;
+        let cookies = 20000;
         // Position of drawing Cookie
         let screenMid = 112; // Middle of the screen (column  where the cookie will be drawn)
         let cookieRow = 32; // Row where the cookie will be drawn
@@ -55,15 +53,15 @@ class CookieClicker {
 
         // Create new Upgrades object of cursor for (cost, worth, multiplier, amountToStart, cookiesPerSecond)
         let cursor = Upgrades.new(15, 1, 115, 0, 1); // Create new Upgrades object
-        
         // Create new Upgrades object of grandma for (cost, worth, multiplier, amountToStart, cookiesPerSecond)
         let grandma = Upgrades.new(100, 10, 115, 0, 2); // Create new Upgrades object
-
         // Create new Upgrades object of farm for (cost, worth, multiplier, amountToStart, cookiesPerSecond)
         let farm = Upgrades.new(1000, 50, 115, 0, 5); // Create new Upgrades object
+        // Create new Upgrades object of mine for (cost, worth, multiplier, amountToStart, cookiesPerSecond)
+        let mine = Upgrades.new(5000, 500, 115, 0, 50); // Create new Upgrades object
 
         // Store keys in an array and corresponding upgrades (making a map)
-        let totalAmountOf = 3; // Total amount of upgrades - keys you can get
+        let totalAmountOf = 4; // Total amount of upgrades - keys you can get
         let keys = Array.new(totalAmountOf); // Create new Array object
         let upgrades = Array.new(totalAmountOf); // Create new Array object
 
@@ -71,10 +69,13 @@ class CookieClicker {
         let keys[0] = 99; // c key
         let keys[1] = 103; // g key
         let keys[2] = 102; // f key
+        let keys[3] = 109; // m key
 
         let upgrades[0] = cursor; // Cursor upgrade
         let upgrades[1] = grandma; // Grandma upgrade
         let upgrades[2] = farm; // Farm upgrade
+        let upgrades[3] = mine; // Mine upgrade
+
 
 
         return this;
@@ -98,7 +99,17 @@ class CookieClicker {
 
     // Method to calculate cookies per second
     method int cps() {
-        return cursor.getCPS() + grandma.getCPS() + farm.getCPS();
+        var int totalCPS;
+        var Upgrades upgradeElement;
+        var int i;
+        let totalCPS = 0;
+        let i = 0;
+        while (i < totalAmountOf) {
+            let upgradeElement = upgrades[i];
+            let totalCPS = totalCPS + upgradeElement.getCPS();
+            let i = i + 1;
+        }
+        return totalCPS;
     }
 
 
@@ -180,7 +191,7 @@ class CookieClicker {
             }
 
             if (displayVisualOfUpgrades) {
-                do ScoreBoard.printUpgrades(cps(), cursor, grandma, farm);
+                do ScoreBoard.printUpgrades(cps(), cursor, grandma, farm, mine);
                 let displayVisualOfUpgrades = false;
                 do Sys.wait(1);
             }
