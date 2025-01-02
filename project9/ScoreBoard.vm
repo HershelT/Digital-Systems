@@ -47,8 +47,8 @@ function ScoreBoard.printCookies 0
     push constant 0
     return
 function ScoreBoard.printUpgrades 0
-    push constant 2
-    push constant 24
+    push constant 7
+    push constant 25
     call Output.moveCursor 2
     pop temp 0
     push constant 5

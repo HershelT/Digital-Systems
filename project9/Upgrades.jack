@@ -3,13 +3,17 @@ class Upgrades {
     field int worthOfUpgrade;
     field int multiplier;
     field int count;
+    field int cps;
+    field int currentCPS;
 
     // Initialize with set cost given to Upgrades
-    constructor Upgrades new(int cost, int worth, int multiply, int amount) {
+    constructor Upgrades new(int cost, int worth, int multiply, int amount, int perSecond) {
         let costOfUpgrade = cost; //Cost of upgrade
-        let worthOfUpgrade = worth; //How much you get interval
+        let worthOfUpgrade = worth; //How much you get per interval
         let multiplier = multiply; // How much to increase costOfUpgrade by
         let count = amount; // Number of upgrades
+        let cps = perSecond; // Cookies per second
+        let currentCPS = 0; // Current cookies per second
         return this;
     }
 
@@ -25,10 +29,17 @@ class Upgrades {
         return worthOfUpgrade;
     }
 
+    method int getCPS() {
+        return currentCPS;
+    }
+
     // Upgrade by changing price and amount of upgrade
     method void getUpgrade() {
-        let costOfUpgrade = costOfUpgrade + (costOfUpgrade / 100 * (multiplier - 100));
+        // Logic that does not get int overflow
+        // var int divide;
+        let costOfUpgrade = costOfUpgrade + (((costOfUpgrade / 100) + 1) * (multiplier - 100));
         let count = count + 1;
+        let currentCPS = cps * count;
         return;
     }
 }

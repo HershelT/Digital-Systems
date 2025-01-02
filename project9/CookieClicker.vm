@@ -4,10 +4,8 @@ function CookieClicker.new 0
     pop pointer 0
     push constant 10000
     pop this 0
-    push constant 32
-    pop this 1
     push constant 128
-    push this 1
+    push constant 32
     push constant 2
     call Math.divide 2
     sub
@@ -30,7 +28,8 @@ function CookieClicker.new 0
     push constant 1
     push constant 115
     push constant 0
-    call Upgrades.new 4
+    push constant 1
+    call Upgrades.new 5
     pop this 10
     push constant 0
     pop this 11
@@ -38,7 +37,8 @@ function CookieClicker.new 0
     push constant 10
     push constant 115
     push constant 0
-    call Upgrades.new 4
+    push constant 2
+    call Upgrades.new 5
     pop this 12
     push pointer 0
     return
@@ -56,7 +56,7 @@ function CookieClicker.handleUpgradeLogic 0
     add
     pop this 9
     push this 9
-    push constant 20
+    push constant 45
     gt
     not
     if-goto CookieClicker_3
@@ -90,7 +90,7 @@ label CookieClicker_0
     add
     pop this 11
     push this 11
-    push constant 100
+    push constant 225
     gt
     not
     if-goto CookieClicker_7
@@ -119,16 +119,10 @@ function CookieClicker.cps 0
     push argument 0
     pop pointer 0
     push this 10
-    call Upgrades.getAmount 1
-    push this 10
-    call Upgrades.getWorth 1
-    call Math.multiply 2
+    call Upgrades.getCPS 1
     push this 12
-    call Upgrades.getAmount 1
+    call Upgrades.getCPS 1
     add
-    push this 12
-    call Upgrades.getWorth 1
-    call Math.multiply 2
     return
 function CookieClicker.run 2
     push argument 0
@@ -140,7 +134,7 @@ function CookieClicker.run 2
     add
     call CookieDrawings.drawPressedCookie 1
     pop temp 0
-    push constant 1
+    push constant 2
     push constant 24
     call Output.moveCursor 2
     pop temp 0
@@ -214,6 +208,9 @@ label CookieClicker_8
     pop temp 0
     push constant 0
     pop this 5
+    push constant 5
+    call Sys.wait 1
+    pop temp 0
     goto CookieClicker_10
 label CookieClicker_11
 label CookieClicker_10
@@ -228,6 +225,9 @@ label CookieClicker_10
     pop temp 0
     push constant 0
     pop this 6
+    push constant 5
+    call Sys.wait 1
+    pop temp 0
     goto CookieClicker_12
 label CookieClicker_13
 label CookieClicker_12

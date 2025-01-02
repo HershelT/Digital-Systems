@@ -3,13 +3,12 @@ class ScoreBoard {
         do Output.moveCursor(0, 28);
         do Output.printInt(cookies);
         do Output.printString(" Cookies!        ");
-        // do Sys.wait(10);
         return;
     }
 
-    function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas) {
-
-        do Output.moveCursor(2,24);
+    function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas, Upgrades farms) {
+        // Display Cookies per Second
+        do Output.moveCursor(7,25);
         do Output.printString("CPS: ");
         do Output.printInt(cps);
 
@@ -29,6 +28,18 @@ class ScoreBoard {
         do Output.moveCursor(3, 0);
         do Output.printInt(grandmas.getCost());
         do Output.printString(" <- Cost");
+
+        // Output the number of farms
+        do Output.moveCursor(4, 0);
+        do Output.printInt(farms.getAmount());
+        do Output.printString(" : Farms!");
+        // Output price of farm
+        do Output.moveCursor(5, 0);
+        do Output.printInt(farms.getCost());
+        do Output.printString(" <- Cost");
+
+
+
         return;
     }
     
