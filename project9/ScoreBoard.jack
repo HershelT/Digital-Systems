@@ -1,5 +1,5 @@
 class ScoreBoard {
-    function void printCookies(Long cookies) {
+    function void printCookies(int cookies) {
         do Output.moveCursor(0, 28);
         do Output.printInt(cookies);
         do Output.printString(" Cookies!        ");

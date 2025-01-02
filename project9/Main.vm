@@ -1,11 +1,30 @@
-function Main.main 1
-    call CookieClicker.new 0
+function Main.main 2
+    push constant 1
+    push constant 2
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 10
+    push constant 2
+    call String.new 1
+    push constant 50
+    call String.appendChar 2
+    push constant 48
+    call String.appendChar 2
+    call LongInt.new 2
     pop local 0
-    push local 0
-    call CookieClicker.run 1
+    push constant 10
+    push constant 1
+    call String.new 1
+    push constant 51
+    call String.appendChar 2
+    call LongInt.new 2
+    pop local 1
+    push constant 0
+    push constant 0
+    call Output.moveCursor 2
     pop temp 0
     push local 0
-    call CookieClicker.dispose 1
+    call LongInt.print 1
     pop temp 0
     push constant 0
     return

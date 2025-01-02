@@ -1,9 +1,20 @@
 class Main {
     function void main() {
-        var CookieClicker game;
-        let game = CookieClicker.new();
-        do game.run();
-        do game.dispose();
+        // var CookieClicker game;
+        // let game = CookieClicker.new();
+        // do game.run();
+        // do game.dispose();
+
+        // Test LongInt
+        var LongInt test;
+        var LongInt test2;
+        do Output.moveCursor(1,2);
+        let test = LongInt.new(10, "20");
+        let test2 = LongInt.new(10, "3");
+
+        // do test.add(test2);
+        do Output.moveCursor(0,0);
+        do test.print();
         return;
     }
 }
