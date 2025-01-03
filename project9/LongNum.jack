@@ -50,7 +50,7 @@ class LongNum {
     }
     
 
-    // Subtract two longs
+    // Subtract two longs 
     method void subtractLong(LongNum other) {
         // Subtract the right side
         let rightSide = rightSide - other.getRightSide();
@@ -65,7 +65,7 @@ class LongNum {
     }
 
 
-    // Subtract the value of the long
+    // Subtract the value of the long by a smaller int
     method void subtract(int amount) {
         while (amount > 0) {
             // If the right side is less than the amount then the left side needs to be subtracted by 1
@@ -94,7 +94,13 @@ class LongNum {
         // Run the subtract method a bunch of times
         var LongNum zero;
         let zero = LongNum.new();
-        // do zero.add(0);
+        // Check divide by zero (to avoid errors, if divide by zero then set to zero)
+        if (other.getLeftSide() = 0) {
+            if (other.getRightSide() = 0) {
+                do set(zero);
+                return;
+            }
+        }
         
         // Perform subtraction similar to a chip
         while (greaterThanLong(other)) {
@@ -107,12 +113,20 @@ class LongNum {
 
     // multiply the long by a long
     method void multiplyLong(LongNum other) {
-        // Run the add method a bunch of times
+        // declare variables
         var LongNum zero;
         var LongNum temp;
         let temp = LongNum.new();
         let zero = LongNum.new();
 
+        // Check if zero
+        if (other.getLeftSide() = 0) {
+            if (other.getRightSide() = 0) {
+                do set(zero);
+                return;
+            }
+              
+        }
         do zero.add(1);
         do temp.set(this);
         
