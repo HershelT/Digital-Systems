@@ -1,5 +1,5 @@
 function CookieClicker.new 0
-    push constant 19
+    push constant 20
     call Memory.alloc 1
     pop pointer 0
     call LongNum.new 0
@@ -65,7 +65,14 @@ function CookieClicker.new 0
     push constant 263
     call Upgrades.new 5
     pop this 18
-    push constant 5
+    push constant 30000
+    push constant 10000
+    push constant 115
+    push constant 0
+    push constant 1000
+    call Upgrades.new 5
+    pop this 19
+    push constant 6
     pop this 10
     push this 10
     call Array.new 1
@@ -113,6 +120,14 @@ function CookieClicker.new 0
     pop pointer 1
     push temp 0
     pop that 0
+    push constant 5
+    push this 11
+    add
+    push constant 98
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
     push constant 0
     push this 12
     add
@@ -149,6 +164,14 @@ function CookieClicker.new 0
     push this 12
     add
     push this 18
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 5
+    push this 12
+    add
+    push this 19
     pop temp 0
     pop pointer 1
     push temp 0
@@ -401,9 +424,8 @@ label CookieClicker_14
     not
     if-goto CookieClicker_19
     push this 0
-    push local 3
-    call Upgrades.getCost 1
-    call LongNum.subtract 2
+    push local 4
+    call LongNum.subtractLong 2
     pop temp 0
     push local 3
     call Upgrades.getUpgrade 1
@@ -492,7 +514,8 @@ label CookieClicker_24
     push this 16
     push this 17
     push this 18
-    call ScoreBoard.printUpgrades 6
+    push this 19
+    call ScoreBoard.printUpgrades 7
     pop temp 0
     push constant 0
     pop this 7

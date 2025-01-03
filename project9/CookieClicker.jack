@@ -32,6 +32,7 @@ class CookieClicker {
     field Upgrades farm; // Farm upgrade object
     field Upgrades mine; // Mine upgrade object
     field Upgrades warehouse; // Warehouse upgrade object
+    field Upgrades bank; // Bank upgrade object
 
     constructor CookieClicker new() {
         let cookies = LongNum.new(); // Initialize cookies
@@ -63,11 +64,12 @@ class CookieClicker {
         let farm = Upgrades.new(1000, 50, 115, 0, 24); // Create new Upgrades object
         let mine = Upgrades.new(5000, 500, 115, 0, 87); // Create new Upgrades object
         let warehouse = Upgrades.new(10000, 1000, 115, 0, 263); // Create new Upgrades object
+        let bank = Upgrades.new(30000, 10000, 115, 0, 1000); // Create new Upgrades object
 
 
 
         // Store keys in an array and corresponding upgrades (making a map)
-        let totalAmountOfUpgrades = 5; // Total amount of upgrades - keys you can get
+        let totalAmountOfUpgrades = 6; // Total amount of upgrades - keys you can get
         let keys = Array.new(totalAmountOfUpgrades); // Create new Array object
         let upgrades = Array.new(totalAmountOfUpgrades); // Create new Array object
 
@@ -77,12 +79,14 @@ class CookieClicker {
         let keys[2] = 102; // f key
         let keys[3] = 109; // m key
         let keys[4] = 119; // w key
+        let keys[5] = 98; // b key
         // Set upgrades
         let upgrades[0] = cursor; // Cursor upgrade
         let upgrades[1] = grandma; // Grandma upgrade
         let upgrades[2] = farm; // Farm upgrade
         let upgrades[3] = mine; // Mine upgrade
         let upgrades[4] = warehouse; // Warehouse upgrade
+        let upgrades[5] = bank; // Bank upgrade
 
         return this;
     }
@@ -166,7 +170,7 @@ class CookieClicker {
                                 let tempLongNum = LongNum.new();
                                 do tempLongNum.add(upgradeElement.getCost()-1); // Deduct cost
                                 if (cookies.greaterThan(tempLongNum)) {
-                                    do cookies.subtract(upgradeElement.getCost()); // Deduct cost
+                                    do cookies.subtractLong(tempLongNum); // Deduct cost
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
                                     do ScoreBoard.eraseCookieLine(); // Erase the cookie line
@@ -184,14 +188,6 @@ class CookieClicker {
             // Handle logic for upgrades (timers and cookies per second)
             do handleUpgradeLogic(); // Handle cursor logic
 
-            // // Handle drawing of cookie using frames
-            // let frameCounter = frameCounter + 1;
-            // if (frameCounter > 10) {
-            //     //Reset frame counter
-            //     let frameCounter = 0;
-            // }
-            // Check if cookie is being pressed and draw the full cookie
-            // else {
             if (isDrawingFullCookie) {
                 do CookieDrawings.drawBigCookie(screenMid + (cookieRow * 32));
                 let fullCookieTimer = fullCookieTimer + 1;
@@ -202,21 +198,18 @@ class CookieClicker {
                     // do Sys.wait(5); // Prevents spamming of keys
                 }
             }
-            // }
 
             //Handles updating of visuals 
             if (displayVisualOfCookies) {
                 // Display and update the visuals of the cookies
                 do ScoreBoard.printCookies(cookies);
                 let displayVisualOfCookies = false;
-                // do Sys.wait(5);
             }
 
             if (displayVisualOfUpgrades) {
                 // Display and update the visuals of the upgrades
-                do ScoreBoard.printUpgrades(cps(), cursor, grandma, farm, mine, warehouse);
+                do ScoreBoard.printUpgrades(cps(), cursor, grandma, farm, mine, warehouse, bank);
                 let displayVisualOfUpgrades = false;
-                // do Sys.wait(1);
             }
 
             if (key = 140) { // Escape and leave game

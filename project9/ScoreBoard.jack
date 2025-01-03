@@ -14,7 +14,7 @@ class ScoreBoard {
         var int i;
         do Output.moveCursor(2, 28);
         let i = 0;
-        while (i < 10) {
+        while (i < 11) {
             do Output.printString(" ");
             let i = i + 1;
         }
@@ -24,7 +24,8 @@ class ScoreBoard {
         return;
     }
 
-    function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas, Upgrades farms, Upgrades mines, Upgrades warehouses) {
+    // Print the upgrades
+    function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas, Upgrades farms, Upgrades mines, Upgrades warehouses, Upgrades banks) {
         var int amount;
         // Display Cookies per Second
         do Output.moveCursor(7,25);
@@ -57,6 +58,10 @@ class ScoreBoard {
         do Output.moveCursor(6, 0);
         do Output.printInt(warehouses.getAmount());
         do Output.printString(" Warehouses 'W'");
+        // Output the number of banks
+        do Output.moveCursor(7, 0);
+        do Output.printInt(banks.getAmount());
+        do Output.printString(" Banks 'B'");
 
         // Display Costs underneat
         do Output.moveCursor(12, 0);
@@ -79,6 +84,9 @@ class ScoreBoard {
         // output the price of the warehouse
         do Output.moveCursor(21, 0);
         do Output.printInt(warehouses.getCost());
+        // output the price of the bank
+        do Output.moveCursor(22, 0);
+        do Output.printInt(banks.getCost());
 
 
 
@@ -112,6 +120,13 @@ class ScoreBoard {
             do UpgradeDrawings.drawWarehouse((32*14*16+64) + amount + 3);
             let amount = amount + 1;
         }
+        // Draw as many banks as we have
+        let amount = 0;
+        while (amount < banks.getAmount()) {
+            do UpgradeDrawings.drawBank((32*15*16+64) + amount + 3);
+            let amount = amount + 1;
+        }
+        
 
         // Free memory
         do Memory.deAlloc(amount);

@@ -8,6 +8,21 @@ class LongNum {
         return this;
     }
 
+    // Add two longs
+    method void addLong(LongNum other) {
+        // Add the right side
+        let rightSide = rightSide + other.getRightSide();
+        // If the right side is greater than 9999 then add 1 to the left side
+        if (rightSide > 9999) {
+            let leftSide = leftSide + 1;
+            let rightSide = rightSide - 10000;
+        }
+        // Add the left side
+        let leftSide = leftSide + other.getLeftSide();
+        return;
+    }
+
+
     // Gets the value of the long
     method void add(int amount) {
         while (amount > 9999) {
@@ -22,6 +37,21 @@ class LongNum {
         }
         return;
     }
+    
+    // Subtract two longs
+    method void subtractLong(LongNum other) {
+        // Subtract the right side
+        let rightSide = rightSide - other.getRightSide();
+        // If the right side is less than 0 then subtract 1 from the left side
+        if (rightSide < 0) {
+            let leftSide = leftSide - 1;
+            let rightSide = rightSide + 10000;
+        }
+        // Subtract the left side
+        let leftSide = leftSide - other.getLeftSide();
+        return;
+    }
+
 
     // Subtract the value of the long
     method void subtract(int amount) {
@@ -74,17 +104,8 @@ class LongNum {
         let right = String.new(10);
         do right.setInt(rightSide);
         let totalZerosBeforeRight = 4 - right.length();
-        // display to screen
-        // var String str;
-        // do Output.printString("Left Side: ");
-        // do Output.printInt(leftSide);
-        // do Output.printString(" Right Side: ");
-        // while (i < totalZerosBeforeRight) {
-        //     do Output.printString("0");
-        //     let i = i + 1;
-        // }
-        // do Output.printInt(rightSide);
-        // do Output.println();
+
+        // Print both sides together
         do Output.printInt(leftSide);
         let i = 0;
         while (i < totalZerosBeforeRight) {
