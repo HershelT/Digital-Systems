@@ -141,6 +141,19 @@ class LongNum {
         return false;
     }
 
+    // check if the long is  greaterThan or equal to another long
+    method boolean greaterThanOrEqualLong(LongNum other) {
+        // No Negatives
+        if (other.getRightSide()=0){
+            return true;
+        }
+        do other.subtract(1);
+        if (greaterThanLong(other)) {
+            return true;
+        }
+        return false;
+    }
+
 
     method int getLeftSide() {
         return leftSide;

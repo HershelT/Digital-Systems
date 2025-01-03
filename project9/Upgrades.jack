@@ -71,6 +71,14 @@ class Upgrades {
         let count = count + 1;
         let currentCPS = cps * count;
         let totalCountOfUpgrades = totalCountOfUpgrades + 1;
+
+        // Free memory
+        do Memory.deAlloc(divide);
+        do Memory.deAlloc(tempMulti);
+        do Memory.deAlloc(tempParentesis);
+        do Memory.deAlloc(tempCost);
+        
+
         return;
     }
 }

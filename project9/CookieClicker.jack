@@ -173,15 +173,12 @@ class CookieClicker {
                             // If we are selecting any of the keys
                             if (key = keys[i]) {
                                 let upgradeElement = upgrades[i];
-                                // create a temp long in order to use greaterThanLong method
-                                let tempLongNum = LongNum.new();
+                                // create a temp long to store the cost of the upgrade
                                 let tempCost = upgradeElement.getCost();
-
-                                do tempLongNum.addLong(tempCost); // Deduct cost
-                                do tempLongNum.subtractLong(numbers.getOne()); // Deduct cost
-                                if (cookies.greaterThanLong(tempLongNum)) {
-                                    do tempLongNum.addLong(numbers.getOne()); // Deduct cost
-                                    do cookies.subtractLong(tempLongNum); // Deduct cost
+                                
+                                // Check if we have the correct amount of cookies to buy the upgrade
+                                if (cookies.greaterThanOrEqualLong(tempCost)) {
+                                    do cookies.subtractLong(tempCost); // Deduct cost
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
                                     do ScoreBoard.eraseCookieLine(); // Erase the cookie line
