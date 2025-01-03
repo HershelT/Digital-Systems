@@ -1,3 +1,5 @@
+// Jack program to display the score board of the game
+// Including visuals of the cookies and upgrades
 class ScoreBoard {
     function void printCookies(LongNum cookies) {
         // do eraseCookieLine();

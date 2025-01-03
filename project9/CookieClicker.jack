@@ -35,7 +35,8 @@ class CookieClicker {
 
     constructor CookieClicker new() {
         let cookies = LongNum.new(); // Initialize cookies
-        do cookies.add(0); // Initialize cookies to 0
+        do cookies.add(20000); // Initialize cookies to 0
+        do cookies.add(20000); // Initialize cookies to 0
         // Position of drawing Cookie
         let screenMid = 112; // Middle of the screen (column  where the cookie will be drawn)
         let cookieRow = 32; // Row where the cookie will be drawn
@@ -169,6 +170,7 @@ class CookieClicker {
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
                                     do ScoreBoard.eraseCookieLine(); // Erase the cookie line
+                                    let i = totalAmountOfUpgrades; // Break out of loop
                                 }
                                 
 
@@ -182,25 +184,25 @@ class CookieClicker {
             // Handle logic for upgrades (timers and cookies per second)
             do handleUpgradeLogic(); // Handle cursor logic
 
-            // Handle drawing of cookie using frames
-            let frameCounter = frameCounter + 1;
-            if (frameCounter > 10) {
-                //Reset frame counter
-                let frameCounter = 0;
-            }
+            // // Handle drawing of cookie using frames
+            // let frameCounter = frameCounter + 1;
+            // if (frameCounter > 10) {
+            //     //Reset frame counter
+            //     let frameCounter = 0;
+            // }
             // Check if cookie is being pressed and draw the full cookie
-            else {
-                if (isDrawingFullCookie) {
-                    do CookieDrawings.drawBigCookie(screenMid + (cookieRow * 32));
-                    let fullCookieTimer = fullCookieTimer + 1;
-                    if (fullCookieTimer > 4) { // Show cookie for 20 frames (1 second)
-                        let isDrawingFullCookie = false; // Stop drawing full cookie
-                        do CookieDrawings.drawBigPressedCookie(screenMid + (cookieRow * 32));
-                        let fullCookieTimer = 0; // Reset timer
-                        do Sys.wait(5); // Prevents spamming of keys
-                    }
+            // else {
+            if (isDrawingFullCookie) {
+                do CookieDrawings.drawBigCookie(screenMid + (cookieRow * 32));
+                let fullCookieTimer = fullCookieTimer + 1;
+                if (fullCookieTimer > 4) { // Show cookie for 20 frames (1 second)
+                    let isDrawingFullCookie = false; // Stop drawing full cookie
+                    do CookieDrawings.drawBigPressedCookie(screenMid + (cookieRow * 32));
+                    let fullCookieTimer = 0; // Reset timer
+                    // do Sys.wait(5); // Prevents spamming of keys
                 }
             }
+            // }
 
             //Handles updating of visuals 
             if (displayVisualOfCookies) {

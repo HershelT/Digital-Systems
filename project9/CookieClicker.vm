@@ -5,7 +5,11 @@ function CookieClicker.new 0
     call LongNum.new 0
     pop this 0
     push this 0
-    push constant 0
+    push constant 20000
+    call LongNum.add 2
+    pop temp 0
+    push this 0
+    push constant 20000
     call LongNum.add 2
     pop temp 0
     push constant 112
@@ -184,6 +188,9 @@ function CookieClicker.handleUpgradeLogic 1
     push constant 1
     neg
     pop this 5
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
     goto CookieClicker_2
 label CookieClicker_3
 label CookieClicker_2
@@ -406,6 +413,8 @@ label CookieClicker_14
     pop this 7
     call ScoreBoard.eraseCookieLine 0
     pop temp 0
+    push this 10
+    pop local 2
     goto CookieClicker_18
 label CookieClicker_19
 label CookieClicker_18
@@ -426,22 +435,9 @@ label CookieClicker_8
     push pointer 0
     call CookieClicker.handleUpgradeLogic 1
     pop temp 0
-    push local 1
-    push constant 1
-    add
-    pop local 1
-    push local 1
-    push constant 10
-    gt
-    not
-    if-goto CookieClicker_21
-    push constant 0
-    pop local 1
-    goto CookieClicker_20
-label CookieClicker_21
     push this 5
     not
-    if-goto CookieClicker_23
+    if-goto CookieClicker_21
     push this 3
     push this 4
     push constant 32
@@ -457,7 +453,7 @@ label CookieClicker_21
     push constant 4
     gt
     not
-    if-goto CookieClicker_25
+    if-goto CookieClicker_23
     push constant 0
     pop this 5
     push this 3
@@ -469,30 +465,26 @@ label CookieClicker_21
     pop temp 0
     push constant 0
     pop this 9
-    push constant 5
-    call Sys.wait 1
-    pop temp 0
-    goto CookieClicker_24
-label CookieClicker_25
-label CookieClicker_24
     goto CookieClicker_22
 label CookieClicker_23
 label CookieClicker_22
+    goto CookieClicker_20
+label CookieClicker_21
 label CookieClicker_20
     push this 6
     not
-    if-goto CookieClicker_27
+    if-goto CookieClicker_25
     push this 0
     call ScoreBoard.printCookies 1
     pop temp 0
     push constant 0
     pop this 6
-    goto CookieClicker_26
-label CookieClicker_27
-label CookieClicker_26
+    goto CookieClicker_24
+label CookieClicker_25
+label CookieClicker_24
     push this 7
     not
-    if-goto CookieClicker_29
+    if-goto CookieClicker_27
     push pointer 0
     call CookieClicker.cps 1
     push this 14
@@ -504,19 +496,19 @@ label CookieClicker_26
     pop temp 0
     push constant 0
     pop this 7
-    goto CookieClicker_28
-label CookieClicker_29
-label CookieClicker_28
+    goto CookieClicker_26
+label CookieClicker_27
+label CookieClicker_26
     push local 0
     push constant 140
     eq
     not
-    if-goto CookieClicker_31
+    if-goto CookieClicker_29
     push constant 0
     return
-    goto CookieClicker_30
-label CookieClicker_31
-label CookieClicker_30
+    goto CookieClicker_28
+label CookieClicker_29
+label CookieClicker_28
     push constant 5
     call Sys.wait 1
     pop temp 0
