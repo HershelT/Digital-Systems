@@ -1,3 +1,7 @@
+// A Jack implementation of a long variable that can store numbers up to thirty million
+// Uses two ints together to get most of the 32 bits
+// All rights reserved to hershel thomas
+
 class LongNum {
     field int leftSide;
     field int rightSide;
@@ -189,17 +193,19 @@ class LongNum {
         do right.setInt(rightSide);
         let totalZerosBeforeRight = 4 - right.length();
 
-        // Print both sides together
-        do Output.printInt(leftSide);
-        let i = 0;
-        while (i < totalZerosBeforeRight) {
-            do Output.printString("0");
-            let i = i + 1;
+        // Print both sides together if we have a left side
+        if (leftSide > 0) {
+            do Output.printInt(leftSide);
+            let i = 0;
+            // Add the zeros before the next number
+            while (i < totalZerosBeforeRight) {
+                do Output.printString("0");
+                let i = i + 1;
+            }
         }
+        // Print the right side
         do Output.printInt(rightSide);
 
-        // Put the left and right side together
-        
         return;
 }
     method void dispose() {

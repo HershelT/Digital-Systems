@@ -109,37 +109,69 @@ class ScoreBoard {
         // Draw as many cursors as we have
         let amount = 0;
         while (amount < cursors.getAmount()) {
-            do UpgradeDrawings.drawCursor((32*10*16) + amount + 3);
+            // Adds overflow, so limit of how many can be drawn onto screen
+            if (amount < 25) {
+                do UpgradeDrawings.drawCursor((32*10*16) + amount + 3);
+            }
+            else {
+                let amount = cursors.getAmount();
+            }
             let amount = amount + 1;
         }
-        // Draw as many grandmas as we have
+        // Draw as many grandmas up until 25
         let amount = 0;
         while (amount < grandmas.getAmount()) {
-            do UpgradeDrawings.drawGrandma((32*11*16+64) + amount + 3);
+            if (amount < 25) {
+                do UpgradeDrawings.drawGrandma((32*11*16) + amount + 3);
+            }
+            else{
+                let amount = grandmas.getAmount();
+            }
             let amount = amount + 1;
         }
-        // Draw as many farms as we have
+        // Draw as many farms as we have up until 25
         let amount = 0;
         while (amount < farms.getAmount()) {
-            do UpgradeDrawings.drawFarm((32*12*16+64) + amount + 3);
+            if (amount < 25) {
+                do UpgradeDrawings.drawFarm((32*12*16) + amount + 3);
+            }
+            else{
+                let amount = farms.getAmount();
+            }
             let amount = amount + 1;
         }
-        // Draw as many mines as we have
+        // Draw as many mines as we have up until 25
         let amount = 0;
         while (amount < mines.getAmount()) {
-            do UpgradeDrawings.drawMine((32*13*16+64) + amount + 3);
+            if (amount < 25) {
+                do UpgradeDrawings.drawMine((32*13*16) + amount + 3);
+            }
+            else{
+                let amount = mines.getAmount();
+            }
             let amount = amount + 1;
         }
-        // Draw as many warehouses as we have
+        // Draw as many warehouses as we have up until 25
         let amount = 0;
         while (amount < warehouses.getAmount()) {
-            do UpgradeDrawings.drawWarehouse((32*14*16+64) + amount + 3);
+            if (amount < 25) {
+                do UpgradeDrawings.drawWarehouse((32*14*16) + amount + 3);
+            }
+            else {
+                let amount = warehouses.getAmount();
+            }
             let amount = amount + 1;
         }
-        // Draw as many banks as we have
+        // Draw as many banks as we have up until 25
         let amount = 0;
         while (amount < banks.getAmount()) {
-            do UpgradeDrawings.drawBank((32*15*16+64) + amount + 3);
+            if (amount < 25) {
+                do UpgradeDrawings.drawBank((32*15*16+64) + amount + 3);
+            }
+            // Break if we have more than 25
+            else {
+                let amount = banks.getAmount();
+            }
             let amount = amount + 1;
         }
         

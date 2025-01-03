@@ -384,16 +384,21 @@ function LongNum.toString 3
     sub
     pop local 0
     push this 0
+    push constant 0
+    gt
+    not
+    if-goto LongNum_37
+    push this 0
     call Output.printInt 1
     pop temp 0
     push constant 0
     pop local 1
-label LongNum_36
+label LongNum_38
     push local 1
     push local 0
     lt
     not
-    if-goto LongNum_37
+    if-goto LongNum_39
     push constant 1
     call String.new 1
     push constant 48
@@ -404,8 +409,11 @@ label LongNum_36
     push constant 1
     add
     pop local 1
+    goto LongNum_38
+label LongNum_39
     goto LongNum_36
 label LongNum_37
+label LongNum_36
     push this 1
     call Output.printInt 1
     pop temp 0

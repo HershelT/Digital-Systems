@@ -42,11 +42,6 @@ function Upgrades.getCPS 0
     pop pointer 0
     push this 6
     return
-function Upgrades.getTotalCount 0
-    push argument 0
-    pop pointer 0
-    push static 0
-    return
 function Upgrades.getUpgrade 4
     push argument 0
     pop pointer 0
@@ -95,18 +90,6 @@ function Upgrades.getUpgrade 4
     push this 4
     call Math.multiply 2
     pop this 6
-    push static 0
-    push constant 0
-    eq
-    not
-    if-goto Upgrades_1
-    push static 0
-    push constant 1
-    add
-    pop static 0
-    goto Upgrades_0
-label Upgrades_1
-label Upgrades_0
     push local 0
     call Memory.deAlloc 1
     pop temp 0

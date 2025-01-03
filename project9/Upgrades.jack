@@ -7,7 +7,6 @@ class Upgrades {
     field int count;
     field int cps;
     field int currentCPS;
-    static int totalCountOfUpgrades; 
 
     // Initialize with set cost given to Upgrades
     constructor Upgrades new(LongNum cost, int worth, int multiply, int amount, int perSecond) {
@@ -38,10 +37,6 @@ class Upgrades {
         return currentCPS;
     }
 
-    method int getTotalCount() {
-        return totalCountOfUpgrades;
-    }
-
     // Upgrade by changing price and amount of upgrade
     method void getUpgrade() {
         // Logic that does not get int overflow
@@ -70,10 +65,6 @@ class Upgrades {
 
         let count = count + 1;
         let currentCPS = cps * count;
-        // Just need to do this one time, to run blinker
-        if (totalCountOfUpgrades = 0) {
-            let totalCountOfUpgrades = totalCountOfUpgrades + 1;
-        }
         // Free memory
         do Memory.deAlloc(divide);
         do Memory.deAlloc(tempMulti);

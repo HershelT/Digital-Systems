@@ -17,6 +17,7 @@ class CookieClicker {
 
     //Prev ent spamming with checking if any key is pressed
     field boolean isAnyKeyPressed; // Flag to track if any key is pressed
+    field boolean hasAnyUpgrade;
 
     // count of upgrades
     field int fullCookieTimer; //Timer to track how long the cookie is shown for after pressed
@@ -50,6 +51,8 @@ class CookieClicker {
 
         // Flags to prevent spamming of keys
         let isAnyKeyPressed = false; // Initialize to false
+        // Flag to see if we have any upgrades
+        let hasAnyUpgrade = false; // Initialize to false
         
         // Variable for flickering cookie
         let fullCookieTimer = 0;
@@ -101,7 +104,7 @@ class CookieClicker {
     method void handleUpgradeLogic() {
         var int cps;
         // If we have any upgrades, we will increment the timer
-        if (cursor.getTotalCount() > 0) {
+        if (hasAnyUpgrade) {
             let globalTimer = globalTimer + 1;
             // After one second we will blink the cookie and update our cookie count
             if (globalTimer > 45) { 
@@ -187,6 +190,9 @@ class CookieClicker {
                                 // Check if we have the correct amount of cookies to buy the upgrade
                                 if (cookies.greaterThanOrEqualLong(tempCost)) {
                                     do cookies.subtractLong(tempCost); // Deduct cost
+                                    if (~hasAnyUpgrade) {
+                                        let hasAnyUpgrade = true; // Set flag to true
+                                    }
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
                                     do ScoreBoard.eraseCookieLine(); // Erase the cookie line
