@@ -39,18 +39,18 @@ class LongNum {
     }
 
     // ImplementGreaterThan
-    method String greaterThan(LongNum other) {
+    method boolean greaterThan(LongNum other) {
         if (leftSide > other.getLeftSide()) {
-            return "true";
+            return true;
         }
         else {
             if (leftSide = other.getLeftSide()) {
                 if (rightSide > other.getRightSide()) {
-                    return "true";
+                    return true;
                 }
             }
         }
-        return "false";
+        return false;
     }
 
 

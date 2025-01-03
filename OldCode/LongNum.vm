@@ -99,8 +99,16 @@ function LongNum.greaterThan 0
     gt
     not
     if-goto LongNum_9
-    push constant 1
-    neg
+    push constant 4
+    call String.new 1
+    push constant 116
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
     return
     goto LongNum_8
 label LongNum_9
@@ -116,8 +124,16 @@ label LongNum_9
     gt
     not
     if-goto LongNum_13
-    push constant 1
-    neg
+    push constant 4
+    call String.new 1
+    push constant 116
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
     return
     goto LongNum_12
 label LongNum_13
@@ -126,7 +142,18 @@ label LongNum_12
 label LongNum_11
 label LongNum_10
 label LongNum_8
-    push constant 0
+    push constant 5
+    call String.new 1
+    push constant 102
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 108
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
     return
 function LongNum.getLeftSide 0
     push argument 0

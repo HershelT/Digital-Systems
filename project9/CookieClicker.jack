@@ -35,7 +35,7 @@ class CookieClicker {
 
     constructor CookieClicker new() {
         let cookies = LongNum.new(); // Initialize cookies
-        do cookies.add(500); // Initialize cookies to 0
+        do cookies.add(0); // Initialize cookies to 0
         // Position of drawing Cookie
         let screenMid = 112; // Middle of the screen (column  where the cookie will be drawn)
         let cookieRow = 32; // Row where the cookie will be drawn
@@ -88,16 +88,19 @@ class CookieClicker {
 
     // Method to handle all the logic from the upgrades to update cookie count
     method void handleUpgradeLogic() {
+        var int cps;
         // If we have any upgrades, we will increment the timer
         if (cursor.getTotalCount() > 0) {
             let globalTimer = globalTimer + 1;
             // After one second we will blink the cookie and update our cookie count
             if (globalTimer > 45) { 
                 let globalTimer = 0;
-                do cookies.add(cps());
+                let cps = cps();
+                do cookies.add(cps);
                 // let cookies = cookies + cps();
                 let displayVisualOfCookies = true;
                 let isDrawingFullCookie = true;
+                // do Memory.deAlloc(cps);
             }
         }
         return;
@@ -124,6 +127,7 @@ class CookieClicker {
         var int frameCounter;
         var int i;
         var Upgrades upgradeElement;
+        var LongNum tempLongNum;
         // Draw text onto scren
         do Output.moveCursor(0, 24);
         do Output.printString("Hit 'SPACE' for Cookies!");
@@ -157,14 +161,17 @@ class CookieClicker {
                         while (i < totalAmountOf) {
                             if (key = keys[i]) {
                                 let upgradeElement = upgrades[i];
-                                if (cookies > (upgradeElement.getCost() - 1)) {
-                                    let cookies = cookies - upgradeElement.getCost(); // Deduct cost
-
+                                let tempLongNum = LongNum.new();
+                                do tempLongNum.add(upgradeElement.getCost()-1); // Deduct cost
+                                if (cookies.greaterThan(tempLongNum)) {
+                                    do cookies.subtract(tempLongNum); // Deduct cost
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
                                     do Sys.wait(5); // Prevents spamming of keys
                                     do ScoreBoard.eraseCookieLine(); // Erase the cookie line
                                 }
+                                
+
                             }
                             let i = i + 1;
                         }
@@ -200,7 +207,7 @@ class CookieClicker {
                 // Display and update the visuals of the cookies
                 do ScoreBoard.printCookies(cookies);
                 let displayVisualOfCookies = false;
-                do Sys.wait(1);
+                do Sys.wait(5);
             }
 
             if (displayVisualOfUpgrades) {

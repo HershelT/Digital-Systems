@@ -1,10 +1,10 @@
 class ScoreBoard {
-    function void printCookies(int cookies) {
+    function void printCookies(LongNum cookies) {
         // do eraseCookieLine();
         // do Memory.deAlloc(1);
         // Display the number of cookies
         do Output.moveCursor(2, 28);
-        do Output.printInt(cookies);
+        do cookies.toString();
         return;
     }
     // Erase the cookie line

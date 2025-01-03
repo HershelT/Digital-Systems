@@ -24,33 +24,48 @@ class LongNum {
     }
 
     method void subtract(int amount) {
-        while (amount > 0) {
-            if (rightSide < amount) {
-                let leftSide = leftSide - 1;
-                let rightSide = 10000 - amount;
-                let amount = amount - 10000;
-            }
-            else {
-                let rightSide = rightSide - amount;
-                let amount = amount - 10000;    
-            }   
+        // Subtract the left side
+        while (amount > 9999) {
+            let leftSide = leftSide - 1;
+            let amount = amount - 10000;
+        }
+
+        // Subtract the right side
+        let rightSide = rightSide - amount;
+        while (rightSide < 0) {
+            let leftSide = leftSide - 1;
+            let rightSide = rightSide + 10000;
         }
         return;
+
+
+        // while (amount > 0) {
+        //     if (rightSide < amount) {
+        //         let leftSide = leftSide - 1;
+        //         let rightSide = 10000 - amount;
+        //         let amount = amount - 10000;
+        //     }
+        //     else {
+        //         let rightSide = rightSide - amount;
+        //         let amount = amount - 10000;    
+        //     }   
+        // }
+        // return;
     }
 
     // ImplementGreaterThan
-    method String greaterThan(LongNum other) {
+    method boolean greaterThan(LongNum other) {
         if (leftSide > other.getLeftSide()) {
-            return "true";
+            return true;
         }
         else {
             if (leftSide = other.getLeftSide()) {
                 if (rightSide > other.getRightSide()) {
-                    return "true";
+                    return true;
                 }
             }
         }
-        return "false";
+        return false;
     }
 
 
