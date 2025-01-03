@@ -138,6 +138,7 @@ class CookieClicker {
         var int i;
         var Upgrades upgradeElement;
         var LongNum tempLongNum;
+        var LongNum tempCost;
         // Draw text onto scren
         do Output.moveCursor(0, 24);
         do Output.printString("Hit 'SPACE' for Cookies!");
@@ -174,9 +175,12 @@ class CookieClicker {
                                 let upgradeElement = upgrades[i];
                                 // create a temp long in order to use greaterThanLong method
                                 let tempLongNum = LongNum.new();
-                                do tempLongNum.addLong(upgradeElement.getCost()); // Deduct cost
+                                let tempCost = upgradeElement.getCost();
+
+                                do tempLongNum.addLong(tempCost); // Deduct cost
                                 do tempLongNum.subtractLong(numbers.getOne()); // Deduct cost
                                 if (cookies.greaterThanLong(tempLongNum)) {
+                                    do tempLongNum.addLong(numbers.getOne()); // Deduct cost
                                     do cookies.subtractLong(tempLongNum); // Deduct cost
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades

@@ -55,15 +55,19 @@ class Upgrades {
         let tempParentesis = LongNum.new();
         let tempCost = LongNum.new();
 
+        // Do MATH To Calculate new CostOfUpgrade:
+        // costOfUpgrade = costOfUpgrade + (((costOfUpgrade / 100) + 1) * (multiplier - 100));
         do tempCost.addLong(costOfUpgrade);
-
-        // Do MATH: costOfUpgrade = costOfUpgrade + (((costOfUpgrade / 100) + 1) * (multiplier - 100));
-        do tempParentesis.addLong(tempCost.divideLong(numbers.getOneHundred()));
+        do tempCost.divideLong(numbers.getOneHundred());
         do tempParentesis.addLong(numbers.getOne());
+        do tempParentesis.addLong(tempCost);
+
         do tempMulti.addLong(numbers.getFifteen());
+
         do tempParentesis.multiplyLong(tempMulti);
-        
+
         do costOfUpgrade.addLong(tempParentesis);
+
         let count = count + 1;
         let currentCPS = cps * count;
         let totalCountOfUpgrades = totalCountOfUpgrades + 1;

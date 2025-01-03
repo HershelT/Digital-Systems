@@ -36,6 +36,7 @@ class LongNumbers {
         // Specific numbers
         let fifteen = LongNum.new();
         do fifteen.add(15);
+        
         let thirtyThousand = LongNum.new();
         do thirtyThousand.add(10000);
         do thirtyThousand.add(10000);
@@ -57,6 +58,9 @@ class LongNumbers {
         return two;
     }
 
+    method LongNum getFifteen() {
+        return fifteen;
+    }
     method LongNum getOneHundred() {
         return oneHundred;
     }
@@ -73,17 +77,15 @@ class LongNumbers {
         return tenThousand;
     }
 
+    method LongNum getThirtyThousand() {
+        return thirtyThousand;
+    }
+
     method LongNum getOneHundredThousand() {
         return oneHundredThousand;
     }
 
-    method LongNum getFifteen() {
-        return fifteen;
-    }
 
-    method LongNum getThirtyThousand() {
-        return thirtyThousand;
-    }
 
     method void deAlloc(int amount) {
         return;

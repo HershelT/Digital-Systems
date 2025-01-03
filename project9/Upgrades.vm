@@ -60,16 +60,18 @@ function Upgrades.getUpgrade 4
     push this 0
     call LongNum.addLong 2
     pop temp 0
-    push local 2
     push local 3
     push this 1
     call LongNumbers.getOneHundred 1
     call LongNum.divideLong 2
-    call LongNum.addLong 2
     pop temp 0
     push local 2
     push this 1
     call LongNumbers.getOne 1
+    call LongNum.addLong 2
+    pop temp 0
+    push local 2
+    push local 3
     call LongNum.addLong 2
     pop temp 0
     push local 1

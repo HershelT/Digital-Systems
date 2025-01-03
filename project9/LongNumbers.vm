@@ -99,6 +99,11 @@ function LongNumbers.getTwo 0
     pop pointer 0
     push this 2
     return
+function LongNumbers.getFifteen 0
+    push argument 0
+    pop pointer 0
+    push this 8
+    return
 function LongNumbers.getOneHundred 0
     push argument 0
     pop pointer 0
@@ -119,20 +124,15 @@ function LongNumbers.getTenThousand 0
     pop pointer 0
     push this 6
     return
-function LongNumbers.getOneHundredThousand 0
-    push argument 0
-    pop pointer 0
-    push this 7
-    return
-function LongNumbers.getFifteen 0
-    push argument 0
-    pop pointer 0
-    push this 8
-    return
 function LongNumbers.getThirtyThousand 0
     push argument 0
     pop pointer 0
     push this 9
+    return
+function LongNumbers.getOneHundredThousand 0
+    push argument 0
+    pop pointer 0
+    push this 7
     return
 function LongNumbers.deAlloc 0
     push argument 0

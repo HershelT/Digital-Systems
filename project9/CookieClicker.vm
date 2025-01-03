@@ -259,7 +259,7 @@ label CookieClicker_4
 label CookieClicker_5
     push local 0
     return
-function CookieClicker.run 5
+function CookieClicker.run 6
     push argument 0
     pop pointer 0
     push constant 0
@@ -417,9 +417,11 @@ label CookieClicker_14
     pop local 3
     call LongNum.new 0
     pop local 4
-    push local 4
     push local 3
     call Upgrades.getCost 1
+    pop local 5
+    push local 4
+    push local 5
     call LongNum.addLong 2
     pop temp 0
     push local 4
@@ -432,6 +434,11 @@ label CookieClicker_14
     call LongNum.greaterThanLong 2
     not
     if-goto CookieClicker_19
+    push local 4
+    push this 1
+    call LongNumbers.getOne 1
+    call LongNum.addLong 2
+    pop temp 0
     push this 0
     push local 4
     call LongNum.subtractLong 2
