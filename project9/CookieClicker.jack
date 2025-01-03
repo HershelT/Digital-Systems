@@ -1,5 +1,8 @@
 class CookieClicker {
-    field int cookies;
+    // Define longInt cookies
+    field LongNum cookies;
+
+    field int cookies1;
     // field int frameCounter;
     field int cookieWidth;
     field int screenMid;
@@ -31,7 +34,8 @@ class CookieClicker {
     field Upgrades warehouse; // Warehouse upgrade object
 
     constructor CookieClicker new() {
-        let cookies = 500;
+        let cookies = LongNum.new(); // Initialize cookies
+        do cookies.add(500); // Initialize cookies to 0
         // Position of drawing Cookie
         let screenMid = 112; // Middle of the screen (column  where the cookie will be drawn)
         let cookieRow = 32; // Row where the cookie will be drawn
@@ -90,7 +94,8 @@ class CookieClicker {
             // After one second we will blink the cookie and update our cookie count
             if (globalTimer > 45) { 
                 let globalTimer = 0;
-                let cookies = cookies + cps();
+                do cookies.add(cps());
+                // let cookies = cookies + cps();
                 let displayVisualOfCookies = true;
                 let isDrawingFullCookie = true;
             }
@@ -141,7 +146,8 @@ class CookieClicker {
                 if (~isAnyKeyPressed) { // If no key was pressed before
                     let isAnyKeyPressed = true; // Set flag to true
                     if (key = 32) { // Spacebar
-                        let cookies = cookies + 1;
+                        do cookies.add(1); // Add 1 cookie
+                        // let cookies = cookies + 1;
                         let isDrawingFullCookie = true; // Set flag to draw full cookie
                         let fullCookieTimer = 0; // Reset timer
                         let displayVisualOfCookies = true; // Set flag to display cookies

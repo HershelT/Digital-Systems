@@ -1,8 +1,11 @@
 class Main {
     function void main() {
         // Testing Long Int
-        var LongTwo myLong;
-        let myLong = LongTwo.new();
+        var LongNum myLong;
+        var LongNum compareLong;
+        var String result;
+        let myLong = LongNum.new();
+        let compareLong = LongNum.new();
         do myLong.add(30000);
         do myLong.toString();
         do Output.println();
@@ -14,6 +17,14 @@ class Main {
         do Output.println();
         do myLong.subtract(25);
         do myLong.toString();
+        do Output.println();
+
+        do compareLong.add(33000);
+        do compareLong.toString();
+        do Output.println();
+
+        let result = compareLong.greaterThan(myLong);
+        do Output.printString(result);
         do Output.println();
 
 

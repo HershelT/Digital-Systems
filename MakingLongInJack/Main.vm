@@ -1,39 +1,59 @@
-function Main.main 1
-    call LongTwo.new 0
+function Main.main 3
+    call LongNum.new 0
     pop local 0
+    call LongNum.new 0
+    pop local 1
     push local 0
     push constant 30000
-    call LongTwo.add 2
+    call LongNum.add 2
     pop temp 0
     push local 0
-    call LongTwo.toString 1
+    call LongNum.toString 1
     pop temp 0
     call Output.println 0
     pop temp 0
     push local 0
     push constant 30000
-    call LongTwo.add 2
+    call LongNum.add 2
     pop temp 0
     push local 0
-    call LongTwo.toString 1
+    call LongNum.toString 1
     pop temp 0
     call Output.println 0
     pop temp 0
     push local 0
     push constant 25205
-    call LongTwo.subtract 2
+    call LongNum.subtract 2
     pop temp 0
     push local 0
-    call LongTwo.toString 1
+    call LongNum.toString 1
     pop temp 0
     call Output.println 0
     pop temp 0
     push local 0
     push constant 25
-    call LongTwo.subtract 2
+    call LongNum.subtract 2
     pop temp 0
     push local 0
-    call LongTwo.toString 1
+    call LongNum.toString 1
+    pop temp 0
+    call Output.println 0
+    pop temp 0
+    push local 1
+    push constant 33000
+    call LongNum.add 2
+    pop temp 0
+    push local 1
+    call LongNum.toString 1
+    pop temp 0
+    call Output.println 0
+    pop temp 0
+    push local 1
+    push local 0
+    call LongNum.greaterThan 2
+    pop local 2
+    push local 2
+    call Output.printString 1
     pop temp 0
     call Output.println 0
     pop temp 0

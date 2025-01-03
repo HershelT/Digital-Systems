@@ -1,8 +1,8 @@
-class LongTwo {
+class LongNum {
     field int leftSide;
     field int rightSide;
 
-    constructor LongTwo new() {
+    constructor LongNum new() {
         let leftSide = 0;
         let rightSide = 0;
         return this;
@@ -36,6 +36,21 @@ class LongTwo {
             }   
         }
         return;
+    }
+
+    // ImplementGreaterThan
+    method String greaterThan(LongNum other) {
+        if (leftSide > other.getLeftSide()) {
+            return "true";
+        }
+        else {
+            if (leftSide = other.getLeftSide()) {
+                if (rightSide > other.getRightSide()) {
+                    return "true";
+                }
+            }
+        }
+        return "false";
     }
 
 
