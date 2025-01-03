@@ -394,7 +394,8 @@ label CookieClicker_14
     not
     if-goto CookieClicker_19
     push this 0
-    push local 4
+    push local 3
+    call Upgrades.getCost 1
     call LongNum.subtract 2
     pop temp 0
     push local 3
@@ -403,9 +404,6 @@ label CookieClicker_14
     push constant 1
     neg
     pop this 7
-    push constant 5
-    call Sys.wait 1
-    pop temp 0
     call ScoreBoard.eraseCookieLine 0
     pop temp 0
     goto CookieClicker_18
@@ -489,9 +487,6 @@ label CookieClicker_20
     pop temp 0
     push constant 0
     pop this 6
-    push constant 5
-    call Sys.wait 1
-    pop temp 0
     goto CookieClicker_26
 label CookieClicker_27
 label CookieClicker_26
@@ -509,9 +504,6 @@ label CookieClicker_26
     pop temp 0
     push constant 0
     pop this 7
-    push constant 1
-    call Sys.wait 1
-    pop temp 0
     goto CookieClicker_28
 label CookieClicker_29
 label CookieClicker_28

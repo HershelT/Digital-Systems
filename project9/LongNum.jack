@@ -23,37 +23,25 @@ class LongNum {
         return;
     }
 
+    // Subtract the value of the long
     method void subtract(int amount) {
-        // Subtract the left side
-        while (amount > 9999) {
-            let leftSide = leftSide - 1;
-            let amount = amount - 10000;
-        }
-
-        // Subtract the right side
-        let rightSide = rightSide - amount;
-        while (rightSide < 0) {
-            let leftSide = leftSide - 1;
-            let rightSide = rightSide + 10000;
+        while (amount > 0) {
+            // If the right side is less than the amount then the left side needs to be subtracted by 1
+            if (rightSide < amount) {
+                let leftSide = leftSide - 1;
+                let rightSide = 10000 - amount;
+                let amount = amount - 10000;
+            }
+            // otherwise just subtract the right side
+            else {
+                let rightSide = rightSide - amount;
+                let amount = amount - 10000;    
+            }   
         }
         return;
-
-
-        // while (amount > 0) {
-        //     if (rightSide < amount) {
-        //         let leftSide = leftSide - 1;
-        //         let rightSide = 10000 - amount;
-        //         let amount = amount - 10000;
-        //     }
-        //     else {
-        //         let rightSide = rightSide - amount;
-        //         let amount = amount - 10000;    
-        //     }   
-        // }
-        // return;
     }
 
-    // ImplementGreaterThan
+    // Icheck if the long is greater than another long
     method boolean greaterThan(LongNum other) {
         if (leftSide > other.getLeftSide()) {
             return true;
@@ -88,15 +76,15 @@ class LongNum {
         let totalZerosBeforeRight = 4 - right.length();
         // display to screen
         // var String str;
-        do Output.printString("Left Side: ");
-        do Output.printInt(leftSide);
-        do Output.printString(" Right Side: ");
-        while (i < totalZerosBeforeRight) {
-            do Output.printString("0");
-            let i = i + 1;
-        }
-        do Output.printInt(rightSide);
-        do Output.println();
+        // do Output.printString("Left Side: ");
+        // do Output.printInt(leftSide);
+        // do Output.printString(" Right Side: ");
+        // while (i < totalZerosBeforeRight) {
+        //     do Output.printString("0");
+        //     let i = i + 1;
+        // }
+        // do Output.printInt(rightSide);
+        // do Output.println();
         do Output.printInt(leftSide);
         let i = 0;
         while (i < totalZerosBeforeRight) {

@@ -155,65 +155,11 @@ function LongNum.toString 3
     call String.length 1
     sub
     pop local 0
-    push constant 11
-    call String.new 1
-    push constant 76
-    call String.appendChar 2
-    push constant 101
-    call String.appendChar 2
-    push constant 102
-    call String.appendChar 2
-    push constant 116
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 83
-    call String.appendChar 2
-    push constant 105
-    call String.appendChar 2
-    push constant 100
-    call String.appendChar 2
-    push constant 101
-    call String.appendChar 2
-    push constant 58
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    call Output.printString 1
-    pop temp 0
     push this 0
     call Output.printInt 1
     pop temp 0
-    push constant 13
-    call String.new 1
-    push constant 32
-    call String.appendChar 2
-    push constant 82
-    call String.appendChar 2
-    push constant 105
-    call String.appendChar 2
-    push constant 103
-    call String.appendChar 2
-    push constant 104
-    call String.appendChar 2
-    push constant 116
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 83
-    call String.appendChar 2
-    push constant 105
-    call String.appendChar 2
-    push constant 100
-    call String.appendChar 2
-    push constant 101
-    call String.appendChar 2
-    push constant 58
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    call Output.printString 1
-    pop temp 0
+    push constant 0
+    pop local 1
 label LongNum_14
     push local 1
     push local 0
@@ -232,34 +178,6 @@ label LongNum_14
     pop local 1
     goto LongNum_14
 label LongNum_15
-    push this 1
-    call Output.printInt 1
-    pop temp 0
-    call Output.println 0
-    pop temp 0
-    push this 0
-    call Output.printInt 1
-    pop temp 0
-    push constant 0
-    pop local 1
-label LongNum_16
-    push local 1
-    push local 0
-    lt
-    not
-    if-goto LongNum_17
-    push constant 1
-    call String.new 1
-    push constant 48
-    call String.appendChar 2
-    call Output.printString 1
-    pop temp 0
-    push local 1
-    push constant 1
-    add
-    pop local 1
-    goto LongNum_16
-label LongNum_17
     push this 1
     call Output.printInt 1
     pop temp 0

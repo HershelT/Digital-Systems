@@ -20,7 +20,7 @@ class CookieClicker {
     field int fullCookieTimer; //Timer to track how long the cookie is shown for after pressed
 
     // Store keys in an array and corresponding upgrades
-    field int totalAmountOf; // Total amount of upgrades - keys you can get
+    field int totalAmountOfUpgrades; // Total amount of upgrades - keys you can get
     field Array keys;
     field Array upgrades;
     
@@ -66,9 +66,9 @@ class CookieClicker {
 
 
         // Store keys in an array and corresponding upgrades (making a map)
-        let totalAmountOf = 5; // Total amount of upgrades - keys you can get
-        let keys = Array.new(totalAmountOf); // Create new Array object
-        let upgrades = Array.new(totalAmountOf); // Create new Array object
+        let totalAmountOfUpgrades = 5; // Total amount of upgrades - keys you can get
+        let keys = Array.new(totalAmountOfUpgrades); // Create new Array object
+        let upgrades = Array.new(totalAmountOfUpgrades); // Create new Array object
 
         // Set keys 
         let keys[0] = 99; // c key
@@ -97,10 +97,9 @@ class CookieClicker {
                 let globalTimer = 0;
                 let cps = cps();
                 do cookies.add(cps);
-                // let cookies = cookies + cps();
                 let displayVisualOfCookies = true;
                 let isDrawingFullCookie = true;
-                // do Memory.deAlloc(cps);
+                do Memory.deAlloc(cps);
             }
         }
         return;
@@ -113,7 +112,7 @@ class CookieClicker {
         var int i;
         let totalCPS = 0;
         let i = 0;
-        while (i < totalAmountOf) {
+        while (i < totalAmountOfUpgrades) {
             let upgradeElement = upgrades[i];
             let totalCPS = totalCPS + upgradeElement.getCPS();
             let i = i + 1;
@@ -158,16 +157,17 @@ class CookieClicker {
                     }
                     // Handle logic for pressing keys to buy upgrades
                     else {
-                        while (i < totalAmountOf) {
+                        while (i < totalAmountOfUpgrades) {
+                            // If we are selecting any of the keys
                             if (key = keys[i]) {
                                 let upgradeElement = upgrades[i];
+                                // create a temp long in order to use greaterThan method
                                 let tempLongNum = LongNum.new();
                                 do tempLongNum.add(upgradeElement.getCost()-1); // Deduct cost
                                 if (cookies.greaterThan(tempLongNum)) {
-                                    do cookies.subtract(tempLongNum); // Deduct cost
+                                    do cookies.subtract(upgradeElement.getCost()); // Deduct cost
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
-                                    do Sys.wait(5); // Prevents spamming of keys
                                     do ScoreBoard.eraseCookieLine(); // Erase the cookie line
                                 }
                                 
@@ -207,14 +207,14 @@ class CookieClicker {
                 // Display and update the visuals of the cookies
                 do ScoreBoard.printCookies(cookies);
                 let displayVisualOfCookies = false;
-                do Sys.wait(5);
+                // do Sys.wait(5);
             }
 
             if (displayVisualOfUpgrades) {
                 // Display and update the visuals of the upgrades
                 do ScoreBoard.printUpgrades(cps(), cursor, grandma, farm, mine, warehouse);
                 let displayVisualOfUpgrades = false;
-                do Sys.wait(1);
+                // do Sys.wait(1);
             }
 
             if (key = 140) { // Escape and leave game
