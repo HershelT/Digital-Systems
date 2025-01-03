@@ -27,6 +27,7 @@ class ScoreBoard {
     // Print the upgrades
     function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas, Upgrades farms, Upgrades mines, Upgrades warehouses, Upgrades banks) {
         var int amount;
+        var LongNum tempNum;
         // Display Cookies per Second
         do Output.moveCursor(7,25);
         do Output.printString("CPS: ");
@@ -71,24 +72,35 @@ class ScoreBoard {
 
         // output the price of the cursor
         do Output.moveCursor(14, 0);
-        do Output.printInt(cursors.getCost());
+        let tempNum = LongNum.new();   
+        do tempNum.addLong(cursors.getCost()); 
+        do tempNum.toString();
         // output the price of the grandma
         do Output.moveCursor(16, 0);
-        do Output.printInt(grandmas.getCost());
+        let tempNum = LongNum.new();
+        do tempNum.addLong(grandmas.getCost());
+        do tempNum.toString();
         // output the price of the farm
         do Output.moveCursor(18, 0);
-        do Output.printInt(farms.getCost());
+        let tempNum = LongNum.new();
+        do tempNum.addLong(farms.getCost());
+        do tempNum.toString();
         // output the price of the mine
         do Output.moveCursor(19, 0);
-        do Output.printInt(mines.getCost());
+        let tempNum = LongNum.new();
+        do tempNum.addLong(mines.getCost());
+        do tempNum.toString();
         // output the price of the warehouse
         do Output.moveCursor(21, 0);
-        do Output.printInt(warehouses.getCost());
+        let tempNum = LongNum.new();
+        do tempNum.addLong(warehouses.getCost());
+        do tempNum.toString();
         // output the price of the bank
         do Output.moveCursor(22, 0);
-        do Output.printInt(banks.getCost());
-
-
+        let tempNum = LongNum.new();
+        do tempNum.addLong(banks.getCost());
+        do tempNum.toString();
+        
 
         // Draw as many cursors as we have
         let amount = 0;
@@ -130,6 +142,8 @@ class ScoreBoard {
 
         // Free memory
         do Memory.deAlloc(amount);
+        do Memory.deAlloc(tempNum);
+
 
         return;
     }

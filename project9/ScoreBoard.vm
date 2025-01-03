@@ -38,7 +38,7 @@ label ScoreBoard_1
     pop temp 0
     push constant 0
     return
-function ScoreBoard.printUpgrades 1
+function ScoreBoard.printUpgrades 2
     push constant 7
     push constant 25
     call Output.moveCursor 2
@@ -342,49 +342,85 @@ function ScoreBoard.printUpgrades 1
     push constant 0
     call Output.moveCursor 2
     pop temp 0
+    call LongNum.new 0
+    pop local 1
+    push local 1
     push argument 1
     call Upgrades.getCost 1
-    call Output.printInt 1
+    call LongNum.addLong 2
+    pop temp 0
+    push local 1
+    call LongNum.toString 1
     pop temp 0
     push constant 16
     push constant 0
     call Output.moveCursor 2
     pop temp 0
+    call LongNum.new 0
+    pop local 1
+    push local 1
     push argument 2
     call Upgrades.getCost 1
-    call Output.printInt 1
+    call LongNum.addLong 2
+    pop temp 0
+    push local 1
+    call LongNum.toString 1
     pop temp 0
     push constant 18
     push constant 0
     call Output.moveCursor 2
     pop temp 0
+    call LongNum.new 0
+    pop local 1
+    push local 1
     push argument 3
     call Upgrades.getCost 1
-    call Output.printInt 1
+    call LongNum.addLong 2
+    pop temp 0
+    push local 1
+    call LongNum.toString 1
     pop temp 0
     push constant 19
     push constant 0
     call Output.moveCursor 2
     pop temp 0
+    call LongNum.new 0
+    pop local 1
+    push local 1
     push argument 4
     call Upgrades.getCost 1
-    call Output.printInt 1
+    call LongNum.addLong 2
+    pop temp 0
+    push local 1
+    call LongNum.toString 1
     pop temp 0
     push constant 21
     push constant 0
     call Output.moveCursor 2
     pop temp 0
+    call LongNum.new 0
+    pop local 1
+    push local 1
     push argument 5
     call Upgrades.getCost 1
-    call Output.printInt 1
+    call LongNum.addLong 2
+    pop temp 0
+    push local 1
+    call LongNum.toString 1
     pop temp 0
     push constant 22
     push constant 0
     call Output.moveCursor 2
     pop temp 0
+    call LongNum.new 0
+    pop local 1
+    push local 1
     push argument 6
     call Upgrades.getCost 1
-    call Output.printInt 1
+    call LongNum.addLong 2
+    pop temp 0
+    push local 1
+    call LongNum.toString 1
     pop temp 0
     push constant 0
     pop local 0
@@ -553,6 +589,9 @@ label ScoreBoard_12
     goto ScoreBoard_12
 label ScoreBoard_13
     push local 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 1
     call Memory.deAlloc 1
     pop temp 0
     push constant 0

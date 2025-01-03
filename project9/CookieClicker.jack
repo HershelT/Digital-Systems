@@ -1,8 +1,10 @@
 class CookieClicker {
     // Define longInt cookies
     field LongNum cookies;
+    // Store a class that holds LongNum Numkbers such as 0, 1, 2
+    field LongNumbers numbers;
 
-    field int cookies1;
+    // field int cookies1;
     // field int frameCounter;
     field int cookieWidth;
     field int screenMid;
@@ -35,9 +37,13 @@ class CookieClicker {
     field Upgrades bank; // Bank upgrade object
 
     constructor CookieClicker new() {
+        let numbers = LongNumbers.new(); // Initialize numbers
+
+        // Initialize cookies
         let cookies = LongNum.new(); // Initialize cookies
-        do cookies.add(20000); // Initialize cookies to 0
-        do cookies.add(20000); // Initialize cookies to 0
+        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0
+
+        // Initialize numbers
         // Position of drawing Cookie
         let screenMid = 112; // Middle of the screen (column  where the cookie will be drawn)
         let cookieRow = 32; // Row where the cookie will be drawn
@@ -59,12 +65,12 @@ class CookieClicker {
         // Initialize upgrades
 
         // Create new Upgrades object with given (cost, worth, multiplier, amountToStart, cookiesPerSecond)
-        let cursor = Upgrades.new(15, 1, 115, 0, 1); // Create new Upgrades object
-        let grandma = Upgrades.new(100, 10, 115, 0, 7); // Create new Upgrades object
-        let farm = Upgrades.new(1000, 50, 115, 0, 24); // Create new Upgrades object
-        let mine = Upgrades.new(5000, 500, 115, 0, 87); // Create new Upgrades object
-        let warehouse = Upgrades.new(10000, 1000, 115, 0, 263); // Create new Upgrades object
-        let bank = Upgrades.new(30000, 10000, 115, 0, 1000); // Create new Upgrades object
+        let cursor = Upgrades.new(numbers.getFifteen(), 1, 115, 0, 1); // Create new Upgrades object
+        let grandma = Upgrades.new(numbers.getOneHundred(), 10, 115, 0, 7); // Create new Upgrades object
+        let farm = Upgrades.new(numbers.getOneThousand(), 50, 115, 0, 24); // Create new Upgrades object
+        let mine = Upgrades.new(numbers.getFiveThousand(), 500, 115, 0, 87); // Create new Upgrades object
+        let warehouse = Upgrades.new(numbers.getTenThousand(), 1000, 115, 0, 263); // Create new Upgrades object
+        let bank = Upgrades.new(numbers.getOneHundredThousand(), 10000, 115, 0, 1400); // Create new Upgrades object
 
 
 
@@ -154,7 +160,7 @@ class CookieClicker {
                 if (~isAnyKeyPressed) { // If no key was pressed before
                     let isAnyKeyPressed = true; // Set flag to true
                     if (key = 32) { // Spacebar
-                        do cookies.add(1); // Add 1 cookie
+                        do cookies.addLong(numbers.getOne()); // Add one cookie
                         // let cookies = cookies + 1;
                         let isDrawingFullCookie = true; // Set flag to draw full cookie
                         let fullCookieTimer = 0; // Reset timer
@@ -166,18 +172,17 @@ class CookieClicker {
                             // If we are selecting any of the keys
                             if (key = keys[i]) {
                                 let upgradeElement = upgrades[i];
-                                // create a temp long in order to use greaterThan method
+                                // create a temp long in order to use greaterThanLong method
                                 let tempLongNum = LongNum.new();
-                                do tempLongNum.add(upgradeElement.getCost()-1); // Deduct cost
-                                if (cookies.greaterThan(tempLongNum)) {
+                                do tempLongNum.addLong(upgradeElement.getCost()); // Deduct cost
+                                do tempLongNum.subtractLong(numbers.getOne()); // Deduct cost
+                                if (cookies.greaterThanLong(tempLongNum)) {
                                     do cookies.subtractLong(tempLongNum); // Deduct cost
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
                                     do ScoreBoard.eraseCookieLine(); // Erase the cookie line
                                     let i = totalAmountOfUpgrades; // Break out of loop
                                 }
-                                
-
                             }
                             let i = i + 1;
                         }

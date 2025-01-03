@@ -37,6 +37,13 @@ class LongNum {
         }
         return;
     }
+
+    // Set the value of the long
+    method void set(LongNum other) {
+        let leftSide = other.getLeftSide();
+        let rightSide = other.getRightSide();
+        return;
+    }
     
     // Subtract two longs
     method void subtractLong(LongNum other) {
@@ -71,8 +78,41 @@ class LongNum {
         return;
     }
 
-    // Icheck if the long is greater than another long
-    method boolean greaterThan(LongNum other) {
+    // Divide the long by a long
+    // Example: 10050 / 100 = 100
+    method void divideLong(LongNum other) {
+        // Run the subtract method a bunch of times
+        var LongNum zero;
+        let zero = LongNum.new();
+        do zero.add(0);
+        
+        // Perform subtraction similar to a chip
+        while (greaterThanLong(other)) {
+            do subtractLong(other);
+            do zero.add(1);
+        }
+        do set(zero);
+        return;
+    }
+
+    // multiply the long by a long
+    method void multiplyLong(LongNum other) {
+        // Run the add method a bunch of times
+        var LongNum zero;
+        let zero = LongNum.new();
+        do zero.add(0);
+        
+        // Perform addition similar to a chip
+        while (other.greaterThanLong(zero)) {
+            do addLong(this);
+            do other.subtract(1);
+
+        }
+        return;
+    }
+
+    // check if the long is greater than another long
+    method boolean greaterThanLong(LongNum other) {
         if (leftSide > other.getLeftSide()) {
             return true;
         }

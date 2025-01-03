@@ -2,15 +2,14 @@ function CookieClicker.new 0
     push constant 20
     call Memory.alloc 1
     pop pointer 0
+    call LongNumbers.new 0
+    pop this 1
     call LongNum.new 0
     pop this 0
     push this 0
-    push constant 20000
-    call LongNum.add 2
-    pop temp 0
-    push this 0
-    push constant 20000
-    call LongNum.add 2
+    push this 1
+    call LongNumbers.getOneHundredThousand 1
+    call LongNum.addLong 2
     pop temp 0
     push constant 112
     pop this 3
@@ -30,46 +29,52 @@ function CookieClicker.new 0
     pop this 7
     push constant 0
     pop this 13
-    push constant 15
+    push this 1
+    call LongNumbers.getFifteen 1
     push constant 1
     push constant 115
     push constant 0
     push constant 1
     call Upgrades.new 5
     pop this 14
-    push constant 100
+    push this 1
+    call LongNumbers.getOneHundred 1
     push constant 10
     push constant 115
     push constant 0
     push constant 7
     call Upgrades.new 5
     pop this 15
-    push constant 1000
+    push this 1
+    call LongNumbers.getOneThousand 1
     push constant 50
     push constant 115
     push constant 0
     push constant 24
     call Upgrades.new 5
     pop this 16
-    push constant 5000
+    push this 1
+    call LongNumbers.getFiveThousand 1
     push constant 500
     push constant 115
     push constant 0
     push constant 87
     call Upgrades.new 5
     pop this 17
-    push constant 10000
+    push this 1
+    call LongNumbers.getTenThousand 1
     push constant 1000
     push constant 115
     push constant 0
     push constant 263
     call Upgrades.new 5
     pop this 18
-    push constant 30000
+    push this 1
+    call LongNumbers.getOneHundredThousand 1
     push constant 10000
     push constant 115
     push constant 0
-    push constant 1000
+    push constant 1400
     call Upgrades.new 5
     pop this 19
     push constant 6
@@ -375,8 +380,9 @@ label CookieClicker_9
     not
     if-goto CookieClicker_13
     push this 0
-    push constant 1
-    call LongNum.add 2
+    push this 1
+    call LongNumbers.getOne 1
+    call LongNum.addLong 2
     pop temp 0
     push constant 1
     neg
@@ -414,13 +420,16 @@ label CookieClicker_14
     push local 4
     push local 3
     call Upgrades.getCost 1
-    push constant 1
-    sub
-    call LongNum.add 2
+    call LongNum.addLong 2
+    pop temp 0
+    push local 4
+    push this 1
+    call LongNumbers.getOne 1
+    call LongNum.subtractLong 2
     pop temp 0
     push this 0
     push local 4
-    call LongNum.greaterThan 2
+    call LongNum.greaterThanLong 2
     not
     if-goto CookieClicker_19
     push this 0

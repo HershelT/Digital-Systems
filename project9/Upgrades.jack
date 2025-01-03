@@ -1,5 +1,7 @@
 class Upgrades {
-    field int costOfUpgrade;
+    field LongNum costOfUpgrade;
+    field LongNumbers numbers;
+
     field int worthOfUpgrade;
     field int multiplier;
     field int count;
@@ -8,8 +10,10 @@ class Upgrades {
     static int totalCountOfUpgrades; 
 
     // Initialize with set cost given to Upgrades
-    constructor Upgrades new(int cost, int worth, int multiply, int amount, int perSecond) {
-        let costOfUpgrade = cost; //Cost of upgrade
+    constructor Upgrades new(LongNum cost, int worth, int multiply, int amount, int perSecond) {
+        let costOfUpgrade = LongNum.new(); // Cost of upgrade
+        do costOfUpgrade.addLong(cost);
+        let numbers = LongNumbers.new(); // Initialize numbers
         let worthOfUpgrade = worth; //How much you get per interval
         let multiplier = multiply; // How much to increase costOfUpgrade by
         let count = amount; // Number of upgrades
@@ -18,7 +22,7 @@ class Upgrades {
         return this;
     }
 
-    method int getCost() {
+    method LongNum getCost() {
         return costOfUpgrade;
     }
 
@@ -41,8 +45,25 @@ class Upgrades {
     // Upgrade by changing price and amount of upgrade
     method void getUpgrade() {
         // Logic that does not get int overflow
-        // var int divide;
-        let costOfUpgrade = costOfUpgrade + (((costOfUpgrade / 100) + 1) * (multiplier - 100));
+        var int divide;
+        var LongNum tempMulti;
+        var LongNum tempParentesis;
+        var LongNum tempCost;
+
+
+        let tempMulti = LongNum.new();
+        let tempParentesis = LongNum.new();
+        let tempCost = LongNum.new();
+
+        do tempCost.addLong(costOfUpgrade);
+
+        // Do MATH: costOfUpgrade = costOfUpgrade + (((costOfUpgrade / 100) + 1) * (multiplier - 100));
+        do tempParentesis.addLong(tempCost.divideLong(numbers.getOneHundred()));
+        do tempParentesis.addLong(numbers.getOne());
+        do tempMulti.addLong(numbers.getFifteen());
+        do tempParentesis.multiplyLong(tempMulti);
+        
+        do costOfUpgrade.addLong(tempParentesis);
         let count = count + 1;
         let currentCPS = cps * count;
         let totalCountOfUpgrades = totalCountOfUpgrades + 1;

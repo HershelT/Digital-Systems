@@ -1,0 +1,91 @@
+// A class to store common long numbers in the program
+class LongNumbers {
+    field LongNum zero;
+    field LongNum one;
+    field LongNum two;
+    field LongNum oneHundred;
+    field LongNum oneThousand;
+    field LongNum fiveThousand;
+    field LongNum tenThousand;
+    field LongNum oneHundredThousand;
+
+    //Specific numbers
+    field LongNum fifteen;
+    field LongNum thirtyThousand;
+
+    constructor LongNumbers new() {
+        let zero = LongNum.new();
+        do zero.add(0);
+        let one = LongNum.new();
+        do one.add(1);
+        let two = LongNum.new();
+        do two.add(2);
+        let oneHundred = LongNum.new();
+        do oneHundred.add(100);
+        let oneThousand = LongNum.new();
+        do oneThousand.add(1000);
+        let fiveThousand = LongNum.new();
+        do fiveThousand.add(5000);
+        let tenThousand = LongNum.new();
+        do tenThousand.add(10000);
+        let oneHundredThousand = LongNum.new();
+        do oneHundredThousand.add(30000);
+        do oneHundredThousand.add(30000);
+        do oneHundredThousand.add(30000);
+        do oneHundredThousand.add(10000);
+        // Specific numbers
+        let fifteen = LongNum.new();
+        do fifteen.add(15);
+        let thirtyThousand = LongNum.new();
+        do thirtyThousand.add(10000);
+        do thirtyThousand.add(10000);
+        do thirtyThousand.add(10000);
+
+        
+        return this;
+    }
+
+    method LongNum getZero() {
+        return zero;
+    }
+
+    method LongNum getOne() {
+        return one;
+    }
+
+    method LongNum getTwo() {
+        return two;
+    }
+
+    method LongNum getOneHundred() {
+        return oneHundred;
+    }
+
+    method LongNum getOneThousand() {
+        return oneThousand;
+    }
+
+    method LongNum getFiveThousand() {
+        return fiveThousand;
+    }
+
+    method LongNum getTenThousand() {
+        return tenThousand;
+    }
+
+    method LongNum getOneHundredThousand() {
+        return oneHundredThousand;
+    }
+
+    method LongNum getFifteen() {
+        return fifteen;
+    }
+
+    method LongNum getThirtyThousand() {
+        return thirtyThousand;
+    }
+
+    method void deAlloc(int amount) {
+        return;
+    }
+}
