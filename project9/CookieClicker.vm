@@ -2,7 +2,7 @@ function CookieClicker.new 0
     push constant 18
     call Memory.alloc 1
     pop pointer 0
-    push constant 0
+    push constant 500
     pop this 0
     push constant 112
     pop this 2
@@ -33,7 +33,7 @@ function CookieClicker.new 0
     push constant 10
     push constant 115
     push constant 0
-    push constant 4
+    push constant 7
     call Upgrades.new 5
     pop this 14
     push constant 1000
@@ -237,15 +237,15 @@ function CookieClicker.run 4
     call String.appendChar 2
     push constant 39
     call String.appendChar 2
-    push constant 115
+    push constant 83
     call String.appendChar 2
-    push constant 112
+    push constant 80
     call String.appendChar 2
-    push constant 97
+    push constant 65
     call String.appendChar 2
-    push constant 99
+    push constant 67
     call String.appendChar 2
-    push constant 101
+    push constant 69
     call String.appendChar 2
     push constant 39
     call String.appendChar 2
@@ -394,6 +394,8 @@ label CookieClicker_14
     pop this 6
     push constant 5
     call Sys.wait 1
+    pop temp 0
+    call ScoreBoard.eraseCookieLine 0
     pop temp 0
     goto CookieClicker_18
 label CookieClicker_19

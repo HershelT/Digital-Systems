@@ -1,0 +1,87 @@
+class LongTwo {
+    field int leftSide;
+    field int rightSide;
+
+    constructor LongTwo new() {
+        let leftSide = 0;
+        let rightSide = 0;
+        return this;
+    }
+
+    // Gets the value of the long
+    method void add(int amount) {
+        while (amount > 9999) {
+            let leftSide = leftSide + 1;
+            let amount = amount - 10000;
+        }
+
+        let rightSide = rightSide + amount;
+        while (rightSide > 9999) {
+            let leftSide = leftSide + 1;
+            let rightSide = rightSide - 10000;
+        }
+        return;
+    }
+
+    method void subtract(int amount) {
+        while (amount > 0) {
+            if (rightSide < amount) {
+                let leftSide = leftSide - 1;
+                let rightSide = 10000 - amount;
+                let amount = amount - 10000;
+            }
+            else {
+                let rightSide = rightSide - amount;
+                let amount = amount - 10000;    
+            }   
+        }
+        return;
+    }
+
+
+    method int getLeftSide() {
+        return leftSide;
+    }
+
+    method int getRightSide() {
+        return rightSide;
+    }
+
+    method void toString() {
+        // Total zeros before right side
+        var int totalZerosBeforeRight;
+        var int i;
+        var String right;
+        let i = 0;
+        let right = String.new(10);
+        do right.setInt(rightSide);
+        let totalZerosBeforeRight = 4 - right.length();
+        // display to screen
+        // var String str;
+        do Output.printString("Left Side: ");
+        do Output.printInt(leftSide);
+        do Output.printString(" Right Side: ");
+        while (i < totalZerosBeforeRight) {
+            do Output.printString("0");
+            let i = i + 1;
+        }
+        do Output.printInt(rightSide);
+        do Output.println();
+        do Output.printInt(leftSide);
+        let i = 0;
+        while (i < totalZerosBeforeRight) {
+            do Output.printString("0");
+            let i = i + 1;
+        }
+        do Output.printInt(rightSide);
+
+        // Put the left and right side together
+        
+        return;
+}
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}
+

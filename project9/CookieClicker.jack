@@ -31,7 +31,7 @@ class CookieClicker {
     field Upgrades warehouse; // Warehouse upgrade object
 
     constructor CookieClicker new() {
-        let cookies = 0;
+        let cookies = 500;
         // Position of drawing Cookie
         let screenMid = 112; // Middle of the screen (column  where the cookie will be drawn)
         let cookieRow = 32; // Row where the cookie will be drawn
@@ -153,9 +153,11 @@ class CookieClicker {
                                 let upgradeElement = upgrades[i];
                                 if (cookies > (upgradeElement.getCost() - 1)) {
                                     let cookies = cookies - upgradeElement.getCost(); // Deduct cost
+
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
                                     do Sys.wait(5); // Prevents spamming of keys
+                                    do ScoreBoard.eraseCookieLine(); // Erase the cookie line
                                 }
                             }
                             let i = i + 1;

@@ -1,0 +1,237 @@
+function LongTwo.new 0
+    push constant 2
+    call Memory.alloc 1
+    pop pointer 0
+    push constant 0
+    pop this 0
+    push constant 0
+    pop this 1
+    push pointer 0
+    return
+function LongTwo.add 0
+    push argument 0
+    pop pointer 0
+label LongTwo_0
+    push argument 1
+    push constant 9999
+    gt
+    not
+    if-goto LongTwo_1
+    push this 0
+    push constant 1
+    add
+    pop this 0
+    push argument 1
+    push constant 10000
+    sub
+    pop argument 1
+    goto LongTwo_0
+label LongTwo_1
+    push this 1
+    push argument 1
+    add
+    pop this 1
+label LongTwo_2
+    push this 1
+    push constant 9999
+    gt
+    not
+    if-goto LongTwo_3
+    push this 0
+    push constant 1
+    add
+    pop this 0
+    push this 1
+    push constant 10000
+    sub
+    pop this 1
+    goto LongTwo_2
+label LongTwo_3
+    push constant 0
+    return
+function LongTwo.subtract 0
+    push argument 0
+    pop pointer 0
+label LongTwo_4
+    push argument 1
+    push constant 0
+    gt
+    not
+    if-goto LongTwo_5
+    push this 1
+    push argument 1
+    lt
+    not
+    if-goto LongTwo_7
+    push this 0
+    push constant 1
+    sub
+    pop this 0
+    push constant 10000
+    push argument 1
+    sub
+    pop this 1
+    push argument 1
+    push constant 10000
+    sub
+    pop argument 1
+    goto LongTwo_6
+label LongTwo_7
+    push this 1
+    push argument 1
+    sub
+    pop this 1
+    push argument 1
+    push constant 10000
+    sub
+    pop argument 1
+label LongTwo_6
+    goto LongTwo_4
+label LongTwo_5
+    push constant 0
+    return
+function LongTwo.getLeftSide 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    return
+function LongTwo.getRightSide 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function LongTwo.toString 3
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 1
+    push constant 10
+    call String.new 1
+    pop local 2
+    push local 2
+    push this 1
+    call String.setInt 2
+    pop temp 0
+    push constant 4
+    push local 2
+    call String.length 1
+    sub
+    pop local 0
+    push constant 11
+    call String.new 1
+    push constant 76
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 102
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 83
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 100
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 58
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push this 0
+    call Output.printInt 1
+    pop temp 0
+    push constant 13
+    call String.new 1
+    push constant 32
+    call String.appendChar 2
+    push constant 82
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 103
+    call String.appendChar 2
+    push constant 104
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 83
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 100
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 58
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+label LongTwo_8
+    push local 1
+    push local 0
+    lt
+    not
+    if-goto LongTwo_9
+    push constant 1
+    call String.new 1
+    push constant 48
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto LongTwo_8
+label LongTwo_9
+    push this 1
+    call Output.printInt 1
+    pop temp 0
+    call Output.println 0
+    pop temp 0
+    push this 0
+    call Output.printInt 1
+    pop temp 0
+    push constant 0
+    pop local 1
+label LongTwo_10
+    push local 1
+    push local 0
+    lt
+    not
+    if-goto LongTwo_11
+    push constant 1
+    call String.new 1
+    push constant 48
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto LongTwo_10
+label LongTwo_11
+    push this 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 0
+    return
+function LongTwo.dispose 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

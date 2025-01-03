@@ -1,10 +1,4 @@
 function ScoreBoard.printCookies 0
-    push pointer 0
-    call ScoreBoard.eraseCookieLine 1
-    pop temp 0
-    push constant 1
-    call Memory.deAlloc 1
-    pop temp 0
     push constant 2
     push constant 28
     call Output.moveCursor 2
@@ -15,8 +9,6 @@ function ScoreBoard.printCookies 0
     push constant 0
     return
 function ScoreBoard.eraseCookieLine 1
-    push argument 0
-    pop pointer 0
     push constant 2
     push constant 28
     call Output.moveCursor 2
@@ -492,5 +484,8 @@ label ScoreBoard_10
     pop local 0
     goto ScoreBoard_10
 label ScoreBoard_11
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
     push constant 0
     return
