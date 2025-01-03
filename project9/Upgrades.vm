@@ -96,8 +96,28 @@ function Upgrades.getUpgrade 4
     call Math.multiply 2
     pop this 6
     push static 0
+    push constant 0
+    eq
+    not
+    if-goto Upgrades_1
+    push static 0
     push constant 1
     add
     pop static 0
+    goto Upgrades_0
+label Upgrades_1
+label Upgrades_0
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 1
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 2
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 3
+    call Memory.deAlloc 1
+    pop temp 0
     push constant 0
     return

@@ -25,12 +25,14 @@ class LongNum {
 
     // Gets the value of the long
     method void add(int amount) {
+        // IF we reached maximum of 10,000 oon right side we need to add 1 to the left side
         while (amount > 9999) {
             let leftSide = leftSide + 1;
             let amount = amount - 10000;
         }
-
+        // Add the amount to the right side
         let rightSide = rightSide + amount;
+        // If the right side is greater than 9999 then add 1 to the left side
         while (rightSide > 9999) {
             let leftSide = leftSide + 1;
             let rightSide = rightSide - 10000;

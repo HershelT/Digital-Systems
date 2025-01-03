@@ -216,15 +216,15 @@ function CookieClicker.handleUpgradeLogic 1
     push constant 1
     neg
     pop this 5
-    push local 0
-    call Memory.deAlloc 1
-    pop temp 0
     goto CookieClicker_2
 label CookieClicker_3
 label CookieClicker_2
     goto CookieClicker_0
 label CookieClicker_1
 label CookieClicker_0
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
     push constant 0
     return
 function CookieClicker.cps 3
@@ -257,6 +257,12 @@ label CookieClicker_4
     pop local 2
     goto CookieClicker_4
 label CookieClicker_5
+    push local 2
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 1
+    call Memory.deAlloc 1
+    pop temp 0
     push local 0
     return
 function CookieClicker.run 6
@@ -342,6 +348,8 @@ function CookieClicker.run 6
     call String.appendChar 2
     call Output.printString 1
     pop temp 0
+    call ScoreBoard.printTheText 0
+    pop temp 0
     push this 3
     push this 4
     push constant 32
@@ -415,32 +423,16 @@ label CookieClicker_14
     pop pointer 1
     push that 0
     pop local 3
-    call LongNum.new 0
-    pop local 4
     push local 3
     call Upgrades.getCost 1
     pop local 5
-    push local 4
-    push local 5
-    call LongNum.addLong 2
-    pop temp 0
-    push local 4
-    push this 1
-    call LongNumbers.getOne 1
-    call LongNum.subtractLong 2
-    pop temp 0
     push this 0
-    push local 4
-    call LongNum.greaterThanLong 2
+    push local 5
+    call LongNum.greaterThanOrEqualLong 2
     not
     if-goto CookieClicker_19
-    push local 4
-    push this 1
-    call LongNumbers.getOne 1
-    call LongNum.addLong 2
-    pop temp 0
     push this 0
-    push local 4
+    push local 5
     call LongNum.subtractLong 2
     pop temp 0
     push local 3

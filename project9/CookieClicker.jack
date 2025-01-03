@@ -110,9 +110,12 @@ class CookieClicker {
                 do cookies.add(cps);
                 let displayVisualOfCookies = true;
                 let isDrawingFullCookie = true;
-                do Memory.deAlloc(cps);
             }
         }
+
+        //Free memory
+        do Memory.deAlloc(cps);
+
         return;
     }
 
@@ -128,6 +131,10 @@ class CookieClicker {
             let totalCPS = totalCPS + upgradeElement.getCPS();
             let i = i + 1;
         }
+        //Free memory
+        do Memory.deAlloc(i);
+        do Memory.deAlloc(upgradeElement);
+        
         return totalCPS;
     }
 
@@ -144,6 +151,7 @@ class CookieClicker {
         do Output.printString("Hit 'SPACE' for Cookies!");
         do Output.moveCursor(1, 28);
         do Output.printString("Cookies:");
+        do ScoreBoard.printTheText(); // Print the text
 
         //Draw the starting cookie that is not filled in
         do CookieDrawings.drawBigPressedCookie(screenMid + (cookieRow * 32));
@@ -175,7 +183,7 @@ class CookieClicker {
                                 let upgradeElement = upgrades[i];
                                 // create a temp long to store the cost of the upgrade
                                 let tempCost = upgradeElement.getCost();
-                                
+
                                 // Check if we have the correct amount of cookies to buy the upgrade
                                 if (cookies.greaterThanOrEqualLong(tempCost)) {
                                     do cookies.subtractLong(tempCost); // Deduct cost

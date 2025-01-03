@@ -183,12 +183,36 @@ function LongNum.divideLong 1
     pop pointer 0
     call LongNum.new 0
     pop local 0
+    push argument 1
+    call LongNum.getLeftSide 1
+    push constant 0
+    eq
+    not
+    if-goto LongNum_15
+    push argument 1
+    call LongNum.getRightSide 1
+    push constant 0
+    eq
+    not
+    if-goto LongNum_17
+    push pointer 0
+    push local 0
+    call LongNum.set 2
+    pop temp 0
+    push constant 0
+    return
+    goto LongNum_16
+label LongNum_17
+label LongNum_16
+    goto LongNum_14
+label LongNum_15
 label LongNum_14
+label LongNum_18
     push pointer 0
     push argument 1
     call LongNum.greaterThanLong 2
     not
-    if-goto LongNum_15
+    if-goto LongNum_19
     push pointer 0
     push argument 1
     call LongNum.subtractLong 2
@@ -197,8 +221,8 @@ label LongNum_14
     push constant 1
     call LongNum.add 2
     pop temp 0
-    goto LongNum_14
-label LongNum_15
+    goto LongNum_18
+label LongNum_19
     push pointer 0
     push local 0
     call LongNum.set 2
@@ -212,6 +236,30 @@ function LongNum.multiplyLong 2
     pop local 1
     call LongNum.new 0
     pop local 0
+    push argument 1
+    call LongNum.getLeftSide 1
+    push constant 0
+    eq
+    not
+    if-goto LongNum_21
+    push argument 1
+    call LongNum.getRightSide 1
+    push constant 0
+    eq
+    not
+    if-goto LongNum_23
+    push pointer 0
+    push local 0
+    call LongNum.set 2
+    pop temp 0
+    push constant 0
+    return
+    goto LongNum_22
+label LongNum_23
+label LongNum_22
+    goto LongNum_20
+label LongNum_21
+label LongNum_20
     push local 0
     push constant 1
     call LongNum.add 2
@@ -220,12 +268,12 @@ function LongNum.multiplyLong 2
     push pointer 0
     call LongNum.set 2
     pop temp 0
-label LongNum_16
+label LongNum_24
     push argument 1
     push local 0
     call LongNum.greaterThanLong 2
     not
-    if-goto LongNum_17
+    if-goto LongNum_25
     push pointer 0
     push local 1
     call LongNum.addLong 2
@@ -234,8 +282,8 @@ label LongNum_16
     push constant 1
     call LongNum.add 2
     pop temp 0
-    goto LongNum_16
-label LongNum_17
+    goto LongNum_24
+label LongNum_25
     push constant 0
     return
 function LongNum.greaterThanLong 0
@@ -246,34 +294,66 @@ function LongNum.greaterThanLong 0
     call LongNum.getLeftSide 1
     gt
     not
-    if-goto LongNum_19
+    if-goto LongNum_27
     push constant 1
     neg
     return
-    goto LongNum_18
-label LongNum_19
+    goto LongNum_26
+label LongNum_27
     push this 0
     push argument 1
     call LongNum.getLeftSide 1
     eq
     not
-    if-goto LongNum_21
+    if-goto LongNum_29
     push this 1
     push argument 1
     call LongNum.getRightSide 1
     gt
     not
-    if-goto LongNum_23
+    if-goto LongNum_31
     push constant 1
     neg
     return
-    goto LongNum_22
-label LongNum_23
-label LongNum_22
-    goto LongNum_20
-label LongNum_21
-label LongNum_20
-label LongNum_18
+    goto LongNum_30
+label LongNum_31
+label LongNum_30
+    goto LongNum_28
+label LongNum_29
+label LongNum_28
+label LongNum_26
+    push constant 0
+    return
+function LongNum.greaterThanOrEqualLong 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    call LongNum.getRightSide 1
+    push constant 0
+    eq
+    not
+    if-goto LongNum_33
+    push constant 1
+    neg
+    return
+    goto LongNum_32
+label LongNum_33
+label LongNum_32
+    push argument 1
+    push constant 1
+    call LongNum.subtract 2
+    pop temp 0
+    push pointer 0
+    push argument 1
+    call LongNum.greaterThanLong 2
+    not
+    if-goto LongNum_35
+    push constant 1
+    neg
+    return
+    goto LongNum_34
+label LongNum_35
+label LongNum_34
     push constant 0
     return
 function LongNum.getLeftSide 0
@@ -308,12 +388,12 @@ function LongNum.toString 3
     pop temp 0
     push constant 0
     pop local 1
-label LongNum_24
+label LongNum_36
     push local 1
     push local 0
     lt
     not
-    if-goto LongNum_25
+    if-goto LongNum_37
     push constant 1
     call String.new 1
     push constant 48
@@ -324,8 +404,8 @@ label LongNum_24
     push constant 1
     add
     pop local 1
-    goto LongNum_24
-label LongNum_25
+    goto LongNum_36
+label LongNum_37
     push this 1
     call Output.printInt 1
     pop temp 0

@@ -1,10 +1,8 @@
 // Jack program to display the score board of the game
 // Including visuals of the cookies and upgrades
 class ScoreBoard {
+    // Display the number of cookies
     function void printCookies(LongNum cookies) {
-        // do eraseCookieLine();
-        // do Memory.deAlloc(1);
-        // Display the number of cookies
         do Output.moveCursor(2, 28);
         do cookies.toString();
         return;
@@ -24,22 +22,31 @@ class ScoreBoard {
         return;
     }
 
+    function void printTheText() {
+        // / Display Cookies per Second
+        do Output.moveCursor(7,25);
+        do Output.printString("CPS: ");
+        // Display the upgrades amount
+        do Output.moveCursor(0,0);
+        do Output.printString("UPGRADES AMOUNT: ");
+        // Display the upgrades costs
+        do Output.moveCursor(12, 0);
+        do Output.printString("COSTS:");
+
+        return;
+    }
+
     // Print the upgrades
     function void printUpgrades(int cps, Upgrades cursors, Upgrades grandmas, Upgrades farms, Upgrades mines, Upgrades warehouses, Upgrades banks) {
         var int amount;
         var LongNum tempNum;
-        // Display Cookies per Second
-        do Output.moveCursor(7,25);
-        do Output.printString("CPS: ");
+        // Display the cookies per second
         do Output.moveCursor(8, 25);
         do Output.printInt(cps);
-
 
         // Output the number of upgrades
 
         // Output the number of cursors
-        do Output.moveCursor(0,0);
-        do Output.printString("UPGRADES AMOUNT: ");
         do Output.moveCursor(2, 0);
         do Output.printInt(cursors.getAmount());
         do Output.printString(" Cursors 'C'");
@@ -63,10 +70,6 @@ class ScoreBoard {
         do Output.moveCursor(7, 0);
         do Output.printInt(banks.getAmount());
         do Output.printString(" Banks 'B'");
-
-        // Display Costs underneat
-        do Output.moveCursor(12, 0);
-        do Output.printString("COSTS:");
 
         // Output the cost of each upgrade
 
@@ -101,6 +104,7 @@ class ScoreBoard {
         do tempNum.addLong(banks.getCost());
         do tempNum.toString();
         
+        // Draw the graphics of the upgrades
 
         // Draw as many cursors as we have
         let amount = 0;
