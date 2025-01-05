@@ -10,17 +10,17 @@ class Upgrades {
 
     // Initialize with set cost given to Upgrades
     constructor Upgrades new(LongNum cost, LongNum amount, LongNum cookiesPerSecond) {
+        // Set up costToUpgrade and number of that upgrade as LongNum
         let costOfUpgrade = LongNum.new(); // Cost of upgrade
         do costOfUpgrade.addLong(cost);
         let numbers = LongNumbers.new(); // Initialize numbers
-        // let multiplier = multiply; // How much to increase costOfUpgrade by every new upgrade
         // define the amount of upgrades (count)
         let count = LongNum.new(); // Number of upgrades
         do count.addLong(amount); // Number of upgrades
         // Define the cookies per second (cps) variable
         let cps = LongNum.new(); // Cookies per second
         do cps.addLong(cookiesPerSecond); // Cookies per second
-        // let cps = cookiesPerSecond; // Cookies per second
+        // set up cookies per second as a longNum
         let currentCPS = LongNum.new(); // Current cookies per second (cps * count)
         do currentCPS.addLong(cps); // Current cookies per second
         do currentCPS.multiplyLong(amount); // Current cookies per second

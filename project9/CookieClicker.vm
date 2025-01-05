@@ -514,6 +514,7 @@ label CookieClicker_26
     push this 7
     not
     if-goto CookieClicker_29
+    push this 1
     push pointer 0
     call CookieClicker.cps 1
     push this 15
@@ -522,7 +523,8 @@ label CookieClicker_26
     push this 18
     push this 19
     push this 20
-    call ScoreBoard.printUpgrades 7
+    push this 13
+    call ScoreBoard.printUpgrades 9
     pop temp 0
     push constant 0
     pop this 7

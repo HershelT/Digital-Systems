@@ -120,22 +120,26 @@ class ScoreBoard {
         
         // Draw the graphics of the upgrades
 
-        let i = 0;
-        let position = 10;
+        let i = 0; // Counter for while loop (current upgrade element)
+        let position = 10; // Where to print to screen
         while (i < 6) {
+            // Get current Upgrade to manage
             let upgrade = upgrades[i];
 
             let counter = numbers.getZero();
             let tempNum = upgrade.getAmount();
-            while (counter.lessThanLong(tempNum)) {
-                if (counter.lessThanLong(numbers.getTwetnyFive())) {
-                    do UpgradeDrawings.drawAtEle(i, 32*position*16 + counter + 3);
+            while (counter.lessThanLong(numbers.getTwentyFive())) {
+                if (tempNum.lessThanOrEqualLong(numbers.getTwentyFive())) {
+                    // Draw the correct purchased upgrade
+                    do UpgradeDrawings.drawAtEle(i, (32*position*16) + counter.getRightSide() + 3);
                 }
                 else {
-                    let counter = numbers.getOneHundredThousand();
+                    let counter = numbers.getOneHundred();
                 }
                 do counter.addLong(numbers.getOne());
             }
+            let i = i + 1;
+            let position = position + 1;
         }
 
 
@@ -144,7 +148,7 @@ class ScoreBoard {
         // let tempNum = cursors.getAmount(); // Amount of cursors
         // while (counter.lessThanLong(tempNum)) {
         //     // Adds overflow, so limit of how many can be drawn onto screen
-        //     if (counter.lessThanLong(numbers.getTwetnyFive())) {
+        //     if (counter.lessThanLong(numbers.getTwentFive())) {
         //         do UpgradeDrawings.drawCursor((32*10*16) + tempNum + 3);
         //     }
         //     else {
@@ -156,7 +160,7 @@ class ScoreBoard {
         // let counter = numbers.getZero();
         // let tempNum = grandmas.getAmount();
         // while (counter.lessThanLong(tempNum)) {
-        //     if (counter.lessThanLong(numbers.getTwetnyFive())) {
+        //     if (counter.lessThanLong(numbers.getTwentFive())) {
         //         do UpgradeDrawings.drawGrandma((32*11*16) + tempNum + 3);
         //     }
         //     else{
@@ -168,7 +172,7 @@ class ScoreBoard {
         // let counter = numbers.getZero();
         // let tempNum = farms.getAmount();
         // while (counter.lessThanLong(tempNum)) {
-        //     if (counter.lessThanLong(numbers.getTwetnyFive())) {
+        //     if (counter.lessThanLong(numbers.getTwentFive())) {
         //         do UpgradeDrawings.drawFarm((32*12*16) + tempNum + 3);
         //     }
         //     else{
@@ -180,7 +184,7 @@ class ScoreBoard {
         // let counter = numbers.getZero();
         // let tempNum = mines.getAmount();
         // while (counter.lessThanLong(tempNum)) {
-        //     if (counter.lessThanLong(numbers.getTwetnyFive())) {
+        //     if (counter.lessThanLong(numbers.getTwentFive())) {
         //         do UpgradeDrawings.drawMine((32*13*16) + tempNum + 3);
         //     }
         //     else{
@@ -192,7 +196,7 @@ class ScoreBoard {
         // let counter = numbers.getZero();
         // let tempNum = warehouses.getAmount();
         // while (counter.lessThanLong(tempNum)) {
-        //     if (counter.lessThanLong(numbers.getTwetnyFive())) {
+        //     if (counter.lessThanLong(numbers.getTwentFive())) {
         //         do UpgradeDrawings.drawWarehouse((32*14*16) + tempNum + 3);
         //     }
         //     else {
@@ -204,7 +208,7 @@ class ScoreBoard {
         // let counter = numbers.getZero();
         // let tempNum = banks.getAmount();
         // while (counter.lessThanLong(tempNum)) {
-        //     if (counter.lessThanLong(numbers.getTwetnyFive())) {
+        //     if (counter.lessThanLong(numbers.getTwentFive())) {
         //         do UpgradeDrawings.drawBank((32*15*16+64) + tempNum + 3);
         //     }
         //     // Break if we have more than 25
@@ -219,7 +223,7 @@ class ScoreBoard {
         do Memory.deAlloc(tempNum);
         do Memory.deAlloc(counter);
         do Memory.deAlloc(i);
-        
+
 
 
         return;
