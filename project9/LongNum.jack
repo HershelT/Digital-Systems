@@ -256,7 +256,7 @@ class LongNum {
         var int i;
         var String right;
         let i = 0;
-        let right = String.new(10);
+        let right = String.new(20);
         do right.setInt(rightSide);
         let totalZerosBeforeRight = 4 - right.length();
 

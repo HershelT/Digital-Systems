@@ -49,45 +49,54 @@ function Upgrades.getCPS 0
     pop pointer 0
     push this 6
     return
-function Upgrades.getUpgrade 4
+function Upgrades.getUpgrade 3
     push argument 0
     pop pointer 0
+    call LongNum.new 0
+    pop local 0
     call LongNum.new 0
     pop local 1
     call LongNum.new 0
     pop local 2
-    call LongNum.new 0
-    pop local 3
-    push local 3
+    push local 2
     push this 0
     call LongNum.addLong 2
     pop temp 0
-    push local 3
+    push local 2
     push this 1
     call LongNumbers.getOneHundred 1
     call LongNum.divideLong 2
     pop temp 0
-    push local 2
+    push local 1
     push this 1
     call LongNumbers.getOne 1
     call LongNum.addLong 2
     pop temp 0
+    push local 1
     push local 2
-    push local 3
     call LongNum.addLong 2
     pop temp 0
-    push local 1
+    push local 2
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 0
     push this 1
     call LongNumbers.getFifteen 1
     call LongNum.addLong 2
     pop temp 0
-    push local 2
     push local 1
+    push local 0
     call LongNum.multiplyLong 2
     pop temp 0
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
     push this 0
-    push local 2
+    push local 1
     call LongNum.addLong 2
+    pop temp 0
+    push local 1
+    call Memory.deAlloc 1
     pop temp 0
     push this 4
     push this 1
@@ -97,18 +106,6 @@ function Upgrades.getUpgrade 4
     push this 6
     push this 5
     call LongNum.addLong 2
-    pop temp 0
-    push local 0
-    call Memory.deAlloc 1
-    pop temp 0
-    push local 1
-    call Memory.deAlloc 1
-    pop temp 0
-    push local 2
-    call Memory.deAlloc 1
-    pop temp 0
-    push local 3
-    call Memory.deAlloc 1
     pop temp 0
     push constant 0
     return

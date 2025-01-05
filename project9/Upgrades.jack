@@ -42,12 +42,13 @@ class Upgrades {
     // Upgrade by changing price and amount of upgrade
     method void getUpgrade() {
         // Logic that does not get int overflow
-        var int divide;
+        // var int divide;
         var LongNum tempMulti;
         var LongNum tempParentesis;
         var LongNum tempCost;
+        // var LongNum tempAmount;
 
-
+        // let tempAmount = LongNum.new();
         let tempMulti = LongNum.new();
         let tempParentesis = LongNum.new();
         let tempCost = LongNum.new();
@@ -55,15 +56,32 @@ class Upgrades {
         // Do MATH To Calculate new CostOfUpgrade:
         // costOfUpgrade = costOfUpgrade + (((costOfUpgrade / 100) + 1) * (multiplier - 100));
         do tempCost.addLong(costOfUpgrade);
+        // do division without divideLong call
+        // while (tempCost.greaterThanLong(numbers.getOneHundred())) {
+        //     do tempCost.subtractLong(numbers.getOneHundred());
+        //     let divide = divide + 1;
+        // }
+        // let tempCost = numbers.getZero();
+        // do tempCost.add(divide);
+
+
         do tempCost.divideLong(numbers.getOneHundred());
         do tempParentesis.addLong(numbers.getOne());
         do tempParentesis.addLong(tempCost);
+        do Memory.deAlloc(tempCost);
 
         do tempMulti.addLong(numbers.getFifteen());
 
+        // while (tempAmount.lessThanLong(tempMulti)) {
+        //     do tempAmount.addLong(numbers.getOne());
+        //     do tempParentesis.addLong(tempCost);
+        // }
+
         do tempParentesis.multiplyLong(tempMulti);
+        do Memory.deAlloc(tempMulti);
 
         do costOfUpgrade.addLong(tempParentesis);
+        do Memory.deAlloc(tempParentesis);
 
 
         // Update count by adding one
@@ -72,10 +90,8 @@ class Upgrades {
         do currentCPS.addLong(cps);
 
         // Free memory
-        do Memory.deAlloc(divide);
-        do Memory.deAlloc(tempMulti);
-        do Memory.deAlloc(tempParentesis);
-        do Memory.deAlloc(tempCost);
+        // do Memory.deAlloc(divide);
+        // do Memory.deAlloc(tempAmount);
 
 
         return;

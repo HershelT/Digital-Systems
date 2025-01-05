@@ -8,33 +8,48 @@ function ScoreBoard.printCookies 0
     pop temp 0
     push constant 0
     return
-function ScoreBoard.eraseCookieLine 1
+function ScoreBoard.eraseCookieLine 0
     push constant 2
     push constant 28
     call Output.moveCursor 2
     pop temp 0
-    push constant 0
-    pop local 0
-label ScoreBoard_0
-    push local 0
-    push constant 11
-    lt
-    not
-    if-goto ScoreBoard_1
-    push constant 1
+    push constant 17
     call String.new 1
     push constant 32
     call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
     call Output.printString 1
-    pop temp 0
-    push local 0
-    push constant 1
-    add
-    pop local 0
-    goto ScoreBoard_0
-label ScoreBoard_1
-    push local 0
-    call Memory.deAlloc 1
     pop temp 0
     push constant 0
     return
@@ -354,99 +369,75 @@ function ScoreBoard.printUpgrades 5
     call Output.printString 1
     pop temp 0
     push constant 15
-    push constant 0
-    call Output.moveCursor 2
-    pop temp 0
-    call LongNum.new 0
-    pop local 1
-    push local 1
-    push argument 2
-    call Upgrades.getCost 1
-    call LongNum.addLong 2
-    pop temp 0
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 16
-    push constant 0
-    call Output.moveCursor 2
-    pop temp 0
-    call LongNum.new 0
-    pop local 1
-    push local 1
-    push argument 3
-    call Upgrades.getCost 1
-    call LongNum.addLong 2
-    pop temp 0
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 18
-    push constant 0
-    call Output.moveCursor 2
-    pop temp 0
-    call LongNum.new 0
-    pop local 1
-    push local 1
-    push argument 4
-    call Upgrades.getCost 1
-    call LongNum.addLong 2
-    pop temp 0
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 19
-    push constant 0
-    call Output.moveCursor 2
-    pop temp 0
-    call LongNum.new 0
-    pop local 1
-    push local 1
-    push argument 5
-    call Upgrades.getCost 1
-    call LongNum.addLong 2
-    pop temp 0
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 21
-    push constant 0
-    call Output.moveCursor 2
-    pop temp 0
-    call LongNum.new 0
-    pop local 1
-    push local 1
-    push argument 6
-    call Upgrades.getCost 1
-    call LongNum.addLong 2
-    pop temp 0
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 22
-    push constant 0
-    call Output.moveCursor 2
-    pop temp 0
-    call LongNum.new 0
-    pop local 1
-    push local 1
-    push argument 7
-    call Upgrades.getCost 1
-    call LongNum.addLong 2
-    pop temp 0
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 0
-    pop local 2
-    push constant 10
     pop local 3
-label ScoreBoard_2
+label ScoreBoard_0
     push local 2
     push constant 6
     lt
     not
+    if-goto ScoreBoard_1
+    push local 2
+    push argument 8
+    add
+    pop pointer 1
+    push that 0
+    pop local 4
+    push local 3
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    call LongNum.new 0
+    pop local 1
+    push local 4
+    call Upgrades.getCost 1
+    pop local 1
+    push local 1
+    call LongNum.toString 1
+    pop temp 0
+    push local 2
+    push constant 15
+    eq
+    not
     if-goto ScoreBoard_3
+    push local 3
+    push constant 1
+    add
+    pop local 3
+    goto ScoreBoard_2
+label ScoreBoard_3
+label ScoreBoard_2
+    push local 2
+    push constant 18
+    eq
+    not
+    if-goto ScoreBoard_5
+    push local 3
+    push constant 1
+    add
+    pop local 3
+    goto ScoreBoard_4
+label ScoreBoard_5
+label ScoreBoard_4
+    push local 3
+    push constant 1
+    add
+    pop local 3
+    push local 2
+    push constant 1
+    add
+    pop local 2
+    goto ScoreBoard_0
+label ScoreBoard_1
+    push constant 0
+    pop local 2
+    push constant 10
+    pop local 3
+label ScoreBoard_6
+    push local 2
+    push constant 6
+    lt
+    not
+    if-goto ScoreBoard_7
     push local 2
     push argument 8
     add
@@ -460,48 +451,44 @@ label ScoreBoard_2
     push local 4
     call Upgrades.getAmount 1
     pop local 1
-label ScoreBoard_4
+label ScoreBoard_8
     push local 0
     push argument 0
     call LongNumbers.getTwentyFive 1
     call LongNum.lessThanLong 2
     not
-    if-goto ScoreBoard_5
+    if-goto ScoreBoard_9
     push local 1
-    call LongNum.getRightSide 1
     push local 0
-    call LongNum.getRightSide 1
-    gt
+    call LongNum.greaterThanLong 2
     not
-    if-goto ScoreBoard_7
+    if-goto ScoreBoard_11
     push local 2
     push constant 32
     push local 3
     call Math.multiply 2
-    push constant 17
+    push constant 16
     call Math.multiply 2
-    push constant 64
-    add
     push local 0
     call LongNum.getRightSide 1
     add
-    push constant 3
+    push constant 4
     add
     call UpgradeDrawings.drawAtEle 2
     pop temp 0
-    goto ScoreBoard_6
-label ScoreBoard_7
+    goto ScoreBoard_10
+label ScoreBoard_11
     push argument 0
     call LongNumbers.getOneHundred 1
     pop local 0
-label ScoreBoard_6
+label ScoreBoard_10
     push local 0
     push argument 0
     call LongNumbers.getOne 1
     call LongNum.addLong 2
     pop temp 0
-    goto ScoreBoard_4
-label ScoreBoard_5
+    goto ScoreBoard_8
+label ScoreBoard_9
     push local 2
     push constant 1
     add
@@ -510,8 +497,8 @@ label ScoreBoard_5
     push constant 1
     add
     pop local 3
-    goto ScoreBoard_2
-label ScoreBoard_3
+    goto ScoreBoard_6
+label ScoreBoard_7
     push local 1
     call Memory.deAlloc 1
     pop temp 0

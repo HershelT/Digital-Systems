@@ -9,15 +9,15 @@ class ScoreBoard {
     }
     // Erase the cookie line
     function void eraseCookieLine() {
-        var int i;
+        // var int i;
         do Output.moveCursor(2, 28);
-        let i = 0;
-        while (i < 11) {
-            do Output.printString(" ");
-            let i = i + 1;
-        }
+        // let i = 0;
+        do Output.printString("                 ");
+        // while (i < 11) {
+            // let i = i + 1;
+        // }
         // Free memory
-        do Memory.deAlloc(i);
+        // do Memory.deAlloc(i);
 
         return;
     }
@@ -86,37 +86,23 @@ class ScoreBoard {
         do Output.printString(" Banks 'B'");
 
         // Output the cost of each upgrade
-
-        // output the price of the cursor
-        do Output.moveCursor(15, 0);
-        let tempNum = LongNum.new();   
-        do tempNum.addLong(cursors.getCost()); 
-        do tempNum.toString();
-        // output the price of the grandma
-        do Output.moveCursor(16, 0);
-        let tempNum = LongNum.new();
-        do tempNum.addLong(grandmas.getCost());
-        do tempNum.toString();
-        // output the price of the farm
-        do Output.moveCursor(18, 0);
-        let tempNum = LongNum.new();
-        do tempNum.addLong(farms.getCost());
-        do tempNum.toString();
-        // output the price of the mine
-        do Output.moveCursor(19, 0);
-        let tempNum = LongNum.new();
-        do tempNum.addLong(mines.getCost());
-        do tempNum.toString();
-        // output the price of the warehouse
-        do Output.moveCursor(21, 0);
-        let tempNum = LongNum.new();
-        do tempNum.addLong(warehouses.getCost());
-        do tempNum.toString();
-        // output the price of the bank
-        do Output.moveCursor(22, 0);
-        let tempNum = LongNum.new();
-        do tempNum.addLong(banks.getCost());
-        do tempNum.toString();
+        let position = 15; // Where to print to screen
+        while (i < 6) {
+            // Get current Upgrade to manage
+            let upgrade = upgrades[i];
+            do Output.moveCursor(position, 0);
+            let tempNum = LongNum.new();
+            let tempNum = upgrade.getCost();
+            do tempNum.toString();
+            if (i = 16) {
+                let position = position + 1;
+            }
+            if (i = 19) {
+                let position = position + 1;
+            }
+            let position = position + 1;
+            let i = i + 1;
+        }
         
         // Draw the graphics of the upgrades
 
@@ -130,9 +116,9 @@ class ScoreBoard {
             let tempNum = LongNum.new();
             let tempNum = upgrade.getAmount();
             while (counter.lessThanLong(numbers.getTwentyFive())) {
-                if (tempNum.getRightSide() > counter.getRightSide()) {
+                if (tempNum.greaterThanLong(counter)) {
                     // Draw the correct purchased upgrade
-                    do UpgradeDrawings.drawAtEle(i, (32*position*17+64) + counter.getRightSide() + 3);
+                    do UpgradeDrawings.drawAtEle(i, (32*position*16) + counter.getRightSide() + 4);
                 }
                 else {
                     let counter = numbers.getOneHundred();
@@ -142,83 +128,6 @@ class ScoreBoard {
             let i = i + 1;
             let position = position + 1;
         }
-
-
-        // // Draw as many cursors as we have
-        // let counter = numbers.getZero(); // Counter to be incremented
-        // let tempNum = cursors.getAmount(); // Amount of cursors
-        // while (counter.lessThanLong(tempNum)) {
-        //     // Adds overflow, so limit of how many can be drawn onto screen
-        //     if (counter.lessThanLong(numbers.getTwentFive())) {
-        //         do UpgradeDrawings.drawCursor((32*10*16) + tempNum + 3);
-        //     }
-        //     else {
-        //         let tempNum = numbers.getOneHundredThousand();
-        //     }
-        //     do tempNum.addLong(numbers.getOne());
-        // }
-        // // Draw as many grandmas up until 25
-        // let counter = numbers.getZero();
-        // let tempNum = grandmas.getAmount();
-        // while (counter.lessThanLong(tempNum)) {
-        //     if (counter.lessThanLong(numbers.getTwentFive())) {
-        //         do UpgradeDrawings.drawGrandma((32*11*16) + tempNum + 3);
-        //     }
-        //     else{
-        //         let tempNum = numbers.getOneHundredThousand();
-        //     }
-        //     do tempNum.addLong(numbers.getOne());
-        // }
-        // // Draw as many farms as we have up until 25
-        // let counter = numbers.getZero();
-        // let tempNum = farms.getAmount();
-        // while (counter.lessThanLong(tempNum)) {
-        //     if (counter.lessThanLong(numbers.getTwentFive())) {
-        //         do UpgradeDrawings.drawFarm((32*12*16) + tempNum + 3);
-        //     }
-        //     else{
-        //         let tempNum = numbers.getOneHundredThousand();
-        //     }
-        //     do tempNum.addLong(numbers.getOne());
-        // }
-        // // Draw as many mines as we have up until 25
-        // let counter = numbers.getZero();
-        // let tempNum = mines.getAmount();
-        // while (counter.lessThanLong(tempNum)) {
-        //     if (counter.lessThanLong(numbers.getTwentFive())) {
-        //         do UpgradeDrawings.drawMine((32*13*16) + tempNum + 3);
-        //     }
-        //     else{
-        //         let tempNum = numbers.getOneHundredThousand();
-        //     }
-        //     do tempNum.addLong(numbers.getOne());
-        // }
-        // // Draw as many warehouses as we have up until 25
-        // let counter = numbers.getZero();
-        // let tempNum = warehouses.getAmount();
-        // while (counter.lessThanLong(tempNum)) {
-        //     if (counter.lessThanLong(numbers.getTwentFive())) {
-        //         do UpgradeDrawings.drawWarehouse((32*14*16) + tempNum + 3);
-        //     }
-        //     else {
-        //         let tempNum = numbers.getOneHundredThousand();
-        //     }
-        //     do tempNum.addLong(numbers.getOne());
-        // }
-        // // Draw as many banks as we have up until 25
-        // let counter = numbers.getZero();
-        // let tempNum = banks.getAmount();
-        // while (counter.lessThanLong(tempNum)) {
-        //     if (counter.lessThanLong(numbers.getTwentFive())) {
-        //         do UpgradeDrawings.drawBank((32*15*16+64) + counter + 3);
-        //     }
-        //     // Break if we have more than 25
-        //     else {
-        //         let tempNum = 10000;
-        //     }
-        //     let tempNum = tempNum + 1;
-        // }
-        
 
         // Free memory
         do Memory.deAlloc(tempNum);

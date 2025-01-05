@@ -513,7 +513,7 @@ function LongNum.toString 3
     pop pointer 0
     push constant 0
     pop local 1
-    push constant 10
+    push constant 20
     call String.new 1
     pop local 2
     push local 2
