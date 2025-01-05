@@ -4,20 +4,27 @@ class Upgrades {
 
     field int worthOfUpgrade;
     field int multiplier;
-    field int count;
-    field int cps;
-    field int currentCPS;
+    field LongNum count;
+    field LongNum cps;
+    field LongNum currentCPS;
 
     // Initialize with set cost given to Upgrades
-    constructor Upgrades new(LongNum cost, int worth, int multiply, int amount, int perSecond) {
+    constructor Upgrades new(LongNum cost, int worth, int multiply, LongNum amount, LongNum cookiesPerSecond) {
         let costOfUpgrade = LongNum.new(); // Cost of upgrade
         do costOfUpgrade.addLong(cost);
         let numbers = LongNumbers.new(); // Initialize numbers
         let worthOfUpgrade = worth; //How much you get per interval
         let multiplier = multiply; // How much to increase costOfUpgrade by
-        let count = amount; // Number of upgrades
-        let cps = perSecond; // Cookies per second
-        let currentCPS = 0; // Current cookies per second
+        // define the amount of upgrades (count)
+        let count = LongNum.new(); // Number of upgrades
+        do count.addLong(amount); // Number of upgrades
+        // Define the cookies per second (cps) variable
+        let cps = LongNum.new(); // Cookies per second
+        do cps.addLong(cookiesPerSecond); // Cookies per second
+        // let cps = cookiesPerSecond; // Cookies per second
+        let currentCPS = LongNum.new(); // Current cookies per second (cps * count)
+        do currentCPS.addLong(cps); // Current cookies per second
+        do currentCPS.multiplyLong(count); // Current cookies per second
         return this;
     }
 
@@ -33,7 +40,7 @@ class Upgrades {
         return worthOfUpgrade;
     }
 
-    method int getCPS() {
+    method LongNum getCPS() {
         return currentCPS;
     }
 
@@ -63,8 +70,11 @@ class Upgrades {
 
         do costOfUpgrade.addLong(tempParentesis);
 
-        let count = count + 1;
-        let currentCPS = cps * count;
+
+        // Update count by adding one
+        do count.addLong(numbers.getOne());
+        // Add a cps everytime Upgrade is called (thus currentCPS = cps*count)
+        do currentCPS.addLong(cps);
 
         // Free memory
         do Memory.deAlloc(divide);

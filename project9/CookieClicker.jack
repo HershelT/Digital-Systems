@@ -108,8 +108,8 @@ class CookieClicker {
             // After one second we will blink the cookie and update our cookie count
             if (globalTimer > 45) { 
                 let globalTimer = 0;
-                // let cps = ;
-                do cookies.add(cps());
+                // let cookieop = ;
+                do cookies.addLong(cps());
                 let displayVisualOfCookies = true;
                 let isDrawingFullCookie = true;
             }
@@ -118,15 +118,15 @@ class CookieClicker {
     }
 
     // Method to calculate cookies per second
-    method int cps() {
-        var int totalCPS;
+    method LongNum cps() {
+        var LongNum totalCPS;
         var Upgrades upgradeElement;
         var int i;
-        let totalCPS = 0;
+        let totalCPS = LongNum.new();
         let i = 0;
         while (i < totalAmountOfUpgrades) {
             let upgradeElement = upgrades[i];
-            let totalCPS = totalCPS + upgradeElement.getCPS();
+            do totalCPS.addLong(upgradeElement.getCPS());
             let i = i + 1;
         }
         //Free memory
