@@ -127,7 +127,7 @@ function ScoreBoard.printUpgrades 2
     call Output.moveCursor 2
     pop temp 0
     push argument 0
-    call Output.printInt 1
+    call LongNum.toString 1
     pop temp 0
     push constant 2
     push constant 0

@@ -67,13 +67,13 @@ class CookieClicker {
         let globalTimer = 0;
         // Initialize upgrades
 
-        // Create new Upgrades object with given (cost, worth, multiplier, amountToStart, cookiesPerSecond)
-        let cursor = Upgrades.new(numbers.getFifteen(), 1, 115, 0, 1); // Create new Upgrades object
-        let grandma = Upgrades.new(numbers.getOneHundred(), 10, 115, 0, 7); // Create new Upgrades object
-        let farm = Upgrades.new(numbers.getOneThousand(), 50, 115, 0, 24); // Create new Upgrades object
-        let mine = Upgrades.new(numbers.getFiveThousand(), 500, 115, 0, 87); // Create new Upgrades object
-        let warehouse = Upgrades.new(numbers.getTenThousand(), 1000, 115, 0, 365); // Create new Upgrades object
-        let bank = Upgrades.new(numbers.getOneHundredThousand(), 10000, 115, 0, 1400); // Create new Upgrades object
+        // Create new Upgrades object with given (LongNum costToBuy, LongNum startingAmount, LongNum cookiesPerSecond)
+        let cursor = Upgrades.new(numbers.getFifteen(), numbers.getZero(), numbers.getOne()); // Create new Upgrades object
+        let grandma = Upgrades.new(numbers.getOneHundred(), numbers.getZero(), numbers.getSeven()); // Create new Upgrades object
+        let farm = Upgrades.new(numbers.getOneThousand(), numbers.getZero(), numbers.getTwentyFour()); // Create new Upgrades object
+        let mine = Upgrades.new(numbers.getFiveThousand(), numbers.getZero(), numbers.getEightySeven()); // Create new Upgrades object
+        let warehouse = Upgrades.new(numbers.getTenThousand(), numbers.getZero(), numbers.getThreeHundredSiftyFive()); // Create new Upgrades object
+        let bank = Upgrades.new(numbers.getOneHundredThousand(), numbers.getZero(), numbers.getFourteenHundred()); // Create new Upgrades object
 
 
 
@@ -223,7 +223,7 @@ class CookieClicker {
 
             if (displayVisualOfUpgrades) {
                 // Display and update the visuals of the upgrades
-                do ScoreBoard.printUpgrades(cps(), cursor, grandma, farm, mine, warehouse, bank);
+                do ScoreBoard.printUpgrades(numbers, cps(), cursor, grandma, farm, mine, warehouse, bank, upgrades);
                 let displayVisualOfUpgrades = false;
             }
 

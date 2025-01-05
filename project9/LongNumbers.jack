@@ -3,8 +3,15 @@ class LongNumbers {
     field LongNum zero;
     field LongNum one;
     field LongNum two;
+    field LongNum seven;
+    field LongNum twentyFour;
+    field LongNum twetnyFive;
+    field LongNum fifty;
+    field LongNum eightySeven;
+    field LongNum threeHundredSiftyFive;
     field LongNum oneHundred;
     field LongNum oneThousand;
+    field LongNum fourteenHundred;
     field LongNum fiveThousand;
     field LongNum tenThousand;
     field LongNum oneHundredThousand;
@@ -20,10 +27,23 @@ class LongNumbers {
         do one.add(1);
         let two = LongNum.new();
         do two.add(2);
+        let seven = LongNum.new();
+        do seven.add(7);
+        let twentyFour = LongNum.new();
+        do twentyFour.add(24);
+        let twetnyFive = LongNum.new();
+        do twetnyFive.add(25);
+        let fifty = LongNum.new();
+        do fifty.add(50);
+        let eightySeven = LongNum.new();
+        do eightySeven.add(87);
+        let threeHundredSiftyFive = LongNum.new();
         let oneHundred = LongNum.new();
         do oneHundred.add(100);
         let oneThousand = LongNum.new();
         do oneThousand.add(1000);
+        let fourteenHundred = LongNum.new();
+        do fourteenHundred.add(1400);
         let fiveThousand = LongNum.new();
         do fiveThousand.add(5000);
         let tenThousand = LongNum.new();
@@ -58,15 +78,43 @@ class LongNumbers {
         return two;
     }
 
+    method LongNum getSeven() {
+        return seven;
+    }
+
     method LongNum getFifteen() {
         return fifteen;
+    }
+
+    method LongNum getTwentyFour() {
+        return twentyFour;
+    }
+
+    method LongNum getTwetnyFive() {
+        return twetnyFive;
+    }
+
+    method LongNum getFifty() {
+        return fifty;
+    }
+
+    method LongNum getEightySeven() {
+        return eightySeven;
     }
     method LongNum getOneHundred() {
         return oneHundred;
     }
 
+    method LongNum getThreeHundredSiftyFive() {
+        return threeHundredSiftyFive;
+    }
+
     method LongNum getOneThousand() {
         return oneThousand;
+    }
+
+    method LongNum getFourteenHundred() {
+        return fourteenHundred;
     }
 
     method LongNum getFiveThousand() {

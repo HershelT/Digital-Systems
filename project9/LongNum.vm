@@ -251,9 +251,15 @@ function LongNum.multiplyLong 2
     eq
     not
     if-goto LongNum_23
-    push pointer 0
+    push constant 0
+    pop this 0
+    push constant 0
+    pop this 1
     push local 0
-    call LongNum.set 2
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 1
+    call Memory.deAlloc 1
     pop temp 0
     push constant 0
     return

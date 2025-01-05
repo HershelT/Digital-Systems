@@ -28,51 +28,51 @@ function CookieClicker.new 0
     pop this 14
     push this 1
     call LongNumbers.getFifteen 1
-    push constant 1
-    push constant 115
-    push constant 0
-    push constant 1
-    call Upgrades.new 5
+    push this 1
+    call LongNumbers.getZero 1
+    push this 1
+    call LongNumbers.getOne 1
+    call Upgrades.new 3
     pop this 15
     push this 1
     call LongNumbers.getOneHundred 1
-    push constant 10
-    push constant 115
-    push constant 0
-    push constant 7
-    call Upgrades.new 5
+    push this 1
+    call LongNumbers.getZero 1
+    push this 1
+    call LongNumbers.getSeven 1
+    call Upgrades.new 3
     pop this 16
     push this 1
     call LongNumbers.getOneThousand 1
-    push constant 50
-    push constant 115
-    push constant 0
-    push constant 24
-    call Upgrades.new 5
+    push this 1
+    call LongNumbers.getZero 1
+    push this 1
+    call LongNumbers.getTwentyFour 1
+    call Upgrades.new 3
     pop this 17
     push this 1
     call LongNumbers.getFiveThousand 1
-    push constant 500
-    push constant 115
-    push constant 0
-    push constant 87
-    call Upgrades.new 5
+    push this 1
+    call LongNumbers.getZero 1
+    push this 1
+    call LongNumbers.getEightySeven 1
+    call Upgrades.new 3
     pop this 18
     push this 1
     call LongNumbers.getTenThousand 1
-    push constant 1000
-    push constant 115
-    push constant 0
-    push constant 365
-    call Upgrades.new 5
+    push this 1
+    call LongNumbers.getZero 1
+    push this 1
+    call LongNumbers.getThreeHundredSiftyFive 1
+    call Upgrades.new 3
     pop this 19
     push this 1
     call LongNumbers.getOneHundredThousand 1
-    push constant 10000
-    push constant 115
-    push constant 0
-    push constant 1400
-    call Upgrades.new 5
+    push this 1
+    call LongNumbers.getZero 1
+    push this 1
+    call LongNumbers.getFourteenHundred 1
+    call Upgrades.new 3
     pop this 20
     push constant 6
     pop this 11
@@ -200,7 +200,7 @@ function CookieClicker.handleUpgradeLogic 0
     push this 0
     push pointer 0
     call CookieClicker.cps 1
-    call LongNum.add 2
+    call LongNum.addLong 2
     pop temp 0
     push constant 1
     neg
@@ -219,7 +219,7 @@ label CookieClicker_0
 function CookieClicker.cps 3
     push argument 0
     pop pointer 0
-    push constant 0
+    call LongNum.new 0
     pop local 0
     push constant 0
     pop local 2
@@ -238,8 +238,8 @@ label CookieClicker_4
     push local 0
     push local 1
     call Upgrades.getCPS 1
-    add
-    pop local 0
+    call LongNum.addLong 2
+    pop temp 0
     push local 2
     push constant 1
     add

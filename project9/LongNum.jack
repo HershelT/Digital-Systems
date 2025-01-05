@@ -132,7 +132,11 @@ class LongNum {
         // Check if zero
         if (other.getLeftSide() = 0) {
             if (other.getRightSide() = 0) {
-                do set(zero);
+                let leftSide = 0;
+                let rightSide = 0;
+                // Free memory
+                do Memory.deAlloc(zero);
+                do Memory.deAlloc(temp);
                 return;
             }
               
@@ -174,10 +178,44 @@ class LongNum {
     method boolean greaterThanOrEqualLong(LongNum other) {
         // No Negatives
         if (other.getRightSide()=0){
-            return true;
+            if (other.getLeftSide()=0){
+                return true;
+            }
         }
+        // increment other down one to see if it is lgreater than it (this includes its previous number)
         do other.subtract(1);
         if (greaterThanLong(other)) {
+            return true;
+        }
+        return false;
+    }
+
+    // check if the long is less than another long
+    method boolean lessThanLong(LongNum other) {
+        if (leftSide < other.getLeftSide()) {
+            return true;
+        }
+        else {
+            if (leftSide = other.getLeftSide()) {
+                if (rightSide < other.getRightSide()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // check if the long is less than or equal to another long
+    method boolean lessThanOrEqualLong(LongNum other) {
+        // No Negatives
+        if (other.getRightSide()=0){
+            if (other.getLeftSide()=0){
+                return true;
+            }
+        }
+        // increment other up one to see if it is less than it (this includes its previous number)
+        do other.add(1);
+        if (lessThanLong(other)) {
             return true;
         }
         return false;
