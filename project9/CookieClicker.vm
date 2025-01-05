@@ -180,7 +180,7 @@ function CookieClicker.new 0
     pop that 0
     push pointer 0
     return
-function CookieClicker.handleUpgradeLogic 1
+function CookieClicker.handleUpgradeLogic 0
     push argument 0
     pop pointer 0
     push this 9
@@ -197,11 +197,9 @@ function CookieClicker.handleUpgradeLogic 1
     if-goto CookieClicker_3
     push constant 0
     pop this 14
+    push this 0
     push pointer 0
     call CookieClicker.cps 1
-    pop local 0
-    push this 0
-    push local 0
     call LongNum.add 2
     pop temp 0
     push constant 1
@@ -216,9 +214,6 @@ label CookieClicker_2
     goto CookieClicker_0
 label CookieClicker_1
 label CookieClicker_0
-    push local 0
-    call Memory.deAlloc 1
-    pop temp 0
     push constant 0
     return
 function CookieClicker.cps 3

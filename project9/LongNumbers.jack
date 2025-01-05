@@ -88,6 +88,7 @@ class LongNumbers {
 
 
     method void deAlloc(int amount) {
+        // Memory.deAlloc(amount);
         return;
     }
 }

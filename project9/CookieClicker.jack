@@ -102,23 +102,18 @@ class CookieClicker {
 
     // Method to handle all the logic from the upgrades to update cookie count
     method void handleUpgradeLogic() {
-        var int cps;
         // If we have any upgrades, we will increment the timer
         if (hasAnyUpgrade) {
             let globalTimer = globalTimer + 1;
             // After one second we will blink the cookie and update our cookie count
             if (globalTimer > 45) { 
                 let globalTimer = 0;
-                let cps = cps();
-                do cookies.add(cps);
+                // let cps = ;
+                do cookies.add(cps());
                 let displayVisualOfCookies = true;
                 let isDrawingFullCookie = true;
             }
         }
-
-        //Free memory
-        do Memory.deAlloc(cps);
-
         return;
     }
 
