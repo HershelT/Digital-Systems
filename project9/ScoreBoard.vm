@@ -453,30 +453,35 @@ label ScoreBoard_2
     pop pointer 1
     push that 0
     pop local 4
-    push argument 0
-    call LongNumbers.getZero 1
+    call LongNum.new 0
     pop local 0
+    call LongNum.new 0
+    pop local 1
     push local 4
     call Upgrades.getAmount 1
     pop local 1
 label ScoreBoard_4
     push local 0
-    push local 1
+    push argument 0
+    call LongNumbers.getTwentyFive 1
     call LongNum.lessThanLong 2
     not
     if-goto ScoreBoard_5
+    push local 1
+    call LongNum.getRightSide 1
     push local 0
-    push argument 0
-    call LongNumbers.getTwetnyFive 1
-    call LongNum.lessThanLong 2
+    call LongNum.getRightSide 1
+    gt
     not
     if-goto ScoreBoard_7
     push local 2
     push constant 32
     push local 3
     call Math.multiply 2
-    push constant 16
+    push constant 17
     call Math.multiply 2
+    push constant 64
+    add
     push local 0
     call LongNum.getRightSide 1
     add
@@ -487,7 +492,7 @@ label ScoreBoard_4
     goto ScoreBoard_6
 label ScoreBoard_7
     push argument 0
-    call LongNumbers.getOneHundredThousand 1
+    call LongNumbers.getOneHundred 1
     pop local 0
 label ScoreBoard_6
     push local 0
@@ -514,6 +519,12 @@ label ScoreBoard_3
     call Memory.deAlloc 1
     pop temp 0
     push local 2
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 3
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 4
     call Memory.deAlloc 1
     pop temp 0
     push constant 0

@@ -126,12 +126,13 @@ class ScoreBoard {
             // Get current Upgrade to manage
             let upgrade = upgrades[i];
 
-            let counter = numbers.getZero();
+            let counter = LongNum.new();
+            let tempNum = LongNum.new();
             let tempNum = upgrade.getAmount();
             while (counter.lessThanLong(numbers.getTwentyFive())) {
-                if (tempNum.lessThanOrEqualLong(numbers.getTwentyFive())) {
+                if (tempNum.getRightSide() > counter.getRightSide()) {
                     // Draw the correct purchased upgrade
-                    do UpgradeDrawings.drawAtEle(i, (32*position*16) + counter.getRightSide() + 3);
+                    do UpgradeDrawings.drawAtEle(i, (32*position*17+64) + counter.getRightSide() + 3);
                 }
                 else {
                     let counter = numbers.getOneHundred();
@@ -209,7 +210,7 @@ class ScoreBoard {
         // let tempNum = banks.getAmount();
         // while (counter.lessThanLong(tempNum)) {
         //     if (counter.lessThanLong(numbers.getTwentFive())) {
-        //         do UpgradeDrawings.drawBank((32*15*16+64) + tempNum + 3);
+        //         do UpgradeDrawings.drawBank((32*15*16+64) + counter + 3);
         //     }
         //     // Break if we have more than 25
         //     else {
@@ -223,6 +224,9 @@ class ScoreBoard {
         do Memory.deAlloc(tempNum);
         do Memory.deAlloc(counter);
         do Memory.deAlloc(i);
+        do Memory.deAlloc(position);
+        do Memory.deAlloc(upgrade);
+
 
 
 

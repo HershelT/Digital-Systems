@@ -104,6 +104,8 @@ class LongNum {
         if (other.getLeftSide() = 0) {
             if (other.getRightSide() = 0) {
                 do set(zero);
+                // Free memory
+                do Memory.deAlloc(zero);
                 return;
             }
         }
@@ -182,11 +184,20 @@ class LongNum {
                 return true;
             }
         }
-        // increment other down one to see if it is lgreater than it (this includes its previous number)
-        do other.subtract(1);
-        if (greaterThanLong(other)) {
+        
+        // Check if the left side is greater
+        if (leftSide > other.getLeftSide()) {
             return true;
         }
+        // Check if the left side is equal and the right side is greater
+        else {
+            if (leftSide = other.getLeftSide()) {
+                if (rightSide > other.getRightSide()) {
+                    return true;
+                }
+            }
+        }
+        
         return false;
     }
 
@@ -213,11 +224,19 @@ class LongNum {
                 return true;
             }
         }
-        // increment other up one to see if it is less than it (this includes its previous number)
-        do other.add(1);
-        if (lessThanLong(other)) {
+        // Check if the left side is greater
+        if (leftSide < other.getLeftSide()) {
             return true;
         }
+        // Check if the left side is equal and the right side is smaller
+        else {
+            if (leftSide = other.getLeftSide()) {
+                if (rightSide < other.getRightSide()) {
+                    return true;
+                }
+            }
+        }
+        
         return false;
     }
 

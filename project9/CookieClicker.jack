@@ -42,8 +42,8 @@ class CookieClicker {
 
         // Initialize cookies
         let cookies = LongNum.new(); // Initialize cookies
-        // do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0
-
+        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
+        do cookies.addLong(numbers.getFourteenHundred());
         // Initialize numbers
         // Position of drawing Cookie
         let screenMid = 112; // Middle of the screen (column  where the cookie will be drawn)

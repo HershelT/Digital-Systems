@@ -6,6 +6,16 @@ function CookieClicker.new 0
     pop this 1
     call LongNum.new 0
     pop this 0
+    push this 0
+    push this 1
+    call LongNumbers.getOneHundredThousand 1
+    call LongNum.addLong 2
+    pop temp 0
+    push this 0
+    push this 1
+    call LongNumbers.getFourteenHundred 1
+    call LongNum.addLong 2
+    pop temp 0
     push constant 112
     pop this 3
     push constant 32

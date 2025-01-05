@@ -152,7 +152,7 @@ function LongNumbers.getTwentyFour 0
     pop pointer 0
     push this 4
     return
-function LongNumbers.getTwetnyFive 0
+function LongNumbers.getTwentyFive 0
     push argument 0
     pop pointer 0
     push this 5
