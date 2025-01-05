@@ -42,7 +42,7 @@ class CookieClicker {
 
         // Initialize cookies
         let cookies = LongNum.new(); // Initialize cookies
-        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0
+        // do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0
 
         // Initialize numbers
         // Position of drawing Cookie
@@ -72,7 +72,7 @@ class CookieClicker {
         let grandma = Upgrades.new(numbers.getOneHundred(), 10, 115, 0, 7); // Create new Upgrades object
         let farm = Upgrades.new(numbers.getOneThousand(), 50, 115, 0, 24); // Create new Upgrades object
         let mine = Upgrades.new(numbers.getFiveThousand(), 500, 115, 0, 87); // Create new Upgrades object
-        let warehouse = Upgrades.new(numbers.getTenThousand(), 1000, 115, 0, 263); // Create new Upgrades object
+        let warehouse = Upgrades.new(numbers.getTenThousand(), 1000, 115, 0, 365); // Create new Upgrades object
         let bank = Upgrades.new(numbers.getOneHundredThousand(), 10000, 115, 0, 1400); // Create new Upgrades object
 
 

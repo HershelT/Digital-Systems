@@ -227,6 +227,9 @@ label LongNum_19
     push local 0
     call LongNum.set 2
     pop temp 0
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
     push constant 0
     return
 function LongNum.multiplyLong 2
@@ -284,6 +287,12 @@ label LongNum_24
     pop temp 0
     goto LongNum_24
 label LongNum_25
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 1
+    call Memory.deAlloc 1
+    pop temp 0
     push constant 0
     return
 function LongNum.greaterThanLong 0
@@ -416,6 +425,15 @@ label LongNum_37
 label LongNum_36
     push this 1
     call Output.printInt 1
+    pop temp 0
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 1
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 2
+    call Memory.deAlloc 1
     pop temp 0
     push constant 0
     return

@@ -1697,6 +1697,9 @@ function CookieDrawings.drawBigPressedCookie 1
     push constant 3
     call Memory.poke 2
     pop temp 0
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
     push constant 0
     return
 function CookieDrawings.drawBigCookie 1
@@ -3453,6 +3456,9 @@ function CookieDrawings.drawBigCookie 1
     add
     push constant 3
     call Memory.poke 2
+    pop temp 0
+    push local 0
+    call Memory.deAlloc 1
     pop temp 0
     push constant 0
     return

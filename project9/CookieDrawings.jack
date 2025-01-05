@@ -262,6 +262,10 @@ class CookieDrawings {
         do Memory.poke(memAddress +1987, 15);
         do Memory.poke(memAddress +2019, 7);
         do Memory.poke(memAddress +2051, 3);
+
+        // Free memory
+        do Memory.deAlloc(memAddress);
+
         return;
     }
 
@@ -527,6 +531,10 @@ class CookieDrawings {
         do Memory.poke(memAddress +1987, 15);
         do Memory.poke(memAddress +2019, 7);
         do Memory.poke(memAddress +2051, 3);
+
+        // Free memory
+        do Memory.deAlloc(memAddress);
+        
         return;
     }
 }

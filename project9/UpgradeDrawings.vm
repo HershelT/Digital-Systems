@@ -97,6 +97,9 @@ function UpgradeDrawings.drawCursor 1
     push constant 4088
     call Memory.poke 2
     pop temp 0
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
     push constant 0
     return
 function UpgradeDrawings.drawGrandma 1
@@ -188,6 +191,9 @@ function UpgradeDrawings.drawGrandma 1
     add
     push constant 2016
     call Memory.poke 2
+    pop temp 0
+    push local 0
+    call Memory.deAlloc 1
     pop temp 0
     push constant 0
     return
@@ -292,6 +298,9 @@ function UpgradeDrawings.drawFarm 1
     push constant 510
     call Memory.poke 2
     pop temp 0
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
     push constant 0
     return
 function UpgradeDrawings.drawMine 1
@@ -380,6 +389,9 @@ function UpgradeDrawings.drawMine 1
     add
     push constant 4095
     call Memory.poke 2
+    pop temp 0
+    push local 0
+    call Memory.deAlloc 1
     pop temp 0
     push constant 0
     return
@@ -482,6 +494,9 @@ function UpgradeDrawings.drawWarehouse 1
     push constant 511
     call Memory.poke 2
     pop temp 0
+    push local 0
+    call Memory.deAlloc 1
+    pop temp 0
     push constant 0
     return
 function UpgradeDrawings.drawBank 1
@@ -558,6 +573,9 @@ function UpgradeDrawings.drawBank 1
     add
     push constant 4095
     call Memory.poke 2
+    pop temp 0
+    push local 0
+    call Memory.deAlloc 1
     pop temp 0
     push constant 0
     return

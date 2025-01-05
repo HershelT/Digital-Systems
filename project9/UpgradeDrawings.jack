@@ -21,6 +21,10 @@ class UpgradeDrawings {
         do Memory.poke(memAddress +416, 2056);
         do Memory.poke(memAddress +448, 2056);
         do Memory.poke(memAddress +480, 4088);
+
+        // Free memory
+        do Memory.deAlloc(memAddress);
+        
         return;
     }
 
@@ -43,6 +47,10 @@ class UpgradeDrawings {
         do Memory.poke(memAddress +352, 12684);
         do Memory.poke(memAddress +384, 6168);
         do Memory.poke(memAddress +416, 2016);
+        
+        // Free memory
+        do Memory.deAlloc(memAddress);
+
         return;
     }
 
@@ -67,6 +75,10 @@ class UpgradeDrawings {
         do Memory.poke(memAddress +448, 510);
         do Memory.poke(memAddress +480, 510);
         do Memory.poke(memAddress +512, 510);
+
+        // Free memory
+        do Memory.deAlloc(memAddress);
+
         return;
     }
 
@@ -89,6 +101,10 @@ class UpgradeDrawings {
         do Memory.poke(memAddress +352, 3219);
         do Memory.poke(memAddress +384, 3219);
         do Memory.poke(memAddress +416, 4095);
+
+        // Free memory
+        do Memory.deAlloc(memAddress);
+
         return;
     }
 
@@ -113,6 +129,10 @@ class UpgradeDrawings {
         do Memory.poke(memAddress +416, 455);
         do Memory.poke(memAddress +448, 455);
         do Memory.poke(memAddress +480, 511);
+
+        // Free memory
+        do Memory.deAlloc(memAddress);
+
         return;
     }
 
@@ -133,6 +153,11 @@ class UpgradeDrawings {
         do Memory.poke(memAddress +288, 780);
         do Memory.poke(memAddress +320, 1950);
         do Memory.poke(memAddress +352, 4095);
+
+        // Free memory
+        do Memory.deAlloc(memAddress);
+
+
         return;
     }
 }

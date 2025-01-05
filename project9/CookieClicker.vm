@@ -6,11 +6,6 @@ function CookieClicker.new 0
     pop this 1
     call LongNum.new 0
     pop this 0
-    push this 0
-    push this 1
-    call LongNumbers.getOneHundredThousand 1
-    call LongNum.addLong 2
-    pop temp 0
     push constant 112
     pop this 3
     push constant 32
@@ -68,7 +63,7 @@ function CookieClicker.new 0
     push constant 1000
     push constant 115
     push constant 0
-    push constant 263
+    push constant 365
     call Upgrades.new 5
     pop this 19
     push this 1

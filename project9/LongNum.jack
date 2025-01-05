@@ -114,6 +114,10 @@ class LongNum {
             do zero.add(1);
         }
         do set(zero);
+
+        // Free memory
+        do Memory.deAlloc(zero);
+
         return;
     }
 
@@ -142,6 +146,11 @@ class LongNum {
             do addLong(temp);
             do zero.add(1);
         }
+
+        // Free memory
+        do Memory.deAlloc(zero);
+        do Memory.deAlloc(temp);
+        
         return;
         
     }
@@ -205,6 +214,12 @@ class LongNum {
         }
         // Print the right side
         do Output.printInt(rightSide);
+
+        // Free memory
+        do Memory.deAlloc(totalZerosBeforeRight);
+        do Memory.deAlloc(i);
+        do Memory.deAlloc(right);
+
 
         return;
 }
