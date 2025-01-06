@@ -6,6 +6,8 @@ class LongNum {
     field int leftSide;
     field int rightSide;
 
+    // Set a left side as a counter on how many times the 
+    //rightSide reached 10,000. So in a sence the max number is 37,400,0000
     constructor LongNum new() {
         let leftSide = 0;
         let rightSide = 0;

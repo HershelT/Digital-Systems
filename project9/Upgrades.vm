@@ -1,5 +1,5 @@
 function Upgrades.new 0
-    push constant 5
+    push constant 6
     call Memory.alloc 1
     pop pointer 0
     call LongNumbers.new 0
@@ -22,16 +22,6 @@ function Upgrades.new 0
     push argument 2
     call LongNum.addLong 2
     pop temp 0
-    call LongNum.new 0
-    pop this 4
-    push this 4
-    push this 3
-    call LongNum.addLong 2
-    pop temp 0
-    push this 4
-    push argument 1
-    call LongNum.multiplyLong 2
-    pop temp 0
     push pointer 0
     return
 function Upgrades.getCost 0
@@ -49,59 +39,45 @@ function Upgrades.getOriginalCPS 0
     pop pointer 0
     push this 3
     return
-function Upgrades.getCPS 0
+function Upgrades.getUpgrade 0
     push argument 0
     pop pointer 0
+    call LongNum.new 0
+    pop this 5
+    call LongNum.new 0
+    pop this 4
     push this 4
-    return
-function Upgrades.getUpgrade 2
-    push argument 0
-    pop pointer 0
-    call LongNum.new 0
-    pop local 0
-    call LongNum.new 0
-    pop local 1
-    push local 1
     push this 0
     call LongNum.addLong 2
     pop temp 0
-    push local 1
+    push this 4
     push this 1
     call LongNumbers.getOneHundred 1
     call LongNum.divideLong 2
     pop temp 0
-    push local 1
+    push this 4
     push this 1
     call LongNumbers.getOne 1
     call LongNum.addLong 2
     pop temp 0
-    push local 0
-    push local 1
+    push this 5
+    push this 4
     call LongNum.addLong 2
     pop temp 0
-    push local 0
+    push this 5
     push this 1
     call LongNumbers.getFifteen 1
     call LongNum.multiplyLong 2
     pop temp 0
     push this 0
-    push local 0
+    push this 1
+    call LongNumbers.getOne 1
     call LongNum.addLong 2
     pop temp 0
     push this 2
     push this 1
     call LongNumbers.getOne 1
     call LongNum.addLong 2
-    pop temp 0
-    push this 4
-    push this 3
-    call LongNum.addLong 2
-    pop temp 0
-    push local 1
-    call Memory.deAlloc 1
-    pop temp 0
-    push local 0
-    call Memory.deAlloc 1
     pop temp 0
     push constant 0
     return

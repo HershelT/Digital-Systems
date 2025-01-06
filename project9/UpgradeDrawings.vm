@@ -4,9 +4,8 @@ function UpgradeDrawings.drawAtEle 0
     eq
     not
     if-goto UpgradeDrawings_1
-    push pointer 0
     push argument 1
-    call UpgradeDrawings.drawCursor 2
+    call UpgradeDrawings.drawCursor 1
     pop temp 0
     goto UpgradeDrawings_0
 label UpgradeDrawings_1
@@ -16,9 +15,8 @@ label UpgradeDrawings_0
     eq
     not
     if-goto UpgradeDrawings_3
-    push pointer 0
     push argument 1
-    call UpgradeDrawings.drawGrandma 2
+    call UpgradeDrawings.drawGrandma 1
     pop temp 0
     goto UpgradeDrawings_2
 label UpgradeDrawings_3
@@ -28,9 +26,8 @@ label UpgradeDrawings_2
     eq
     not
     if-goto UpgradeDrawings_5
-    push pointer 0
     push argument 1
-    call UpgradeDrawings.drawFarm 2
+    call UpgradeDrawings.drawFarm 1
     pop temp 0
     goto UpgradeDrawings_4
 label UpgradeDrawings_5
@@ -40,9 +37,8 @@ label UpgradeDrawings_4
     eq
     not
     if-goto UpgradeDrawings_7
-    push pointer 0
     push argument 1
-    call UpgradeDrawings.drawMine 2
+    call UpgradeDrawings.drawMine 1
     pop temp 0
     goto UpgradeDrawings_6
 label UpgradeDrawings_7
@@ -52,9 +48,8 @@ label UpgradeDrawings_6
     eq
     not
     if-goto UpgradeDrawings_9
-    push pointer 0
     push argument 1
-    call UpgradeDrawings.drawWarehouse 2
+    call UpgradeDrawings.drawWarehouse 1
     pop temp 0
     goto UpgradeDrawings_8
 label UpgradeDrawings_9
@@ -64,9 +59,8 @@ label UpgradeDrawings_8
     eq
     not
     if-goto UpgradeDrawings_11
-    push pointer 0
     push argument 1
-    call UpgradeDrawings.drawBank 2
+    call UpgradeDrawings.drawBank 1
     pop temp 0
     goto UpgradeDrawings_10
 label UpgradeDrawings_11
@@ -74,10 +68,8 @@ label UpgradeDrawings_10
     push constant 0
     return
 function UpgradeDrawings.drawCursor 1
-    push argument 0
-    pop pointer 0
     push constant 16384
-    push argument 1
+    push argument 0
     add
     pop local 0
     push local 0
@@ -180,10 +172,8 @@ function UpgradeDrawings.drawCursor 1
     push constant 0
     return
 function UpgradeDrawings.drawGrandma 1
-    push argument 0
-    pop pointer 0
     push constant 16384
-    push argument 1
+    push argument 0
     add
     pop local 0
     push local 0
@@ -277,10 +267,8 @@ function UpgradeDrawings.drawGrandma 1
     push constant 0
     return
 function UpgradeDrawings.drawFarm 1
-    push argument 0
-    pop pointer 0
     push constant 16384
-    push argument 1
+    push argument 0
     add
     pop local 0
     push local 0
@@ -385,10 +373,8 @@ function UpgradeDrawings.drawFarm 1
     push constant 0
     return
 function UpgradeDrawings.drawMine 1
-    push argument 0
-    pop pointer 0
     push constant 16384
-    push argument 1
+    push argument 0
     add
     pop local 0
     push local 0
@@ -479,10 +465,8 @@ function UpgradeDrawings.drawMine 1
     push constant 0
     return
 function UpgradeDrawings.drawWarehouse 1
-    push argument 0
-    pop pointer 0
     push constant 16384
-    push argument 1
+    push argument 0
     add
     pop local 0
     push local 0
@@ -585,10 +569,8 @@ function UpgradeDrawings.drawWarehouse 1
     push constant 0
     return
 function UpgradeDrawings.drawBank 1
-    push argument 0
-    pop pointer 0
     push constant 16384
-    push argument 1
+    push argument 0
     add
     pop local 0
     push local 0

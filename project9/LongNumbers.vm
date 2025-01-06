@@ -1,5 +1,5 @@
 function LongNumbers.new 0
-    push constant 17
+    push constant 20
     call Memory.alloc 1
     pop pointer 0
     call LongNum.new 0
@@ -29,77 +29,65 @@ function LongNumbers.new 0
     call LongNum.new 0
     pop this 4
     push this 4
-    push constant 24
+    push constant 15
     call LongNum.add 2
     pop temp 0
     call LongNum.new 0
     pop this 5
     push this 5
-    push constant 25
+    push constant 24
     call LongNum.add 2
     pop temp 0
     call LongNum.new 0
     pop this 6
     push this 6
-    push constant 50
+    push constant 25
     call LongNum.add 2
     pop temp 0
     call LongNum.new 0
     pop this 7
     push this 7
-    push constant 87
+    push constant 50
     call LongNum.add 2
     pop temp 0
     call LongNum.new 0
     pop this 8
     push this 8
-    push constant 365
+    push constant 87
     call LongNum.add 2
     pop temp 0
     call LongNum.new 0
     pop this 9
     push this 9
-    push constant 100
+    push constant 365
     call LongNum.add 2
     pop temp 0
     call LongNum.new 0
     pop this 10
     push this 10
-    push constant 1000
+    push constant 100
     call LongNum.add 2
     pop temp 0
     call LongNum.new 0
     pop this 11
     push this 11
-    push constant 1400
+    push constant 1000
     call LongNum.add 2
     pop temp 0
     call LongNum.new 0
     pop this 12
     push this 12
-    push constant 5000
+    push constant 1400
     call LongNum.add 2
     pop temp 0
     call LongNum.new 0
     pop this 13
     push this 13
-    push constant 10000
+    push constant 5000
     call LongNum.add 2
     pop temp 0
     call LongNum.new 0
     pop this 14
-    push this 14
-    push constant 30000
-    call LongNum.add 2
-    pop temp 0
-    push this 14
-    push constant 30000
-    call LongNum.add 2
-    pop temp 0
-    push this 14
-    push constant 30000
-    call LongNum.add 2
-    pop temp 0
     push this 14
     push constant 10000
     call LongNum.add 2
@@ -107,22 +95,88 @@ function LongNumbers.new 0
     call LongNum.new 0
     pop this 15
     push this 15
-    push constant 15
-    call LongNum.add 2
+    push this 14
+    call LongNum.addLong 2
+    pop temp 0
+    push this 15
+    push this 14
+    call LongNum.addLong 2
+    pop temp 0
+    push this 15
+    push this 14
+    call LongNum.addLong 2
     pop temp 0
     call LongNum.new 0
     pop this 16
     push this 16
-    push constant 10000
-    call LongNum.add 2
+    push this 15
+    call LongNum.addLong 2
     pop temp 0
     push this 16
-    push constant 10000
-    call LongNum.add 2
+    push this 15
+    call LongNum.addLong 2
     pop temp 0
     push this 16
-    push constant 10000
-    call LongNum.add 2
+    push this 15
+    call LongNum.addLong 2
+    pop temp 0
+    push this 16
+    push this 14
+    call LongNum.addLong 2
+    pop temp 0
+    call LongNum.new 0
+    pop this 17
+    push this 17
+    push this 16
+    call LongNum.addLong 2
+    pop temp 0
+    push this 17
+    push this 16
+    call LongNum.addLong 2
+    pop temp 0
+    push this 17
+    push this 16
+    call LongNum.addLong 2
+    pop temp 0
+    push this 17
+    push this 16
+    call LongNum.addLong 2
+    pop temp 0
+    push this 17
+    push this 16
+    call LongNum.addLong 2
+    pop temp 0
+    call LongNum.new 0
+    pop this 18
+    push this 18
+    push this 17
+    call LongNum.addLong 2
+    pop temp 0
+    push this 18
+    push this 17
+    call LongNum.addLong 2
+    pop temp 0
+    call LongNum.new 0
+    pop this 19
+    push this 19
+    push this 18
+    call LongNum.addLong 2
+    pop temp 0
+    push this 19
+    push this 18
+    call LongNum.addLong 2
+    pop temp 0
+    push this 19
+    push this 18
+    call LongNum.addLong 2
+    pop temp 0
+    push this 19
+    push this 18
+    call LongNum.addLong 2
+    pop temp 0
+    push this 19
+    push this 18
+    call LongNum.addLong 2
     pop temp 0
     push pointer 0
     return
@@ -149,67 +203,82 @@ function LongNumbers.getSeven 0
 function LongNumbers.getFifteen 0
     push argument 0
     pop pointer 0
-    push this 15
+    push this 4
     return
 function LongNumbers.getTwentyFour 0
     push argument 0
     pop pointer 0
-    push this 4
+    push this 5
     return
 function LongNumbers.getTwentyFive 0
     push argument 0
     pop pointer 0
-    push this 5
+    push this 6
     return
 function LongNumbers.getFifty 0
     push argument 0
     pop pointer 0
-    push this 6
+    push this 7
     return
 function LongNumbers.getEightySeven 0
     push argument 0
     pop pointer 0
-    push this 7
+    push this 8
     return
 function LongNumbers.getOneHundred 0
     push argument 0
     pop pointer 0
-    push this 9
+    push this 10
     return
 function LongNumbers.getThreeHundredSixtyFive 0
     push argument 0
     pop pointer 0
-    push this 8
+    push this 9
     return
 function LongNumbers.getOneThousand 0
     push argument 0
     pop pointer 0
-    push this 10
+    push this 11
     return
 function LongNumbers.getFourteenHundred 0
     push argument 0
     pop pointer 0
-    push this 11
+    push this 12
     return
 function LongNumbers.getFiveThousand 0
     push argument 0
     pop pointer 0
-    push this 12
+    push this 13
     return
 function LongNumbers.getTenThousand 0
     push argument 0
     pop pointer 0
-    push this 13
+    push this 14
     return
 function LongNumbers.getThirtyThousand 0
     push argument 0
     pop pointer 0
-    push this 16
+    push this 15
     return
 function LongNumbers.getOneHundredThousand 0
     push argument 0
     pop pointer 0
-    push this 14
+    push this 16
+    return
+function LongNumbers.getFiveHundredThousand 0
+    push argument 0
+    pop pointer 0
+    push this 17
+    return
+function LongNumbers.getOneMillion 0
+    push argument 0
+    pop pointer 0
+    push this 18
+    return
+function LongNumbers.getFiveMillion 0
+    push argument 0
+    pop pointer 0
+    push this 19
     return
 function LongNumbers.deAlloc 0
     push argument 0

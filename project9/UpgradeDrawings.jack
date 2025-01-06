@@ -2,22 +2,22 @@ class UpgradeDrawings {
     // call one of the other functions depending on numbers
     function void drawAtEle(int i, int location) {
         if (i = 0) {
-            do drawCursor(location);
+            do UpgradeDrawings.drawCursor(location);
         }
         if (i = 1) {
-            do drawGrandma(location);
+            do UpgradeDrawings.drawGrandma(location);
         }
         if (i = 2) {
-            do drawFarm(location);
+            do UpgradeDrawings.drawFarm(location);
         }
         if (i = 3) {
-            do drawMine(location);
+            do UpgradeDrawings.drawMine(location);
         }
         if (i = 4) {
-            do drawWarehouse(location);
+            do UpgradeDrawings.drawWarehouse(location);
         }
         if (i = 5) {
-            do drawBank(location);
+            do UpgradeDrawings.drawBank(location);
         }
         return;
 
@@ -25,7 +25,7 @@ class UpgradeDrawings {
 
     }
     // Draws a cursor at the given location
-    method void drawCursor(int location) {
+    function void drawCursor(int location) {
         var int memAddress; 
         let memAddress = 16384+location;
         // column 0
@@ -53,7 +53,7 @@ class UpgradeDrawings {
     }
 
     // Draws a grandma at the given location
-    method void drawGrandma(int location) {
+    function void drawGrandma(int location) {
         var int memAddress; 
         let memAddress = 16384+location;
         // column 0
@@ -79,7 +79,7 @@ class UpgradeDrawings {
     }
 
     // Draws a farm at the given location
-    method void drawFarm(int location) {
+    function void drawFarm(int location) {
         var int memAddress; 
         let memAddress = 16384+location;
         // column 0
@@ -107,7 +107,7 @@ class UpgradeDrawings {
     }
 
     // Draws a mine at the given location
-    method void drawMine(int location) {
+    function void drawMine(int location) {
 	    var int memAddress; 
         let memAddress = 16384+location;
         // column 0
@@ -133,7 +133,7 @@ class UpgradeDrawings {
     }
 
     // Draws a warehouse at the given location
-    method void drawWarehouse(int location) {
+    function void drawWarehouse(int location) {
         var int memAddress; 
         let memAddress = 16384+location;
         // column 0
@@ -161,7 +161,7 @@ class UpgradeDrawings {
     }
 
     // Draws a bank at the given location
-    method void drawBank(int location) {
+    function void drawBank(int location) {
         var int memAddress; 
         let memAddress = 16384+location;
         // column 0

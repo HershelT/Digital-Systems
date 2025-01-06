@@ -5,15 +5,15 @@ class ScoreBoard {
     function void printCookies(LongNum cookies) {
         do Output.moveCursor(10, 14);
         do cookies.toString();
-        do Output.printString("         ");
+        // do Output.printString("         ");
         return;
     }
-    // Erase the cookie line
-    function void eraseCookieLine() {
-        // do Output.moveCursor(2, 28);
+    // // Erase the cookie line
+    // function void eraseCookieLine() {
+    //     // do Output.moveCursor(2, 28);
 
-        return;
-    }
+    //     return;
+    // }
 
     function void printTheText() {
         // Draw the count of cookies
@@ -42,12 +42,12 @@ class ScoreBoard {
         do Output.moveCursor(7, 0);
         do Output.printString("'B' - Banks      ||       ||               ||      ");
         // Draw the icons
-        do UpgradeDrawings.drawAtEle(0, ((32*1*13) + 2 + 21));
-        do UpgradeDrawings.drawAtEle(1, ((32*2*12) + 1 + 23));
-        do UpgradeDrawings.drawAtEle(2, ((32*3*13) + 2 + 21));
-        do UpgradeDrawings.drawAtEle(3, ((32*4*12) + 1 + 23));
-        do UpgradeDrawings.drawAtEle(4, ((32*5*13) + 2 + 21));
-        do UpgradeDrawings.drawAtEle(5, ((32*6*12) + 1 + 23));
+        do UpgradeDrawings.drawAtEle(0, 439); // Equation = 32*1*13 + 2 + 21 = 439
+        do UpgradeDrawings.drawAtEle(1, 792); // Equation = 32*2*12 + 1 + 23 = 792
+        do UpgradeDrawings.drawAtEle(2, 1271); // Equation = 32*3*13 + 2 + 21 = 1271
+        do UpgradeDrawings.drawAtEle(3, 1560); // Equation = 32*4*12 + 1 + 23 = 1560
+        do UpgradeDrawings.drawAtEle(4, 2103); // Equation = 32*5*13 + 2 + 21 = 2103
+        do UpgradeDrawings.drawAtEle(5, 2328); // Equation = 32*6*12 + 1 + 23 = 2328
 
         // draw directions
         do Output.moveCursor(17, 0);

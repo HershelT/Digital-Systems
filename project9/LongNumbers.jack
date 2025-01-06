@@ -4,6 +4,7 @@ class LongNumbers {
     field LongNum one;
     field LongNum two;
     field LongNum seven;
+    field LongNum fifteen;
     field LongNum twentyFour;
     field LongNum twentyFive;
     field LongNum fifty;
@@ -14,12 +15,13 @@ class LongNumbers {
     field LongNum fourteenHundred;
     field LongNum fiveThousand;
     field LongNum tenThousand;
-    field LongNum oneHundredThousand;
-
-    //Specific numbers
-    field LongNum fifteen;
     field LongNum thirtyThousand;
+    field LongNum oneHundredThousand;
+    field LongNum fiveHundredThousand;
+    field LongNum oneMillion;
+    field LongNum fiveMillion;
 
+    // Initialize all the numbers
     constructor LongNumbers new() {
         let zero = LongNum.new();
         do zero.add(0);
@@ -29,6 +31,8 @@ class LongNumbers {
         do two.add(2);
         let seven = LongNum.new();
         do seven.add(7);
+        let fifteen = LongNum.new();
+        do fifteen.add(15);
         let twentyFour = LongNum.new();
         do twentyFour.add(24);
         let twentyFive = LongNum.new();
@@ -49,19 +53,32 @@ class LongNumbers {
         do fiveThousand.add(5000);
         let tenThousand = LongNum.new();
         do tenThousand.add(10000);
-        let oneHundredThousand = LongNum.new();
-        do oneHundredThousand.add(30000);
-        do oneHundredThousand.add(30000);
-        do oneHundredThousand.add(30000);
-        do oneHundredThousand.add(10000);
-        // Specific numbers
-        let fifteen = LongNum.new();
-        do fifteen.add(15);
-        
         let thirtyThousand = LongNum.new();
-        do thirtyThousand.add(10000);
-        do thirtyThousand.add(10000);
-        do thirtyThousand.add(10000);
+        do thirtyThousand.addLong(tenThousand);
+        do thirtyThousand.addLong(tenThousand);
+        do thirtyThousand.addLong(tenThousand);
+        let oneHundredThousand = LongNum.new();
+        do oneHundredThousand.addLong(thirtyThousand);
+        do oneHundredThousand.addLong(thirtyThousand);
+        do oneHundredThousand.addLong(thirtyThousand);
+        do oneHundredThousand.addLong(tenThousand);
+        let fiveHundredThousand = LongNum.new();
+        do fiveHundredThousand.addLong(oneHundredThousand);
+        do fiveHundredThousand.addLong(oneHundredThousand);
+        do fiveHundredThousand.addLong(oneHundredThousand);
+        do fiveHundredThousand.addLong(oneHundredThousand);
+        do fiveHundredThousand.addLong(oneHundredThousand);   
+        let oneMillion = LongNum.new(); 
+        do oneMillion.addLong(fiveHundredThousand);
+        do oneMillion.addLong(fiveHundredThousand);
+        let fiveMillion = LongNum.new();
+        do fiveMillion.addLong(oneMillion);
+        do fiveMillion.addLong(oneMillion);
+        do fiveMillion.addLong(oneMillion);
+        do fiveMillion.addLong(oneMillion);
+        do fiveMillion.addLong(oneMillion);
+        
+        
 
         
         return this;
@@ -133,6 +150,19 @@ class LongNumbers {
     method LongNum getOneHundredThousand() {
         return oneHundredThousand;
     }
+
+    method LongNum getFiveHundredThousand() {
+        return fiveHundredThousand;
+    }
+
+    method LongNum getOneMillion() {
+        return oneMillion;
+    }
+
+    method LongNum getFiveMillion() {
+        return fiveMillion;
+    }
+
 
 
 

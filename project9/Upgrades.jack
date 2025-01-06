@@ -4,7 +4,10 @@ class Upgrades {
 
     field LongNum count;
     field LongNum cps;
-    field LongNum currentCPS;
+
+    field LongNum tempCost;
+    field LongNum tempParentesis;
+    // field LongNum currentCPS;
 
     // Initialize with set cost given to Upgrades
     constructor Upgrades new(LongNum cost, LongNum amount, LongNum cookiesPerSecond) {
@@ -18,10 +21,6 @@ class Upgrades {
         // Define the cookies per second (cps) variable
         let cps = LongNum.new(); // Cookies per second
         do cps.addLong(cookiesPerSecond); // Cookies per second
-        // set up cookies per second as a longNum
-        let currentCPS = LongNum.new(); // Current cookies per second (cps * count)
-        do currentCPS.addLong(cps); // Current cookies per second
-        do currentCPS.multiplyLong(amount); // Current cookies per second
         return this;
     }
 
@@ -33,20 +32,13 @@ class Upgrades {
         return count;
     }
 
-    method LongNum getOriginalCPS() {
-        return cps;
-    }
-
     method LongNum getCPS() {
-        return currentCPS;
+        return cps;
     }
 
     // Upgrade by changing price and amount of upgrade
     method void getUpgrade() {
         // Logic that does not get int overflow
-        var LongNum tempParentesis;
-        var LongNum tempCost;
-
         let tempParentesis = LongNum.new();
         let tempCost = LongNum.new();
 
@@ -61,16 +53,9 @@ class Upgrades {
         // Get second part of parentesis
         do tempParentesis.multiplyLong(numbers.getFifteen());
         // Complete equation from above
-        do costOfUpgrade.addLong(tempParentesis);
+        do costOfUpgrade.addLong(numbers.getOne());
         // Update count by adding one
         do count.addLong(numbers.getOne());
-        // Add a cps everytime Upgrade is called (thus currentCPS = cps*count)
-        do currentCPS.addLong(cps);
-
-        // Free memory
-        do Memory.deAlloc(tempCost);
-        do Memory.deAlloc(tempParentesis);
-
 
         return;
     }

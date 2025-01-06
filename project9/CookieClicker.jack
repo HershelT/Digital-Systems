@@ -5,9 +5,7 @@ class CookieClicker {
     // Store a class that holds LongNum Numkbers such as 0, 1, 2
     field LongNumbers numbers;
 
-    // field int cookies1;
-    // field int frameCounter;
-    field int cookieWidth;
+    // Setting starting position of cookie
     field int screenMid;
     field int cookieRow; // Row where the cookie will be drawn
     field boolean isDrawingFullCookie; //Flag to track if cookie is pressed
@@ -39,21 +37,15 @@ class CookieClicker {
     field Upgrades bank; // Bank upgrade object
 
     constructor CookieClicker new() {
-        let numbers = LongNumbers.new(); // Initialize numbers
+        let numbers = LongNumbers.new(); // Initialize numbers which holds common longNums
 
-        // Initialize cookies
+        // Initialize amount of cookies user starts with
         let cookies = LongNum.new(); // Initialize cookies
-        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
-        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
-        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
-        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
-        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
-        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
-        do cookies.addLong(numbers.getFourteenHundred());
+        do cookies.addLong(numbers.getFiveMillion()); // Add 5 million cookies
 
-        let cookiesPerSecond = LongNum.new(); // Initialize cookies per second
+        // Initialize cookies per second
+        let cookiesPerSecond = LongNum.new(); 
         do cookiesPerSecond.addLong(numbers.getZero());
-        // Initialize numbers
         // Position of drawing Cookie
         let screenMid = 32; // Middle of the screen (column  where the cookie will be drawn)
         let cookieRow = 100; // Row where the cookie will be drawn
@@ -74,8 +66,8 @@ class CookieClicker {
 
         // Timer to count how many seconds have passed (45 frames = 1 second)
         let globalTimer = 0;
-        // Initialize upgrades
 
+        // Initialize upgrades
         // Create new Upgrades object with given (LongNum costToBuy, LongNum startingAmount, LongNum cookiesPerSecond)
         let cursor = Upgrades.new(numbers.getFifteen(), numbers.getZero(), numbers.getOne()); // Create new Upgrades object
         let grandma = Upgrades.new(numbers.getOneHundred(), numbers.getZero(), numbers.getSeven()); // Create new Upgrades object
@@ -109,24 +101,6 @@ class CookieClicker {
         return this;
     }
 
-    // Method to handle all the logic from the upgrades to update cookie count
-    method void handleUpgradeLogic() {
-        // If we have any upgrades, we will increment the timer
-        if (hasAnyUpgrade) {
-            let globalTimer = globalTimer + 1;
-            // After one second we will blink the cookie and update our cookie count
-            if (globalTimer > 45) { 
-                let globalTimer = 0;
-                // add the cookies per second to total cookie count
-                do cookies.addLong(cookiesPerSecond);
-                let displayVisualOfCookies = true;
-                let isDrawingFullCookie = true;
-            }
-        }
-        return;
-    }
-
-
     method void run() {
         var char key;
         var int frameCounter;
@@ -144,7 +118,6 @@ class CookieClicker {
         while (true) {
             let key = Keyboard.keyPressed();
             let  i = 0;
-            // let upgradeElement = upgrades[i];
 
             // Handle key presses
             if (key=0) { // If no key is pressed
@@ -152,12 +125,12 @@ class CookieClicker {
             } else {
                 if (~isAnyKeyPressed) { // If no key was pressed before
                     let isAnyKeyPressed = true; // Set flag to true
-                    if (key = 32) { // Spacebar
+                    if (key = 32) { // Spacebar iis pressed
                         do cookies.addLong(numbers.getOne()); // Add one cookie
                         // let cookies = cookies + 1;
                         let isDrawingFullCookie = true; // Set flag to draw full cookie
-                        let fullCookieTimer = 0; // Reset timer
                         let displayVisualOfCookies = true; // Set flag to display cookies
+                        let fullCookieTimer = 0; // Reset timer
                     }
                     // Handle logic for pressing keys to buy upgrades
                     else {
@@ -167,7 +140,7 @@ class CookieClicker {
                                 let upgradeElement = upgrades[i];
                                 // create a temp long to store the cost of the upgrade
                                 let tempCost = LongNum.new();
-                                let tempCost = upgradeElement.getCost();
+                                do tempCost.addLong(upgradeElement.getCost()); // Get the cost of the upgrade
 
                                 // Check if we have the correct amount of cookies to buy the upgrade
                                 if (cookies.greaterThanOrEqualLong(tempCost)) {
@@ -176,10 +149,11 @@ class CookieClicker {
                                         let hasAnyUpgrade = true; // Set flag to true
                                     }
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
-                                    do cookiesPerSecond.addLong(upgradeElement.getOriginalCPS()); // Add cookies per second
+                                    do tempCost.set(upgradeElement.getCPS()); // Get the cost of the upgrade
+                                    do cookiesPerSecond.addLong(tempCost); // Add cookies per second
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
-                                    do ScoreBoard.eraseCookieLine(); // Erase the cookie line
                                     let i = totalAmountOfUpgrades; // Break out of loop
+                                    do Sys.wait(5); // Wait for 5 frames
                                 }
                             }
                             let i = i + 1;
@@ -189,7 +163,18 @@ class CookieClicker {
             }
 
             // Handle logic for upgrades (timers and cookies per second)
-            do handleUpgradeLogic(); // Handle cursor logic
+            // if we have anyUpgrades, every second we will blink the cookie and add the cookies per second
+            if (hasAnyUpgrade) {
+                let globalTimer = globalTimer + 1;
+                // After one second we will blink the cookie and update our cookie count
+                if (globalTimer > 45) { 
+                    let globalTimer = 0;
+                    // add the cookies per second to total cookie count
+                    do cookies.addLong(cookiesPerSecond);
+                    let displayVisualOfCookies = true;
+                    let isDrawingFullCookie = true;
+                }
+            }
 
             if (isDrawingFullCookie) {
                 do CookieDrawings.drawBigCookie(screenMid + (cookieRow * 32));
@@ -198,7 +183,6 @@ class CookieClicker {
                     let isDrawingFullCookie = false; // Stop drawing full cookie
                     do CookieDrawings.drawBigPressedCookie(screenMid + (cookieRow * 32));
                     let fullCookieTimer = 0; // Reset timer
-                    // do Sys.wait(5); // Prevents spamming of keys
                 }
             }
 
@@ -211,18 +195,18 @@ class CookieClicker {
 
             if (displayVisualOfUpgrades) {
                 // Display and update the visuals of the upgrades
-                let tempLongNum = LongNum.new();
-                do tempLongNum.addLong(cookiesPerSecond);
-
-                do ScoreBoard.printUpgrades(numbers, tempLongNum, upgrades);
+                do ScoreBoard.printUpgrades(numbers, cookiesPerSecond, upgrades);
                 let displayVisualOfUpgrades = false;
-
-                // Free memory
-                do Memory.deAlloc(tempLongNum);
             }
 
             if (key = 140) { // Escape and leave game
                 return;
+            }
+
+            if (key = 114)  {// Refresh Screen key ('r')
+                do ScoreBoard.printTheText(); // Print the text
+                let displayVisualOfUpgrades = true;
+                let displayVisualOfCookies = true;
             }
             
             do Sys.wait(5);
