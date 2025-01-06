@@ -54,8 +54,8 @@ function ScoreBoard.eraseCookieLine 0
     push constant 0
     return
 function ScoreBoard.printTheText 0
-    push constant 7
-    push constant 25
+    push constant 9
+    push constant 28
     call Output.moveCursor 2
     pop temp 0
     push constant 5
@@ -137,8 +137,8 @@ function ScoreBoard.printTheText 0
     push constant 0
     return
 function ScoreBoard.printUpgrades 5
-    push constant 8
-    push constant 25
+    push constant 10
+    push constant 28
     call Output.moveCursor 2
     pop temp 0
     push argument 1
@@ -395,7 +395,7 @@ label ScoreBoard_0
     call LongNum.toString 1
     pop temp 0
     push local 2
-    push constant 15
+    push constant 16
     eq
     not
     if-goto ScoreBoard_3
@@ -407,7 +407,7 @@ label ScoreBoard_0
 label ScoreBoard_3
 label ScoreBoard_2
     push local 2
-    push constant 18
+    push constant 19
     eq
     not
     if-goto ScoreBoard_5

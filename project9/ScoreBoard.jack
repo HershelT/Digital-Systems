@@ -9,22 +9,15 @@ class ScoreBoard {
     }
     // Erase the cookie line
     function void eraseCookieLine() {
-        // var int i;
         do Output.moveCursor(2, 28);
-        // let i = 0;
         do Output.printString("                 ");
-        // while (i < 11) {
-            // let i = i + 1;
-        // }
-        // Free memory
-        // do Memory.deAlloc(i);
 
         return;
     }
 
     function void printTheText() {
         // / Display Cookies per Second
-        do Output.moveCursor(7,25);
+        do Output.moveCursor(9,28);
         do Output.printString("CPS: ");
         // Display the upgrades tempNum
         do Output.moveCursor(0,0);
@@ -44,7 +37,7 @@ class ScoreBoard {
         var int position; //Store position of drawing elements
         var Upgrades upgrade; //Store the current upgrade elements
         // Display the cookies per second
-        do Output.moveCursor(8, 25);
+        do Output.moveCursor(10, 28);
         do cps.toString();
 
         // Output the number of upgrades
