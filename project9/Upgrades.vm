@@ -44,6 +44,11 @@ function Upgrades.getAmount 0
     pop pointer 0
     push this 2
     return
+function Upgrades.getOriginalCPS 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    return
 function Upgrades.getCPS 0
     push argument 0
     pop pointer 0

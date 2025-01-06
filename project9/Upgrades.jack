@@ -33,6 +33,10 @@ class Upgrades {
         return count;
     }
 
+    method LongNum getOriginalCPS() {
+        return cps;
+    }
+
     method LongNum getCPS() {
         return currentCPS;
     }

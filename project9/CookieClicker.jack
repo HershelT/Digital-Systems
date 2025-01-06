@@ -1,6 +1,7 @@
 class CookieClicker {
     // Define longInt cookies
     field LongNum cookies;
+    field LongNum cookiesPerSecond;
     // Store a class that holds LongNum Numkbers such as 0, 1, 2
     field LongNumbers numbers;
 
@@ -49,6 +50,9 @@ class CookieClicker {
         do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
         do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
         do cookies.addLong(numbers.getFourteenHundred());
+
+        let cookiesPerSecond = LongNum.new(); // Initialize cookies per second
+        do cookiesPerSecond.addLong(numbers.getZero());
         // Initialize numbers
         // Position of drawing Cookie
         let screenMid = 32; // Middle of the screen (column  where the cookie will be drawn)
@@ -108,44 +112,18 @@ class CookieClicker {
     // Method to handle all the logic from the upgrades to update cookie count
     method void handleUpgradeLogic() {
         // If we have any upgrades, we will increment the timer
-        var LongNum tempCPS;
         if (hasAnyUpgrade) {
             let globalTimer = globalTimer + 1;
             // After one second we will blink the cookie and update our cookie count
             if (globalTimer > 45) { 
                 let globalTimer = 0;
-                let tempCPS = LongNum.new();
-                do tempCPS.addLong(cps());
-                // let cookieop = ;
-                do cookies.addLong(tempCPS);
+                // add the cookies per second to total cookie count
+                do cookies.addLong(cookiesPerSecond);
                 let displayVisualOfCookies = true;
                 let isDrawingFullCookie = true;
             }
         }
-
-        // Free memory
-        do Memory.deAlloc(tempCPS);
-        
         return;
-    }
-
-    // Method to calculate cookies per second
-    method LongNum cps() {
-        var LongNum totalCPS;
-        var Upgrades upgradeElement;
-        var int iterator;
-        let totalCPS = LongNum.new();
-        let iterator = 0;
-        while (iterator < totalAmountOfUpgrades) {
-            let upgradeElement = upgrades[iterator];
-            do totalCPS.addLong(upgradeElement.getCPS());
-            let iterator = iterator + 1;
-        }
-        //Free memory
-        do Memory.deAlloc(iterator);
-        do Memory.deAlloc(upgradeElement);
-        
-        return totalCPS;
     }
 
 
@@ -156,7 +134,7 @@ class CookieClicker {
         var Upgrades upgradeElement;
         var LongNum tempLongNum;
         var LongNum tempCost;
-        // Draw text onto scren
+        // Draw text onto scren that will stay the entire game
         do ScoreBoard.printTheText(); // Print the text
 
         //Draw the starting cookie that is not filled in
@@ -198,6 +176,7 @@ class CookieClicker {
                                         let hasAnyUpgrade = true; // Set flag to true
                                     }
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
+                                    do cookiesPerSecond.addLong(upgradeElement.getOriginalCPS()); // Add cookies per second
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
                                     do ScoreBoard.eraseCookieLine(); // Erase the cookie line
                                     let i = totalAmountOfUpgrades; // Break out of loop
@@ -232,11 +211,14 @@ class CookieClicker {
 
             if (displayVisualOfUpgrades) {
                 // Display and update the visuals of the upgrades
-                // let tempLongNum = LongNum.new();
-                // do tempLongNum.addLong(cps());
+                let tempLongNum = LongNum.new();
+                do tempLongNum.addLong(cookiesPerSecond);
 
-                do ScoreBoard.printUpgrades(numbers, cps(), upgrades);
+                do ScoreBoard.printUpgrades(numbers, tempLongNum, upgrades);
                 let displayVisualOfUpgrades = false;
+
+                // Free memory
+                do Memory.deAlloc(tempLongNum);
             }
 
             if (key = 140) { // Escape and leave game

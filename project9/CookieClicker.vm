@@ -1,124 +1,131 @@
 function CookieClicker.new 0
-    push constant 21
+    push constant 22
     call Memory.alloc 1
     pop pointer 0
     call LongNumbers.new 0
-    pop this 1
+    pop this 2
     call LongNum.new 0
     pop this 0
     push this 0
-    push this 1
+    push this 2
     call LongNumbers.getOneHundredThousand 1
     call LongNum.addLong 2
     pop temp 0
     push this 0
-    push this 1
+    push this 2
     call LongNumbers.getOneHundredThousand 1
     call LongNum.addLong 2
     pop temp 0
     push this 0
-    push this 1
+    push this 2
     call LongNumbers.getOneHundredThousand 1
     call LongNum.addLong 2
     pop temp 0
     push this 0
-    push this 1
+    push this 2
     call LongNumbers.getOneHundredThousand 1
     call LongNum.addLong 2
     pop temp 0
     push this 0
-    push this 1
+    push this 2
     call LongNumbers.getOneHundredThousand 1
     call LongNum.addLong 2
     pop temp 0
     push this 0
-    push this 1
+    push this 2
     call LongNumbers.getOneHundredThousand 1
     call LongNum.addLong 2
     pop temp 0
     push this 0
-    push this 1
+    push this 2
     call LongNumbers.getFourteenHundred 1
     call LongNum.addLong 2
     pop temp 0
+    call LongNum.new 0
+    pop this 1
+    push this 1
+    push this 2
+    call LongNumbers.getZero 1
+    call LongNum.addLong 2
+    pop temp 0
     push constant 32
-    pop this 3
-    push constant 100
     pop this 4
-    push constant 0
-    pop this 8
+    push constant 100
+    pop this 5
     push constant 0
     pop this 9
     push constant 0
     pop this 10
     push constant 0
-    pop this 5
-    push constant 1
-    neg
+    pop this 11
+    push constant 0
     pop this 6
     push constant 1
     neg
     pop this 7
+    push constant 1
+    neg
+    pop this 8
     push constant 0
-    pop this 14
-    push this 1
+    pop this 15
+    push this 2
     call LongNumbers.getFifteen 1
-    push this 1
+    push this 2
     call LongNumbers.getZero 1
-    push this 1
+    push this 2
     call LongNumbers.getOne 1
     call Upgrades.new 3
-    pop this 15
-    push this 1
+    pop this 16
+    push this 2
     call LongNumbers.getOneHundred 1
-    push this 1
+    push this 2
     call LongNumbers.getZero 1
-    push this 1
+    push this 2
     call LongNumbers.getSeven 1
     call Upgrades.new 3
-    pop this 16
-    push this 1
+    pop this 17
+    push this 2
     call LongNumbers.getOneThousand 1
-    push this 1
+    push this 2
     call LongNumbers.getZero 1
-    push this 1
+    push this 2
     call LongNumbers.getTwentyFour 1
     call Upgrades.new 3
-    pop this 17
-    push this 1
+    pop this 18
+    push this 2
     call LongNumbers.getFiveThousand 1
-    push this 1
+    push this 2
     call LongNumbers.getZero 1
-    push this 1
+    push this 2
     call LongNumbers.getEightySeven 1
     call Upgrades.new 3
-    pop this 18
-    push this 1
+    pop this 19
+    push this 2
     call LongNumbers.getTenThousand 1
-    push this 1
+    push this 2
     call LongNumbers.getZero 1
-    push this 1
+    push this 2
     call LongNumbers.getThreeHundredSixtyFive 1
     call Upgrades.new 3
-    pop this 19
-    push this 1
+    pop this 20
+    push this 2
     call LongNumbers.getOneHundredThousand 1
-    push this 1
+    push this 2
     call LongNumbers.getZero 1
-    push this 1
+    push this 2
     call LongNumbers.getFourteenHundred 1
     call Upgrades.new 3
-    pop this 20
+    pop this 21
     push constant 6
-    pop this 11
-    push this 11
-    call Array.new 1
     pop this 12
-    push this 11
+    push this 12
     call Array.new 1
     pop this 13
-    push constant 0
     push this 12
+    call Array.new 1
+    pop this 14
+    push constant 0
+    push this 13
     add
     push constant 99
     pop temp 0
@@ -126,7 +133,7 @@ function CookieClicker.new 0
     push temp 0
     pop that 0
     push constant 1
-    push this 12
+    push this 13
     add
     push constant 103
     pop temp 0
@@ -134,7 +141,7 @@ function CookieClicker.new 0
     push temp 0
     pop that 0
     push constant 2
-    push this 12
+    push this 13
     add
     push constant 102
     pop temp 0
@@ -142,7 +149,7 @@ function CookieClicker.new 0
     push temp 0
     pop that 0
     push constant 3
-    push this 12
+    push this 13
     add
     push constant 109
     pop temp 0
@@ -150,7 +157,7 @@ function CookieClicker.new 0
     push temp 0
     pop that 0
     push constant 4
-    push this 12
+    push this 13
     add
     push constant 119
     pop temp 0
@@ -158,7 +165,7 @@ function CookieClicker.new 0
     push temp 0
     pop that 0
     push constant 5
-    push this 12
+    push this 13
     add
     push constant 98
     pop temp 0
@@ -166,49 +173,49 @@ function CookieClicker.new 0
     push temp 0
     pop that 0
     push constant 0
-    push this 13
-    add
-    push this 15
-    pop temp 0
-    pop pointer 1
-    push temp 0
-    pop that 0
-    push constant 1
-    push this 13
+    push this 14
     add
     push this 16
     pop temp 0
     pop pointer 1
     push temp 0
     pop that 0
-    push constant 2
-    push this 13
+    push constant 1
+    push this 14
     add
     push this 17
     pop temp 0
     pop pointer 1
     push temp 0
     pop that 0
-    push constant 3
-    push this 13
+    push constant 2
+    push this 14
     add
     push this 18
     pop temp 0
     pop pointer 1
     push temp 0
     pop that 0
-    push constant 4
-    push this 13
+    push constant 3
+    push this 14
     add
     push this 19
     pop temp 0
     pop pointer 1
     push temp 0
     pop that 0
-    push constant 5
-    push this 13
+    push constant 4
+    push this 14
     add
     push this 20
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 5
+    push this 14
+    add
+    push this 21
     pop temp 0
     pop pointer 1
     push temp 0
@@ -218,31 +225,30 @@ function CookieClicker.new 0
 function CookieClicker.handleUpgradeLogic 0
     push argument 0
     pop pointer 0
-    push this 9
+    push this 10
     not
     if-goto CookieClicker_1
-    push this 14
+    push this 15
     push constant 1
     add
-    pop this 14
-    push this 14
+    pop this 15
+    push this 15
     push constant 45
     gt
     not
     if-goto CookieClicker_3
     push constant 0
-    pop this 14
+    pop this 15
     push this 0
-    push pointer 0
-    call CookieClicker.cps 1
+    push this 1
     call LongNum.addLong 2
     pop temp 0
     push constant 1
     neg
-    pop this 6
+    pop this 7
     push constant 1
     neg
-    pop this 5
+    pop this 6
     goto CookieClicker_2
 label CookieClicker_3
 label CookieClicker_2
@@ -251,61 +257,23 @@ label CookieClicker_1
 label CookieClicker_0
     push constant 0
     return
-function CookieClicker.cps 3
-    push argument 0
-    pop pointer 0
-    call LongNum.new 0
-    pop local 0
-    push constant 0
-    pop local 2
-label CookieClicker_4
-    push local 2
-    push this 11
-    lt
-    not
-    if-goto CookieClicker_5
-    push local 2
-    push this 13
-    add
-    pop pointer 1
-    push that 0
-    pop local 1
-    push local 0
-    push local 1
-    call Upgrades.getCPS 1
-    call LongNum.addLong 2
-    pop temp 0
-    push local 2
-    push constant 1
-    add
-    pop local 2
-    goto CookieClicker_4
-label CookieClicker_5
-    push local 2
-    call Memory.deAlloc 1
-    pop temp 0
-    push local 1
-    call Memory.deAlloc 1
-    pop temp 0
-    push local 0
-    return
 function CookieClicker.run 6
     push argument 0
     pop pointer 0
     call ScoreBoard.printTheText 0
     pop temp 0
-    push this 3
     push this 4
+    push this 5
     push constant 32
     call Math.multiply 2
     add
     call CookieDrawings.drawBigPressedCookie 1
     pop temp 0
-label CookieClicker_6
+label CookieClicker_4
     push constant 1
     neg
     not
-    if-goto CookieClicker_7
+    if-goto CookieClicker_5
     call Keyboard.keyPressed 0
     pop local 0
     push constant 0
@@ -314,55 +282,55 @@ label CookieClicker_6
     push constant 0
     eq
     not
-    if-goto CookieClicker_9
+    if-goto CookieClicker_7
     push constant 0
-    pop this 8
-    goto CookieClicker_8
-label CookieClicker_9
-    push this 8
+    pop this 9
+    goto CookieClicker_6
+label CookieClicker_7
+    push this 9
     not
     not
-    if-goto CookieClicker_11
+    if-goto CookieClicker_9
     push constant 1
     neg
-    pop this 8
+    pop this 9
     push local 0
     push constant 32
     eq
     not
-    if-goto CookieClicker_13
+    if-goto CookieClicker_11
     push this 0
-    push this 1
+    push this 2
     call LongNumbers.getOne 1
     call LongNum.addLong 2
     pop temp 0
     push constant 1
     neg
-    pop this 5
+    pop this 6
     push constant 0
-    pop this 10
+    pop this 11
     push constant 1
     neg
-    pop this 6
-    goto CookieClicker_12
-label CookieClicker_13
-label CookieClicker_14
-    push local 2
-    push this 11
-    lt
-    not
-    if-goto CookieClicker_15
-    push local 0
+    pop this 7
+    goto CookieClicker_10
+label CookieClicker_11
+label CookieClicker_12
     push local 2
     push this 12
+    lt
+    not
+    if-goto CookieClicker_13
+    push local 0
+    push local 2
+    push this 13
     add
     pop pointer 1
     push that 0
     eq
     not
-    if-goto CookieClicker_17
+    if-goto CookieClicker_15
     push local 2
-    push this 13
+    push this 14
     add
     pop pointer 1
     push that 0
@@ -376,127 +344,140 @@ label CookieClicker_14
     push local 5
     call LongNum.greaterThanOrEqualLong 2
     not
-    if-goto CookieClicker_19
+    if-goto CookieClicker_17
     push this 0
     push local 5
     call LongNum.subtractLong 2
     pop temp 0
-    push this 9
+    push this 10
     not
     not
-    if-goto CookieClicker_21
+    if-goto CookieClicker_19
     push constant 1
     neg
-    pop this 9
-    goto CookieClicker_20
-label CookieClicker_21
-label CookieClicker_20
-    push local 3
-    call Upgrades.getUpgrade 1
-    pop temp 0
-    push constant 1
-    neg
-    pop this 7
-    call ScoreBoard.eraseCookieLine 0
-    pop temp 0
-    push this 11
-    pop local 2
+    pop this 10
     goto CookieClicker_18
 label CookieClicker_19
 label CookieClicker_18
+    push local 3
+    call Upgrades.getUpgrade 1
+    pop temp 0
+    push this 1
+    push local 3
+    call Upgrades.getOriginalCPS 1
+    call LongNum.addLong 2
+    pop temp 0
+    push constant 1
+    neg
+    pop this 8
+    call ScoreBoard.eraseCookieLine 0
+    pop temp 0
+    push this 12
+    pop local 2
     goto CookieClicker_16
 label CookieClicker_17
 label CookieClicker_16
+    goto CookieClicker_14
+label CookieClicker_15
+label CookieClicker_14
     push local 2
     push constant 1
     add
     pop local 2
-    goto CookieClicker_14
-label CookieClicker_15
-label CookieClicker_12
-    goto CookieClicker_10
-label CookieClicker_11
+    goto CookieClicker_12
+label CookieClicker_13
 label CookieClicker_10
+    goto CookieClicker_8
+label CookieClicker_9
 label CookieClicker_8
+label CookieClicker_6
     push pointer 0
     call CookieClicker.handleUpgradeLogic 1
     pop temp 0
-    push this 5
+    push this 6
     not
-    if-goto CookieClicker_23
-    push this 3
+    if-goto CookieClicker_21
     push this 4
+    push this 5
     push constant 32
     call Math.multiply 2
     add
     call CookieDrawings.drawBigCookie 1
     pop temp 0
-    push this 10
+    push this 11
     push constant 1
     add
-    pop this 10
-    push this 10
+    pop this 11
+    push this 11
     push constant 4
     gt
     not
-    if-goto CookieClicker_25
+    if-goto CookieClicker_23
     push constant 0
-    pop this 5
-    push this 3
+    pop this 6
     push this 4
+    push this 5
     push constant 32
     call Math.multiply 2
     add
     call CookieDrawings.drawBigPressedCookie 1
     pop temp 0
     push constant 0
-    pop this 10
-    goto CookieClicker_24
-label CookieClicker_25
-label CookieClicker_24
+    pop this 11
     goto CookieClicker_22
 label CookieClicker_23
 label CookieClicker_22
-    push this 6
+    goto CookieClicker_20
+label CookieClicker_21
+label CookieClicker_20
+    push this 7
     not
-    if-goto CookieClicker_27
+    if-goto CookieClicker_25
     push this 0
     call ScoreBoard.printCookies 1
     pop temp 0
     push constant 0
-    pop this 6
-    goto CookieClicker_26
-label CookieClicker_27
-label CookieClicker_26
-    push this 7
+    pop this 7
+    goto CookieClicker_24
+label CookieClicker_25
+label CookieClicker_24
+    push this 8
     not
-    if-goto CookieClicker_29
+    if-goto CookieClicker_27
+    call LongNum.new 0
+    pop local 4
+    push local 4
     push this 1
-    push pointer 0
-    call CookieClicker.cps 1
-    push this 13
+    call LongNum.addLong 2
+    pop temp 0
+    push this 2
+    push local 4
+    push this 14
     call ScoreBoard.printUpgrades 3
     pop temp 0
     push constant 0
-    pop this 7
-    goto CookieClicker_28
-label CookieClicker_29
-label CookieClicker_28
+    pop this 8
+    push local 4
+    call Memory.deAlloc 1
+    pop temp 0
+    goto CookieClicker_26
+label CookieClicker_27
+label CookieClicker_26
     push local 0
     push constant 140
     eq
     not
-    if-goto CookieClicker_31
+    if-goto CookieClicker_29
     push constant 0
     return
-    goto CookieClicker_30
-label CookieClicker_31
-label CookieClicker_30
+    goto CookieClicker_28
+label CookieClicker_29
+label CookieClicker_28
     push constant 5
     call Sys.wait 1
     pop temp 0
-    goto CookieClicker_6
-label CookieClicker_7
+    goto CookieClicker_4
+label CookieClicker_5
     push constant 0
     return
 function CookieClicker.dispose 0
