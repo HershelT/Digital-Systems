@@ -21,6 +21,8 @@ class ScoreBoard {
         // Draw the count of cookies
         do Output.moveCursor(9, 14);
         do Output.printString("Cookies:");
+        do Output.moveCursor(10, 14);
+        do Output.printString("0:");
         do Output.moveCursor(9, 30);
         do Output.printString("Cookies Per Space:");
         do Output.moveCursor(10, 30);
@@ -53,22 +55,22 @@ class ScoreBoard {
 
         // Display the template for all information
         do Output.moveCursor(0,0);
-        do Output.printString("Key - Buildings  || Count || CostToUpgrade || Icons");
+        do Output.printString("Key - Buildings  || Count || CostToUpgrade || Icons ||key:action");
         do Output.moveCursor(1,0);
-        do Output.printString("-----------------||-------||---------------||-------");
+        do Output.printString("-----------------||-------||---------------||-------||----------");
         // Display the template
         do Output.moveCursor(2, 0);
-        do Output.printString("'C' - Cursors    || 0     ||  15           ||      ");
+        do Output.printString("'C' - Cursors    || 0     ||  15           ||       ||P:buy mult");
         do Output.moveCursor(3, 0);
-        do Output.printString("'G' - Grandmas   || 0     ||  100          ||      ");
+        do Output.printString("'G' - Grandmas   || 0     ||  100          ||       ||esc:leave ");
         do Output.moveCursor(4, 0);
-        do Output.printString("'F' - Farms      || 0     ||  1000         ||      ");
+        do Output.printString("'F' - Farms      || 0     ||  1000         ||       ||space:bake");
         do Output.moveCursor(5, 0);
-        do Output.printString("'M' - Mines      || 0     ||  5000         ||      ");
+        do Output.printString("'M' - Mines      || 0     ||  5000         ||       ||          ");
         do Output.moveCursor(6, 0);
-        do Output.printString("'W' - Warehouses || 0     ||  10000        ||      ");
+        do Output.printString("'W' - Warehouses || 0     ||  10000        ||       ||          ");
         do Output.moveCursor(7, 0);
-        do Output.printString("'B' - Banks      || 0     ||  100000       ||      ");
+        do Output.printString("'B' - Banks      || 0     ||  100000       ||       ||          ");
         // Draw the icons
         do UpgradeDrawings.drawAtEle(0, 439); // Equation = 32*1*13 + 2 + 21 = 439
         do UpgradeDrawings.drawAtEle(1, 792); // Equation = 32*2*12 + 1 + 23 = 792
