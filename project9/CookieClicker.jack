@@ -59,7 +59,7 @@ class CookieClicker {
         let fullCookieTimer = 0;
         let isDrawingFullCookie = false; 
 
-        // Flags to display visuals
+        // Flags to display visuals of current cookie count and upgrades
         let displayVisualOfCookies = true; // Initialize to false
         let displayVisualOfUpgrades = true; // Initialize to false
 
@@ -106,15 +106,13 @@ class CookieClicker {
         var int frameCounter;
         var int i;
         var Upgrades upgradeElement;
-        // var LongNum tempLongNum;
-        // var LongNum tempCost;
         // Draw text onto scren that will stay the entire game
         do ScoreBoard.printTheText(); // Print the text
 
         //Draw the starting cookie that is not filled in
         do CookieDrawings.drawBigPressedCookie(screenMid + (cookieRow * 32));
         
-        // Main game loop
+        // MAIN GAME LOOP:
         while (true) {
             let key = Keyboard.keyPressed();
             let  i = 0;
@@ -170,10 +168,11 @@ class CookieClicker {
                 }
             }
 
+            // If we are attempting to blink the cookie, perform following actions to blink it
             if (isDrawingFullCookie) {
                 do CookieDrawings.drawBigCookie(screenMid + (cookieRow * 32));
                 let fullCookieTimer = fullCookieTimer + 1;
-                if (fullCookieTimer > 4) { // Show cookie for 20 frames (1 second)
+                if (fullCookieTimer > 4) { // Show cookie for 4 frames (1/11th of a second)
                     let isDrawingFullCookie = false; // Stop drawing full cookie
                     do CookieDrawings.drawBigPressedCookie(screenMid + (cookieRow * 32));
                     let fullCookieTimer = 0; // Reset timer
@@ -196,13 +195,8 @@ class CookieClicker {
             if (key = 140) { // Escape and leave game
                 return;
             }
-
-            if (key = 114)  {// Refresh Screen key ('r')
-                do ScoreBoard.printTheText(); // Print the text
-                let displayVisualOfUpgrades = true;
-                let displayVisualOfCookies = true;
-            }
             
+            // Create a seconds counter where every 45 frames is one second
             do Sys.wait(5);
         }
         return;

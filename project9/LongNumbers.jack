@@ -20,6 +20,7 @@ class LongNumbers {
     field LongNum fiveHundredThousand;
     field LongNum oneMillion;
     field LongNum fiveMillion;
+    field LongNum tenMillion;
 
     // Initialize all the numbers
     constructor LongNumbers new() {
@@ -77,6 +78,8 @@ class LongNumbers {
         do fiveMillion.addLong(oneMillion);
         do fiveMillion.addLong(oneMillion);
         do fiveMillion.addLong(oneMillion);
+        let tenMillion = LongNum.new();
+        do tenMillion.addLong(fiveMillion);
         
         
 
@@ -163,8 +166,9 @@ class LongNumbers {
         return fiveMillion;
     }
 
-
-
+    method LongNum getTenMillion() {
+        return tenMillion;
+    }
 
     method void deAlloc() {
         do Memory.deAlloc(this);

@@ -70,8 +70,7 @@ function Upgrades.getUpgrade 0
     call LongNum.multiplyLong 2
     pop temp 0
     push this 0
-    push this 1
-    call LongNumbers.getOne 1
+    push this 5
     call LongNum.addLong 2
     pop temp 0
     push this 2

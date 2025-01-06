@@ -1,5 +1,5 @@
 function LongNumbers.new 0
-    push constant 20
+    push constant 21
     call Memory.alloc 1
     pop pointer 0
     call LongNum.new 0
@@ -178,6 +178,12 @@ function LongNumbers.new 0
     push this 18
     call LongNum.addLong 2
     pop temp 0
+    call LongNum.new 0
+    pop this 20
+    push this 20
+    push this 19
+    call LongNum.addLong 2
+    pop temp 0
     push pointer 0
     return
 function LongNumbers.getZero 0
@@ -279,6 +285,11 @@ function LongNumbers.getFiveMillion 0
     push argument 0
     pop pointer 0
     push this 19
+    return
+function LongNumbers.getTenMillion 0
+    push argument 0
+    pop pointer 0
+    push this 20
     return
 function LongNumbers.deAlloc 0
     push argument 0

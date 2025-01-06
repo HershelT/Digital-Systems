@@ -59,7 +59,7 @@ class LongNum {
     }
 
 
-    // Set the value of the long
+    // Set the value of the long to another long
     method void set(LongNum other) {
         let leftSide = other.getLeftSide();
         let rightSide = other.getRightSide();

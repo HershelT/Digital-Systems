@@ -7,10 +7,10 @@ class Upgrades {
 
     field LongNum tempCost;
     field LongNum tempParentesis;
-    // field LongNum currentCPS;
 
     // Initialize with set cost given to Upgrades
     constructor Upgrades new(LongNum cost, LongNum amount, LongNum cookiesPerSecond) {
+        // Initialize variables to be used for later
         let tempCost = LongNum.new(); // Cost of upgrade
         let tempParentesis = LongNum.new(); // Parentesis for upgrade
         
@@ -41,10 +41,6 @@ class Upgrades {
 
     // Upgrade by changing price and amount of upgrade
     method void getUpgrade() {
-        // Logic that does not get int overflow
-        // let tempParentesis = LongNum.new();
-        // let tempCost = LongNum.new();
-
         // Do MATH To Calculate new CostOfUpgrade:
         // costOfUpgrade = costOfUpgrade + (((costOfUpgrade / 100) + 1) * (multiplier - 100));
         do tempCost.set(costOfUpgrade);
@@ -56,7 +52,7 @@ class Upgrades {
         // Get second part of parentesis
         do tempParentesis.multiplyLong(numbers.getFifteen());
         // Complete equation from above
-        do costOfUpgrade.addLong(numbers.getOne());
+        do costOfUpgrade.addLong(tempParentesis);
         // Update count by adding one
         do count.addLong(numbers.getOne());
 
