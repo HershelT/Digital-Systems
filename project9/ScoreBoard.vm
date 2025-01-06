@@ -1047,7 +1047,7 @@ function ScoreBoard.printTheText 0
     pop temp 0
     push constant 0
     return
-function ScoreBoard.printUpgrades 5
+function ScoreBoard.printUpgrades 4
     push constant 13
     push constant 14
     call Output.moveCursor 2
@@ -1056,74 +1056,50 @@ function ScoreBoard.printUpgrades 5
     call LongNum.toString 1
     pop temp 0
     call LongNum.new 0
-    pop local 1
-    call LongNum.new 0
     pop local 0
     push constant 0
-    pop local 2
+    pop local 1
     push constant 2
-    pop local 3
+    pop local 2
 label ScoreBoard_0
-    push local 2
+    push local 1
     push constant 6
     lt
     not
     if-goto ScoreBoard_1
-    push local 2
-    push argument 3
-    eq
-    not
-    if-goto ScoreBoard_3
-    push local 2
+    push local 1
     push argument 2
     add
     pop pointer 1
     push that 0
-    pop local 4
-    push local 3
+    pop local 3
+    push local 2
     push constant 20
     call Output.moveCursor 2
     pop temp 0
-    push local 1
-    push local 4
-    call Upgrades.getAmount 1
-    call LongNum.set 2
-    pop temp 0
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push local 3
-    push constant 30
-    call Output.moveCursor 2
-    pop temp 0
-    push local 1
-    push local 4
-    call Upgrades.getCost 1
-    call LongNum.set 2
-    pop temp 0
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push local 1
-    push local 4
-    call Upgrades.getAmount 1
-    call LongNum.set 2
-    pop temp 0
-label ScoreBoard_4
     push local 0
-    push argument 0
-    call LongNumbers.getTwentyFive 1
-    call LongNum.lessThanLong 2
+    push local 3
+    call Upgrades.getAmount 1
+    call LongNum.set 2
+    pop temp 0
+    push local 0
+    call LongNum.toString 1
+    pop temp 0
+    push local 0
+    call LongNum.getRightSide 1
+    push constant 0
+    gt
+    not
+    if-goto ScoreBoard_3
+    push local 0
+    call LongNum.getRightSide 1
+    push constant 24
+    lt
     not
     if-goto ScoreBoard_5
     push local 1
-    push local 0
-    call LongNum.greaterThanLong 2
-    not
-    if-goto ScoreBoard_7
-    push local 2
     push constant 32
-    push local 3
+    push local 2
     push constant 8
     add
     call Math.multiply 2
@@ -1136,46 +1112,33 @@ label ScoreBoard_4
     add
     call UpgradeDrawings.drawAtEle 2
     pop temp 0
-    goto ScoreBoard_6
-label ScoreBoard_7
-    push argument 0
-    call LongNumbers.getOneHundred 1
-    pop local 0
-label ScoreBoard_6
-    push local 0
-    push argument 0
-    call LongNumbers.getOne 1
-    call LongNum.addLong 2
-    pop temp 0
     goto ScoreBoard_4
 label ScoreBoard_5
+label ScoreBoard_4
     goto ScoreBoard_2
 label ScoreBoard_3
 label ScoreBoard_2
     push local 2
+    push constant 30
+    call Output.moveCursor 2
+    pop temp 0
+    push local 0
+    push local 3
+    call Upgrades.getCost 1
+    call LongNum.set 2
+    pop temp 0
+    push local 0
+    call LongNum.toString 1
+    pop temp 0
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    push local 2
     push constant 1
     add
     pop local 2
-    push local 3
-    push constant 1
-    add
-    pop local 3
     goto ScoreBoard_0
 label ScoreBoard_1
-    push local 1
-    call Memory.deAlloc 1
-    pop temp 0
-    push local 0
-    call Memory.deAlloc 1
-    pop temp 0
-    push local 2
-    call Memory.deAlloc 1
-    pop temp 0
-    push local 3
-    call Memory.deAlloc 1
-    pop temp 0
-    push local 4
-    call Memory.deAlloc 1
-    pop temp 0
     push constant 0
     return

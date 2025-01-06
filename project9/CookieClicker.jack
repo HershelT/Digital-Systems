@@ -26,7 +26,7 @@ class CookieClicker {
     field Array keys;
     field Array upgrades;
     
-    field int globalTimer; // Timer for cursors
+    field int globalTimer; // Timer for counting how many frames pass
 
     // UPGRADES 
     field Upgrades cursor; // Cursor upgrade object
@@ -103,7 +103,6 @@ class CookieClicker {
 
     method void run() {
         var char key;
-        var int frameCounter;
         var int i;
         var Upgrades upgradeElement;
         // Draw text onto scren that will stay the entire game
@@ -117,7 +116,10 @@ class CookieClicker {
             let key = Keyboard.keyPressed();
             let  i = 0;
 
-            // Handle key presses
+            // Handle key presses and trigger actions (like build upgrade, click cookie)
+            if (key = 140) { // Escape and leave game
+                return;
+            }
             if (key=0) { // If no key is pressed
                 let isAnyKeyPressed = false; // Set flag to false
             } else {
@@ -141,6 +143,7 @@ class CookieClicker {
                                     if (~hasAnyUpgrade) {
                                         let hasAnyUpgrade = true; // Set flag to true
                                     }
+                                    // Perform operation to Trigger build Upgrade and update CPS
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
                                     do cookiesPerSecond.addLong(upgradeElement.getCPS()); // Add CPS from upgrade to cookies per second
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
@@ -179,21 +182,15 @@ class CookieClicker {
                 }
             }
 
-            //Handles updating of visuals 
+            // Display and update the visuals of the cookies
             if (displayVisualOfCookies) {
-                // Display and update the visuals of the cookies
                 do ScoreBoard.printCookies(cookies);
                 let displayVisualOfCookies = false;
             }
-
+            // Display and update the visuals of the upgrades
             if (displayVisualOfUpgrades) {
-                // Display and update the visuals of the upgrades
                 do ScoreBoard.printUpgrades(numbers, cookiesPerSecond, upgrades, key);
                 let displayVisualOfUpgrades = false;
-            }
-
-            if (key = 140) { // Escape and leave game
-                return;
             }
             
             // Create a seconds counter where every 45 frames is one second
@@ -203,6 +200,7 @@ class CookieClicker {
     }
 
     method void dispose() {
+        // Free memory of everything associated with CookieClicker
         do Memory.deAlloc(this);
         return;
     }

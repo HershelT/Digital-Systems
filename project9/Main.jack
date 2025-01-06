@@ -1,9 +1,13 @@
 class Main {
     function void main() {
+        // Run the main game from this Entry Point
         var CookieClicker game;
         let game = CookieClicker.new();
         do game.run();
         do game.dispose();
+
+        // Empty Stack
+        // do Memory.deAlloc(0);
 
         return;
     }

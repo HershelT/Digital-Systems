@@ -8,12 +8,6 @@ class ScoreBoard {
         do Output.printString("         ");
         return;
     }
-    // // Erase the cookie line
-    // function void eraseCookieLine() {
-    //     // do Output.moveCursor(2, 28);
-
-    //     return;
-    // }
 
     function void printTheText() {
         // Draw the count of cookies
@@ -22,6 +16,9 @@ class ScoreBoard {
         // / Display Cookies per Second
         do Output.moveCursor(12,14);
         do Output.printString("CPS: ");
+        
+        // Draw keys
+        // do Output.
 
         // Display the template for all information
         do Output.moveCursor(0,0);
@@ -61,7 +58,7 @@ class ScoreBoard {
 
     // Print the upgrades
     function void printUpgrades(LongNumbers numbers, LongNum cps, Array upgrades, int index) {
-        var LongNum counter;
+        // var LongNum counter;
         var LongNum tempNum;
         var int i; //used for while loop
         var int position; //Store position of drawing elements
@@ -72,93 +69,40 @@ class ScoreBoard {
         do cps.toString();
         // Output the number of upgrades
         let tempNum = LongNum.new();
-        let counter = LongNum.new();
+        // let counter = LongNum.new();
         let i = 0; // Counter for while loop (current upgrade element)
         let position = 2; // Where to print to screen
         while (i < 6) {
+            // do counter.set(numbers.getZero());
             // Get current Upgrade to manage
-            if (i = index) {
+            // if (i = index) {
+                // Print the count of the upgrade
                 let upgrade = upgrades[i];
                 do Output.moveCursor(position, 20);
                 do tempNum.set(upgrade.getAmount());
                 do tempNum.toString();
+                // Print the upgrades icons by how many there are
+                // Set a hard limit of only showing 25 (that is what fits and don't need to display more)
+                if (tempNum.getRightSide() > 0) {
+                    if (tempNum.getRightSide() < 24) {
+                        do UpgradeDrawings.drawAtEle(i, (32*(position+8)*16) + tempNum.getRightSide() + 7);
+                    }
+                }
                 // Print the cost of the upgrade
                 do Output.moveCursor(position, 30);
                 do tempNum.set(upgrade.getCost());
-                do tempNum.toString();
-                // Print the upgrades icons
-                // do UpgradeDrawings.drawAtEle(i, (32*(position+8)*16) + 7);
-                do tempNum.set(upgrade.getAmount());
-                while (counter.lessThanLong(numbers.getTwentyFive())) {
-                    if (tempNum.greaterThanLong(counter)) {
-                        // Draw the correct purchased upgrade
-                        do UpgradeDrawings.drawAtEle(i, (32*(position+8)*16) + counter.getRightSide() + 7);
-                    }
-                    else {
-                        let counter = numbers.getOneHundred();
-                    }
-                    do counter.addLong(numbers.getOne());
-                }   
-            }
+                do tempNum.toString();                
+            // }
             let i = i + 1;
             let position = position + 1;
         }
 
-
-        // Output the cost of each upgrade
-        // let i = 0; // Counter for while loop (current upgrade element)
-        // let position = 2; // Where to print to screen
-        // while (i < 6) {
-        //     if (i = index) {
-        //         // Get current Upgrade to manage
-        //         let upgrade = upgrades[i];
-        //         do Output.moveCursor(position, 30);
-        //         let tempNum = LongNum.new();
-        //         let tempNum = upgrade.getCost();
-        //         do tempNum.toString();
-        //     }
-        //     if (i = 16) {
-        //         let position = position + 1;
-        //     }
-        //     if (i = 19) {
-        //         let position = position + 1;
-        //     }
-        //     let position = position + 1;
-        //     let i = i + 1;
-        // }
-        
-        // Draw the graphics of the upgrades
-
-        // let i = 0; // Counter for while loop (current upgrade element)
-        // let position = 10; // Where to print to screen
-        // while (i < 6) {
-        //     if (i = index) {
-        //         // Get current Upgrade to manage
-        //         let upgrade = upgrades[i];
-        //         let counter = LongNum.new();
-        //         let tempNum = LongNum.new();
-        //         let tempNum = upgrade.getAmount();
-        //         while (counter.lessThanLong(numbers.getTwentyFive())) {
-        //             if (tempNum.greaterThanLong(counter)) {
-        //                 // Draw the correct purchased upgrade
-        //                 do UpgradeDrawings.drawAtEle(i, (32*position*16) + counter.getRightSide() + 7);
-        //             }
-        //             else {
-        //                 let counter = numbers.getOneHundred();
-        //             }
-        //             do counter.addLong(numbers.getOne());
-        //         }   
-        //     }
-        //     let i = i + 1;
-        //     let position = position + 1;
-        // }
-
         // Free memory
-        do Memory.deAlloc(tempNum);
-        do Memory.deAlloc(counter);
-        do Memory.deAlloc(i);
-        do Memory.deAlloc(position);
-        do Memory.deAlloc(upgrade);
+        // do Memory.deAlloc(counter);
+        // do Memory.deAlloc(tempNum);
+        // do Memory.deAlloc(i);
+        // do Memory.deAlloc(position);
+        // do Memory.deAlloc(upgrade);
 
 
         return;
