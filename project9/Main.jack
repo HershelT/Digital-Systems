@@ -6,9 +6,6 @@ class Main {
         do game.run();
         do game.dispose();
 
-        // Empty Stack
-        // do Memory.deAlloc(0);
-
         return;
     }
 }

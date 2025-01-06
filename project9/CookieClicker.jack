@@ -1,9 +1,13 @@
 class CookieClicker {
+    // Store a class that holds LongNum Numkbers such as 0, 1, 2
+    field LongNumbers numbers;
+
     // Define longInt cookies
     field LongNum cookies;
     field LongNum cookiesPerSecond;
-    // Store a class that holds LongNum Numkbers such as 0, 1, 2
-    field LongNumbers numbers;
+    field LongNum cookiesPerClick;
+    field LongNum cookiesPerClickCost;
+    
 
     // Setting starting position of cookie
     field int screenMid;
@@ -11,7 +15,6 @@ class CookieClicker {
     field boolean isDrawingFullCookie; //Flag to track if cookie is pressed
 
     //Displays cookie count at once
-    field boolean displayVisualOfCookies; //Flag to track if cookie is pressed
     field boolean displayVisualOfUpgrades; //Flag to track if cookie is pressed
 
     //Prev ent spamming with checking if any key is pressed
@@ -41,11 +44,17 @@ class CookieClicker {
 
         // Initialize amount of cookies user starts with
         let cookies = LongNum.new(); // Initialize cookies
-        do cookies.addLong(numbers.getFiveMillion()); // Add 5 million cookies
+        // do cookies.addLong(numbers.getFiveMillion()); // Add 5 million cookies
 
         // Initialize cookies per second
         let cookiesPerSecond = LongNum.new(); 
         do cookiesPerSecond.addLong(numbers.getZero());
+
+        // Initialize how many cookies you get per click of space
+        let cookiesPerClick = LongNum.new();
+        do cookiesPerClick.addLong(numbers.getOne());
+        let cookiesPerClickCost = LongNum.new();
+        do cookiesPerClickCost.addLong(numbers.getFiveHundred()); //Set initial cost to multiply clicks
         // Position of drawing Cookie
         let screenMid = 32; // Middle of the screen (column  where the cookie will be drawn)
         let cookieRow = 100; // Row where the cookie will be drawn
@@ -60,7 +69,6 @@ class CookieClicker {
         let isDrawingFullCookie = false; 
 
         // Flags to display visuals of current cookie count and upgrades
-        let displayVisualOfCookies = true; // Initialize to false
         let displayVisualOfUpgrades = true; // Initialize to false
 
 
@@ -125,10 +133,22 @@ class CookieClicker {
             } else {
                 if (~isAnyKeyPressed) { // If no key was pressed before
                     let isAnyKeyPressed = true; // Set flag to true
+                    // If p is pressed multile cookiesPerClick by two and update cost to purchase next upgrade
+                    if (key = 112) {
+                        if (cookies.greaterThanOrEqualLong(cookiesPerClickCost)) {
+                            do cookies.subtractLong(cookiesPerClickCost); // Deduct cost
+                            do cookiesPerClick.multiplyLong(numbers.getTwo()); // Multiply cookies per click by two
+                            do cookiesPerClickCost.addLong(numbers.getFiveThousand()); // Add cost to multiply clicks
+                            do ScoreBoard.printCookiesPerClick(cookiesPerClick, cookiesPerClickCost); // Print the new cookies count per click
+                            do ScoreBoard.printCookies(cookies); // Print the new cookies count
+                            // let displayVisualOfCookies = true; // Set flag to display cookies
+                        }
+                    }
                     if (key = 32) { // Spacebar iis pressed
-                        do cookies.addLong(numbers.getOne()); // Add one cookie
+                        do cookies.addLong(cookiesPerClick); // Add one cookie
+                        do ScoreBoard.printCookies(cookies); // Print the new cookies count
                         let isDrawingFullCookie = true; // Set flag to draw full cookie
-                        let displayVisualOfCookies = true; // Set flag to display cookies
+                        // let displayVisualOfCookies = true; // Set flag to display cookies
                         let fullCookieTimer = 0; // Reset timer
                     }
                     // Handle logic for pressing keys to buy upgrades
@@ -166,7 +186,7 @@ class CookieClicker {
                     let globalTimer = 0;
                     // add the cookies per second to total cookie count
                     do cookies.addLong(cookiesPerSecond);
-                    let displayVisualOfCookies = true;
+                    do ScoreBoard.printCookies(cookies); // Print the new cookies count
                     let isDrawingFullCookie = true;
                 }
             }
@@ -181,13 +201,7 @@ class CookieClicker {
                     let fullCookieTimer = 0; // Reset timer
                 }
             }
-
-            // Display and update the visuals of the cookies
-            if (displayVisualOfCookies) {
-                do ScoreBoard.printCookies(cookies);
-                let displayVisualOfCookies = false;
-            }
-            // Display and update the visuals of the upgrades
+            // Display new visual for new upgrades added
             if (displayVisualOfUpgrades) {
                 do ScoreBoard.printUpgrades(numbers, cookiesPerSecond, upgrades, key);
                 let displayVisualOfUpgrades = false;

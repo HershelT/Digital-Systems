@@ -11,6 +11,7 @@ class LongNumbers {
     field LongNum eightySeven;
     field LongNum threeHundredSixtyFive;
     field LongNum oneHundred;
+    field LongNum fiveHundred;
     field LongNum oneThousand;
     field LongNum fourteenHundred;
     field LongNum fiveThousand;
@@ -46,6 +47,8 @@ class LongNumbers {
         do threeHundredSixtyFive.add(365);
         let oneHundred = LongNum.new();
         do oneHundred.add(100);
+        let fiveHundred = LongNum.new();
+        do fiveHundred.add(500);
         let oneThousand = LongNum.new();
         do oneThousand.add(1000);
         let fourteenHundred = LongNum.new();
@@ -124,6 +127,10 @@ class LongNumbers {
     }
     method LongNum getOneHundred() {
         return oneHundred;
+    }
+
+    method LongNum getFiveHundred() {
+        return fiveHundred;
     }
 
     method LongNum getThreeHundredSixtyFive() {

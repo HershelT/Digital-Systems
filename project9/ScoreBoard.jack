@@ -5,7 +5,15 @@ class ScoreBoard {
     function void printCookies(LongNum cookies) {
         do Output.moveCursor(10, 14);
         do cookies.toString();
-        do Output.printString("         ");
+        do Output.printString("       ");
+        return;
+    }
+
+    function void printCookiesPerClick(LongNum cpc, LongNum cost){
+        do Output.moveCursor(10, 30);
+        do cpc.toString();
+        do Output.moveCursor(13, 30);
+        do cost.toString();
         return;
     }
 
@@ -13,9 +21,19 @@ class ScoreBoard {
         // Draw the count of cookies
         do Output.moveCursor(9, 14);
         do Output.printString("Cookies:");
+        do Output.moveCursor(9, 30);
+        do Output.printString("Cookies Per Space:");
+        do Output.moveCursor(10, 30);
+        do Output.printString("1");
+        do Output.moveCursor(12, 30);
+        do Output.printString("Cost to Multiply:");
+        do Output.moveCursor(13, 30);
+        do Output.printString("500");
         // / Display Cookies per Second
         do Output.moveCursor(12,14);
         do Output.printString("CPS: ");
+        do Output.moveCursor(14,14);
+        do Output.printString("-------------------------------------------------");
         
         // Draw keys
         do Output.moveCursor(15, 14);
