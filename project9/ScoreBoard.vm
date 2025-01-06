@@ -1,36 +1,13 @@
 function ScoreBoard.printCookies 0
-    push constant 2
-    push constant 28
+    push constant 10
+    push constant 14
     call Output.moveCursor 2
     pop temp 0
     push argument 0
     call LongNum.toString 1
     pop temp 0
-    push constant 0
-    return
-function ScoreBoard.eraseCookieLine 0
-    push constant 2
-    push constant 28
-    call Output.moveCursor 2
-    pop temp 0
-    push constant 17
+    push constant 9
     call String.new 1
-    push constant 32
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
     push constant 32
     call String.appendChar 2
     push constant 32
@@ -53,9 +30,36 @@ function ScoreBoard.eraseCookieLine 0
     pop temp 0
     push constant 0
     return
+function ScoreBoard.eraseCookieLine 0
+    push constant 0
+    return
 function ScoreBoard.printTheText 0
     push constant 9
-    push constant 28
+    push constant 14
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 8
+    call String.new 1
+    push constant 67
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 107
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 58
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 12
+    push constant 14
     call Output.moveCursor 2
     pop temp 0
     push constant 5
@@ -76,86 +80,234 @@ function ScoreBoard.printTheText 0
     push constant 0
     call Output.moveCursor 2
     pop temp 0
-    push constant 17
+    push constant 50
     call String.new 1
-    push constant 85
+    push constant 75
     call String.appendChar 2
-    push constant 80
+    push constant 101
     call String.appendChar 2
-    push constant 71
-    call String.appendChar 2
-    push constant 82
-    call String.appendChar 2
-    push constant 65
-    call String.appendChar 2
-    push constant 68
-    call String.appendChar 2
-    push constant 69
-    call String.appendChar 2
-    push constant 83
+    push constant 121
     call String.appendChar 2
     push constant 32
     call String.appendChar 2
-    push constant 65
-    call String.appendChar 2
-    push constant 77
-    call String.appendChar 2
-    push constant 79
-    call String.appendChar 2
-    push constant 85
-    call String.appendChar 2
-    push constant 78
-    call String.appendChar 2
-    push constant 84
-    call String.appendChar 2
-    push constant 58
+    push constant 45
     call String.appendChar 2
     push constant 32
     call String.appendChar 2
-    call Output.printString 1
-    pop temp 0
-    push constant 12
-    push constant 0
-    call Output.moveCursor 2
-    pop temp 0
-    push constant 6
-    call String.new 1
+    push constant 66
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 108
+    call String.appendChar 2
+    push constant 100
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 103
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
     push constant 67
     call String.appendChar 2
-    push constant 79
+    push constant 111
     call String.appendChar 2
-    push constant 83
+    push constant 117
+    call String.appendChar 2
+    push constant 110
+    call String.appendChar 2
+    push constant 116
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 67
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 116
     call String.appendChar 2
     push constant 84
     call String.appendChar 2
-    push constant 83
+    push constant 111
     call String.appendChar 2
-    push constant 58
+    push constant 85
+    call String.appendChar 2
+    push constant 112
+    call String.appendChar 2
+    push constant 103
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 100
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 73
+    call String.appendChar 2
+    push constant 99
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 110
     call String.appendChar 2
     call Output.printString 1
     pop temp 0
+    push constant 1
     push constant 0
-    return
-function ScoreBoard.printUpgrades 5
-    push constant 10
-    push constant 28
     call Output.moveCursor 2
     pop temp 0
-    push argument 1
-    call LongNum.toString 1
+    push constant 50
+    call String.new 1
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    call Output.printString 1
     pop temp 0
     push constant 2
     push constant 0
     call Output.moveCursor 2
     pop temp 0
-    push argument 2
-    call Upgrades.getAmount 1
-    pop local 1
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 12
+    push constant 50
     call String.new 1
+    push constant 39
+    call String.appendChar 2
+    push constant 67
+    call String.appendChar 2
+    push constant 39
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
     push constant 32
     call String.appendChar 2
     push constant 67
@@ -174,11 +326,77 @@ function ScoreBoard.printUpgrades 5
     call String.appendChar 2
     push constant 32
     call String.appendChar 2
-    push constant 39
+    push constant 32
     call String.appendChar 2
-    push constant 67
+    push constant 32
     call String.appendChar 2
-    push constant 39
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
     call String.appendChar 2
     call Output.printString 1
     pop temp 0
@@ -186,14 +404,18 @@ function ScoreBoard.printUpgrades 5
     push constant 0
     call Output.moveCursor 2
     pop temp 0
-    push argument 3
-    call Upgrades.getAmount 1
-    pop local 1
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 13
+    push constant 50
     call String.new 1
+    push constant 39
+    call String.appendChar 2
+    push constant 71
+    call String.appendChar 2
+    push constant 39
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
     push constant 32
     call String.appendChar 2
     push constant 71
@@ -214,11 +436,75 @@ function ScoreBoard.printUpgrades 5
     call String.appendChar 2
     push constant 32
     call String.appendChar 2
-    push constant 39
+    push constant 32
     call String.appendChar 2
-    push constant 71
+    push constant 32
     call String.appendChar 2
-    push constant 39
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
     call String.appendChar 2
     call Output.printString 1
     pop temp 0
@@ -226,14 +512,18 @@ function ScoreBoard.printUpgrades 5
     push constant 0
     call Output.moveCursor 2
     pop temp 0
-    push argument 4
-    call Upgrades.getAmount 1
-    pop local 1
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 10
+    push constant 50
     call String.new 1
+    push constant 39
+    call String.appendChar 2
+    push constant 70
+    call String.appendChar 2
+    push constant 39
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
     push constant 32
     call String.appendChar 2
     push constant 70
@@ -248,11 +538,81 @@ function ScoreBoard.printUpgrades 5
     call String.appendChar 2
     push constant 32
     call String.appendChar 2
-    push constant 39
+    push constant 32
     call String.appendChar 2
-    push constant 70
+    push constant 32
     call String.appendChar 2
-    push constant 39
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
     call String.appendChar 2
     call Output.printString 1
     pop temp 0
@@ -260,14 +620,18 @@ function ScoreBoard.printUpgrades 5
     push constant 0
     call Output.moveCursor 2
     pop temp 0
-    push argument 5
-    call Upgrades.getAmount 1
-    pop local 1
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 10
+    push constant 50
     call String.new 1
+    push constant 39
+    call String.appendChar 2
+    push constant 77
+    call String.appendChar 2
+    push constant 39
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
     push constant 32
     call String.appendChar 2
     push constant 77
@@ -282,11 +646,81 @@ function ScoreBoard.printUpgrades 5
     call String.appendChar 2
     push constant 32
     call String.appendChar 2
-    push constant 39
+    push constant 32
     call String.appendChar 2
-    push constant 77
+    push constant 32
     call String.appendChar 2
-    push constant 39
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
     call String.appendChar 2
     call Output.printString 1
     pop temp 0
@@ -294,14 +728,18 @@ function ScoreBoard.printUpgrades 5
     push constant 0
     call Output.moveCursor 2
     pop temp 0
-    push argument 6
-    call Upgrades.getAmount 1
-    pop local 1
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 15
+    push constant 50
     call String.new 1
+    push constant 39
+    call String.appendChar 2
+    push constant 87
+    call String.appendChar 2
+    push constant 39
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
     push constant 32
     call String.appendChar 2
     push constant 87
@@ -326,11 +764,71 @@ function ScoreBoard.printUpgrades 5
     call String.appendChar 2
     push constant 32
     call String.appendChar 2
-    push constant 39
+    push constant 124
     call String.appendChar 2
-    push constant 87
+    push constant 124
     call String.appendChar 2
-    push constant 39
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
     call String.appendChar 2
     call Output.printString 1
     pop temp 0
@@ -338,14 +836,18 @@ function ScoreBoard.printUpgrades 5
     push constant 0
     call Output.moveCursor 2
     pop temp 0
-    push argument 7
-    call Upgrades.getAmount 1
-    pop local 1
-    push local 1
-    call LongNum.toString 1
-    pop temp 0
-    push constant 10
+    push constant 50
     call String.new 1
+    push constant 39
+    call String.appendChar 2
+    push constant 66
+    call String.appendChar 2
+    push constant 39
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
     push constant 32
     call String.appendChar 2
     push constant 66
@@ -360,158 +862,414 @@ function ScoreBoard.printUpgrades 5
     call String.appendChar 2
     push constant 32
     call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 124
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 0
+    push constant 32
+    push constant 1
+    call Math.multiply 2
+    push constant 13
+    call Math.multiply 2
+    push constant 2
+    add
+    push constant 21
+    add
+    call UpgradeDrawings.drawAtEle 2
+    pop temp 0
+    push constant 1
+    push constant 32
+    push constant 2
+    call Math.multiply 2
+    push constant 12
+    call Math.multiply 2
+    push constant 1
+    add
+    push constant 23
+    add
+    call UpgradeDrawings.drawAtEle 2
+    pop temp 0
+    push constant 2
+    push constant 32
+    push constant 3
+    call Math.multiply 2
+    push constant 13
+    call Math.multiply 2
+    push constant 2
+    add
+    push constant 21
+    add
+    call UpgradeDrawings.drawAtEle 2
+    pop temp 0
+    push constant 3
+    push constant 32
+    push constant 4
+    call Math.multiply 2
+    push constant 12
+    call Math.multiply 2
+    push constant 1
+    add
+    push constant 23
+    add
+    call UpgradeDrawings.drawAtEle 2
+    pop temp 0
+    push constant 4
+    push constant 32
+    push constant 5
+    call Math.multiply 2
+    push constant 13
+    call Math.multiply 2
+    push constant 2
+    add
+    push constant 21
+    add
+    call UpgradeDrawings.drawAtEle 2
+    pop temp 0
+    push constant 5
+    push constant 32
+    push constant 6
+    call Math.multiply 2
+    push constant 12
+    call Math.multiply 2
+    push constant 1
+    add
+    push constant 23
+    add
+    call UpgradeDrawings.drawAtEle 2
+    pop temp 0
+    push constant 17
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 13
+    call String.new 1
+    push constant 80
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
     push constant 39
     call String.appendChar 2
-    push constant 66
+    push constant 83
+    call String.appendChar 2
+    push constant 80
+    call String.appendChar 2
+    push constant 65
+    call String.appendChar 2
+    push constant 67
+    call String.appendChar 2
+    push constant 69
     call String.appendChar 2
     push constant 39
     call String.appendChar 2
     call Output.printString 1
     pop temp 0
-    push constant 15
+    push constant 18
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 12
+    call String.new 1
+    push constant 66
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 107
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 67
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 107
+    call String.appendChar 2
+    push constant 105
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push constant 0
+    return
+function ScoreBoard.printUpgrades 6
+    push constant 13
+    push constant 14
+    call Output.moveCursor 2
+    pop temp 0
+    push argument 1
+    call LongNum.toString 1
+    pop temp 0
+    push constant 0
     pop local 3
+    push constant 2
+    pop local 4
 label ScoreBoard_0
-    push local 2
+    push local 3
     push constant 6
     lt
     not
     if-goto ScoreBoard_1
-    push local 2
-    push argument 8
+    push local 3
+    push argument 2
     add
     pop pointer 1
     push that 0
-    pop local 4
+    pop local 5
+    push local 4
+    push constant 20
+    call Output.moveCursor 2
+    pop temp 0
+    push local 5
+    call Upgrades.getAmount 1
+    pop local 2
+    push local 2
+    call LongNum.toString 1
+    pop temp 0
     push local 3
+    push constant 1
+    add
+    pop local 3
+    push local 4
+    push constant 1
+    add
+    pop local 4
+    goto ScoreBoard_0
+label ScoreBoard_1
     push constant 0
+    pop local 3
+    push constant 2
+    pop local 4
+label ScoreBoard_2
+    push local 3
+    push constant 6
+    lt
+    not
+    if-goto ScoreBoard_3
+    push local 3
+    push argument 2
+    add
+    pop pointer 1
+    push that 0
+    pop local 5
+    push local 4
+    push constant 30
     call Output.moveCursor 2
     pop temp 0
     call LongNum.new 0
-    pop local 1
-    push local 4
+    pop local 2
+    push local 5
     call Upgrades.getCost 1
-    pop local 1
-    push local 1
+    pop local 2
+    push local 2
     call LongNum.toString 1
     pop temp 0
-    push local 2
+    push local 3
     push constant 16
     eq
     not
-    if-goto ScoreBoard_3
+    if-goto ScoreBoard_5
+    push local 4
+    push constant 1
+    add
+    pop local 4
+    goto ScoreBoard_4
+label ScoreBoard_5
+label ScoreBoard_4
+    push local 3
+    push constant 19
+    eq
+    not
+    if-goto ScoreBoard_7
+    push local 4
+    push constant 1
+    add
+    pop local 4
+    goto ScoreBoard_6
+label ScoreBoard_7
+label ScoreBoard_6
+    push local 4
+    push constant 1
+    add
+    pop local 4
     push local 3
     push constant 1
     add
     pop local 3
     goto ScoreBoard_2
 label ScoreBoard_3
-label ScoreBoard_2
-    push local 2
-    push constant 19
-    eq
-    not
-    if-goto ScoreBoard_5
-    push local 3
-    push constant 1
-    add
-    pop local 3
-    goto ScoreBoard_4
-label ScoreBoard_5
-label ScoreBoard_4
-    push local 3
-    push constant 1
-    add
-    pop local 3
-    push local 2
-    push constant 1
-    add
-    pop local 2
-    goto ScoreBoard_0
-label ScoreBoard_1
     push constant 0
-    pop local 2
-    push constant 10
     pop local 3
-label ScoreBoard_6
-    push local 2
+    push constant 10
+    pop local 4
+label ScoreBoard_8
+    push local 3
     push constant 6
     lt
     not
-    if-goto ScoreBoard_7
-    push local 2
-    push argument 8
+    if-goto ScoreBoard_9
+    push local 3
+    push argument 2
     add
     pop pointer 1
     push that 0
-    pop local 4
+    pop local 5
     call LongNum.new 0
     pop local 0
     call LongNum.new 0
-    pop local 1
-    push local 4
+    pop local 2
+    push local 5
     call Upgrades.getAmount 1
-    pop local 1
-label ScoreBoard_8
+    pop local 2
+label ScoreBoard_10
     push local 0
     push argument 0
     call LongNumbers.getTwentyFive 1
     call LongNum.lessThanLong 2
     not
-    if-goto ScoreBoard_9
-    push local 1
+    if-goto ScoreBoard_11
+    push local 2
     push local 0
     call LongNum.greaterThanLong 2
     not
-    if-goto ScoreBoard_11
-    push local 2
-    push constant 32
+    if-goto ScoreBoard_13
     push local 3
+    push constant 32
+    push local 4
     call Math.multiply 2
     push constant 16
     call Math.multiply 2
     push local 0
     call LongNum.getRightSide 1
     add
-    push constant 4
+    push constant 7
     add
     call UpgradeDrawings.drawAtEle 2
     pop temp 0
-    goto ScoreBoard_10
-label ScoreBoard_11
+    goto ScoreBoard_12
+label ScoreBoard_13
     push argument 0
     call LongNumbers.getOneHundred 1
     pop local 0
-label ScoreBoard_10
+label ScoreBoard_12
     push local 0
     push argument 0
     call LongNumbers.getOne 1
     call LongNum.addLong 2
     pop temp 0
-    goto ScoreBoard_8
-label ScoreBoard_9
-    push local 2
-    push constant 1
-    add
-    pop local 2
+    goto ScoreBoard_10
+label ScoreBoard_11
     push local 3
     push constant 1
     add
     pop local 3
-    goto ScoreBoard_6
-label ScoreBoard_7
-    push local 1
+    push local 4
+    push constant 1
+    add
+    pop local 4
+    goto ScoreBoard_8
+label ScoreBoard_9
+    push local 2
     call Memory.deAlloc 1
     pop temp 0
     push local 0
-    call Memory.deAlloc 1
-    pop temp 0
-    push local 2
     call Memory.deAlloc 1
     pop temp 0
     push local 3
     call Memory.deAlloc 1
     pop temp 0
     push local 4
+    call Memory.deAlloc 1
+    pop temp 0
+    push local 5
     call Memory.deAlloc 1
     pop temp 0
     push constant 0

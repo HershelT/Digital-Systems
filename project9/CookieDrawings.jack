@@ -534,7 +534,6 @@ class CookieDrawings {
 
         // Free memory
         do Memory.deAlloc(memAddress);
-        
         return;
     }
 }

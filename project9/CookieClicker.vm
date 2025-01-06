@@ -13,12 +13,37 @@ function CookieClicker.new 0
     pop temp 0
     push this 0
     push this 1
+    call LongNumbers.getOneHundredThousand 1
+    call LongNum.addLong 2
+    pop temp 0
+    push this 0
+    push this 1
+    call LongNumbers.getOneHundredThousand 1
+    call LongNum.addLong 2
+    pop temp 0
+    push this 0
+    push this 1
+    call LongNumbers.getOneHundredThousand 1
+    call LongNum.addLong 2
+    pop temp 0
+    push this 0
+    push this 1
+    call LongNumbers.getOneHundredThousand 1
+    call LongNum.addLong 2
+    pop temp 0
+    push this 0
+    push this 1
+    call LongNumbers.getOneHundredThousand 1
+    call LongNum.addLong 2
+    pop temp 0
+    push this 0
+    push this 1
     call LongNumbers.getFourteenHundred 1
     call LongNum.addLong 2
     pop temp 0
-    push constant 112
-    pop this 3
     push constant 32
+    pop this 3
+    push constant 100
     pop this 4
     push constant 0
     pop this 8
@@ -73,7 +98,7 @@ function CookieClicker.new 0
     push this 1
     call LongNumbers.getZero 1
     push this 1
-    call LongNumbers.getThreeHundredSiftyFive 1
+    call LongNumbers.getThreeHundredSixtyFive 1
     call Upgrades.new 3
     pop this 19
     push this 1
@@ -215,6 +240,9 @@ function CookieClicker.handleUpgradeLogic 0
     push constant 1
     neg
     pop this 6
+    push constant 1
+    neg
+    pop this 5
     goto CookieClicker_2
 label CookieClicker_3
 label CookieClicker_2
@@ -264,86 +292,6 @@ label CookieClicker_5
 function CookieClicker.run 6
     push argument 0
     pop pointer 0
-    push constant 0
-    push constant 24
-    call Output.moveCursor 2
-    pop temp 0
-    push constant 24
-    call String.new 1
-    push constant 72
-    call String.appendChar 2
-    push constant 105
-    call String.appendChar 2
-    push constant 116
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 39
-    call String.appendChar 2
-    push constant 83
-    call String.appendChar 2
-    push constant 80
-    call String.appendChar 2
-    push constant 65
-    call String.appendChar 2
-    push constant 67
-    call String.appendChar 2
-    push constant 69
-    call String.appendChar 2
-    push constant 39
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 102
-    call String.appendChar 2
-    push constant 111
-    call String.appendChar 2
-    push constant 114
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 67
-    call String.appendChar 2
-    push constant 111
-    call String.appendChar 2
-    push constant 111
-    call String.appendChar 2
-    push constant 107
-    call String.appendChar 2
-    push constant 105
-    call String.appendChar 2
-    push constant 101
-    call String.appendChar 2
-    push constant 115
-    call String.appendChar 2
-    push constant 33
-    call String.appendChar 2
-    call Output.printString 1
-    pop temp 0
-    push constant 1
-    push constant 28
-    call Output.moveCursor 2
-    pop temp 0
-    push constant 8
-    call String.new 1
-    push constant 67
-    call String.appendChar 2
-    push constant 111
-    call String.appendChar 2
-    push constant 111
-    call String.appendChar 2
-    push constant 107
-    call String.appendChar 2
-    push constant 105
-    call String.appendChar 2
-    push constant 101
-    call String.appendChar 2
-    push constant 115
-    call String.appendChar 2
-    push constant 58
-    call String.appendChar 2
-    call Output.printString 1
-    pop temp 0
     call ScoreBoard.printTheText 0
     pop temp 0
     push this 3
@@ -419,6 +367,8 @@ label CookieClicker_14
     pop pointer 1
     push that 0
     pop local 3
+    call LongNum.new 0
+    pop local 5
     push local 3
     call Upgrades.getCost 1
     pop local 5
@@ -524,14 +474,8 @@ label CookieClicker_26
     push this 1
     push pointer 0
     call CookieClicker.cps 1
-    push this 15
-    push this 16
-    push this 17
-    push this 18
-    push this 19
-    push this 20
     push this 13
-    call ScoreBoard.printUpgrades 9
+    call ScoreBoard.printUpgrades 3
     pop temp 0
     push constant 0
     pop this 7

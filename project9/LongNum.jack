@@ -23,7 +23,7 @@ class LongNum {
     method int getRightSide() {
         return rightSide;
     }
-    
+
     // Add two longs
     method void addLong(LongNum other) {
         // Add the right side
@@ -258,7 +258,7 @@ class LongNum {
         var int i;
         var String right;
         let i = 0;
-        let right = String.new(20);
+        let right = String.new(5);
         do right.setInt(rightSide);
         let totalZerosBeforeRight = 4 - right.length();
 

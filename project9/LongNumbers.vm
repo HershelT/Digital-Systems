@@ -52,6 +52,10 @@ function LongNumbers.new 0
     pop temp 0
     call LongNum.new 0
     pop this 8
+    push this 8
+    push constant 365
+    call LongNum.add 2
+    pop temp 0
     call LongNum.new 0
     pop this 9
     push this 9
@@ -172,7 +176,7 @@ function LongNumbers.getOneHundred 0
     pop pointer 0
     push this 9
     return
-function LongNumbers.getThreeHundredSiftyFive 0
+function LongNumbers.getThreeHundredSixtyFive 0
     push argument 0
     pop pointer 0
     push this 8

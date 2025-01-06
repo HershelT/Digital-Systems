@@ -2,8 +2,6 @@ class Upgrades {
     field LongNum costOfUpgrade;
     field LongNumbers numbers;
 
-    field int worthOfUpgrade;
-    field int multiplier;
     field LongNum count;
     field LongNum cps;
     field LongNum currentCPS;
@@ -52,17 +50,14 @@ class Upgrades {
         // costOfUpgrade = costOfUpgrade + (((costOfUpgrade / 100) + 1) * (multiplier - 100));
         do tempCost.addLong(costOfUpgrade);
 
-
+        // Get first part of parentesis
         do tempCost.divideLong(numbers.getOneHundred());
         do tempCost.addLong(numbers.getOne());
         do tempParentesis.addLong(tempCost);
-
-
+        // Get second part of parentesis
         do tempParentesis.multiplyLong(numbers.getFifteen());
         // Complete equation from above
         do costOfUpgrade.addLong(tempParentesis);
-
-
         // Update count by adding one
         do count.addLong(numbers.getOne());
         // Add a cps everytime Upgrade is called (thus currentCPS = cps*count)

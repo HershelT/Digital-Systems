@@ -43,11 +43,16 @@ class CookieClicker {
         // Initialize cookies
         let cookies = LongNum.new(); // Initialize cookies
         do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
+        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
+        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
+        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
+        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
+        do cookies.addLong(numbers.getOneHundredThousand()); // Initialize cookies to 0 
         do cookies.addLong(numbers.getFourteenHundred());
         // Initialize numbers
         // Position of drawing Cookie
-        let screenMid = 112; // Middle of the screen (column  where the cookie will be drawn)
-        let cookieRow = 32; // Row where the cookie will be drawn
+        let screenMid = 32; // Middle of the screen (column  where the cookie will be drawn)
+        let cookieRow = 100; // Row where the cookie will be drawn
 
         // Flags to prevent spamming of keys
         let isAnyKeyPressed = false; // Initialize to false
@@ -72,7 +77,7 @@ class CookieClicker {
         let grandma = Upgrades.new(numbers.getOneHundred(), numbers.getZero(), numbers.getSeven()); // Create new Upgrades object
         let farm = Upgrades.new(numbers.getOneThousand(), numbers.getZero(), numbers.getTwentyFour()); // Create new Upgrades object
         let mine = Upgrades.new(numbers.getFiveThousand(), numbers.getZero(), numbers.getEightySeven()); // Create new Upgrades object
-        let warehouse = Upgrades.new(numbers.getTenThousand(), numbers.getZero(), numbers.getThreeHundredSiftyFive()); // Create new Upgrades object
+        let warehouse = Upgrades.new(numbers.getTenThousand(), numbers.getZero(), numbers.getThreeHundredSixtyFive()); // Create new Upgrades object
         let bank = Upgrades.new(numbers.getOneHundredThousand(), numbers.getZero(), numbers.getFourteenHundred()); // Create new Upgrades object
 
 
@@ -103,17 +108,24 @@ class CookieClicker {
     // Method to handle all the logic from the upgrades to update cookie count
     method void handleUpgradeLogic() {
         // If we have any upgrades, we will increment the timer
+        var LongNum tempCPS;
         if (hasAnyUpgrade) {
             let globalTimer = globalTimer + 1;
             // After one second we will blink the cookie and update our cookie count
             if (globalTimer > 45) { 
                 let globalTimer = 0;
+                let tempCPS = LongNum.new();
+                do tempCPS.addLong(cps());
                 // let cookieop = ;
-                do cookies.addLong(cps());
+                do cookies.addLong(tempCPS);
                 let displayVisualOfCookies = true;
-                // let isDrawingFullCookie = true;
+                let isDrawingFullCookie = true;
             }
         }
+
+        // Free memory
+        do Memory.deAlloc(tempCPS);
+        
         return;
     }
 
@@ -121,16 +133,16 @@ class CookieClicker {
     method LongNum cps() {
         var LongNum totalCPS;
         var Upgrades upgradeElement;
-        var int i;
+        var int iterator;
         let totalCPS = LongNum.new();
-        let i = 0;
-        while (i < totalAmountOfUpgrades) {
-            let upgradeElement = upgrades[i];
+        let iterator = 0;
+        while (iterator < totalAmountOfUpgrades) {
+            let upgradeElement = upgrades[iterator];
             do totalCPS.addLong(upgradeElement.getCPS());
-            let i = i + 1;
+            let iterator = iterator + 1;
         }
         //Free memory
-        do Memory.deAlloc(i);
+        do Memory.deAlloc(iterator);
         do Memory.deAlloc(upgradeElement);
         
         return totalCPS;
@@ -145,10 +157,6 @@ class CookieClicker {
         var LongNum tempLongNum;
         var LongNum tempCost;
         // Draw text onto scren
-        do Output.moveCursor(0, 24);
-        do Output.printString("Hit 'SPACE' for Cookies!");
-        do Output.moveCursor(1, 28);
-        do Output.printString("Cookies:");
         do ScoreBoard.printTheText(); // Print the text
 
         //Draw the starting cookie that is not filled in
@@ -180,6 +188,7 @@ class CookieClicker {
                             if (key = keys[i]) {
                                 let upgradeElement = upgrades[i];
                                 // create a temp long to store the cost of the upgrade
+                                let tempCost = LongNum.new();
                                 let tempCost = upgradeElement.getCost();
 
                                 // Check if we have the correct amount of cookies to buy the upgrade
@@ -223,7 +232,10 @@ class CookieClicker {
 
             if (displayVisualOfUpgrades) {
                 // Display and update the visuals of the upgrades
-                do ScoreBoard.printUpgrades(numbers, cps(), cursor, grandma, farm, mine, warehouse, bank, upgrades);
+                // let tempLongNum = LongNum.new();
+                // do tempLongNum.addLong(cps());
+
+                do ScoreBoard.printUpgrades(numbers, cps(), upgrades);
                 let displayVisualOfUpgrades = false;
             }
 
