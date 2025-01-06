@@ -54,7 +54,7 @@ class Upgrades {
 
 
         do tempCost.divideLong(numbers.getOneHundred());
-        do tempCost.addLong(numbers.getOne())
+        do tempCost.addLong(numbers.getOne());
         do tempParentesis.addLong(tempCost);
 
 

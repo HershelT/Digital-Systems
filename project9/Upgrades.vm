@@ -52,14 +52,32 @@ function Upgrades.getCPS 0
 function Upgrades.getUpgrade 2
     push argument 0
     pop pointer 0
+    call LongNum.new 0
+    pop local 0
+    call LongNum.new 0
+    pop local 1
+    push local 1
+    push this 0
+    call LongNum.addLong 2
+    pop temp 0
+    push local 1
+    push this 1
+    call LongNumbers.getOneHundred 1
+    call LongNum.divideLong 2
+    pop temp 0
+    push local 1
     push this 1
     call LongNumbers.getOne 1
-    pop local 0
-    push this 0
-    pop local 1
+    call LongNum.addLong 2
+    pop temp 0
     push local 0
     push local 1
     call LongNum.addLong 2
+    pop temp 0
+    push local 0
+    push this 1
+    call LongNumbers.getFifteen 1
+    call LongNum.multiplyLong 2
     pop temp 0
     push this 0
     push this 1
