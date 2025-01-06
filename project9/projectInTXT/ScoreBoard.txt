@@ -22,7 +22,7 @@ class ScoreBoard {
         do Output.moveCursor(9, 14);
         do Output.printString("Cookies:");
         do Output.moveCursor(10, 14);
-        do Output.printString("0");
+        do Output.printString("0:");
         do Output.moveCursor(9, 30);
         do Output.printString("Cookies Per Space:");
         do Output.moveCursor(10, 30);
@@ -66,7 +66,7 @@ class ScoreBoard {
         do Output.moveCursor(4, 0);
         do Output.printString("'F' - Farms      || 0     ||  1000         ||       ||space:bake");
         do Output.moveCursor(5, 0);
-        do Output.printString("'M' - Mines      || 0     ||  5000         ||       ||S:secret5M");
+        do Output.printString("'M' - Mines      || 0     ||  5000         ||       ||          ");
         do Output.moveCursor(6, 0);
         do Output.printString("'W' - Warehouses || 0     ||  10000        ||       ||          ");
         do Output.moveCursor(7, 0);

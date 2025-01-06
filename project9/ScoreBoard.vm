@@ -72,11 +72,9 @@ function ScoreBoard.printTheText 0
     push constant 14
     call Output.moveCursor 2
     pop temp 0
-    push constant 2
+    push constant 1
     call String.new 1
     push constant 48
-    call String.appendChar 2
-    push constant 58
     call String.appendChar 2
     call Output.printString 1
     pop temp 0

@@ -1,0 +1,67 @@
+class Upgrades {
+    field LongNum costOfUpgrade;
+    field LongNumbers numbers;
+
+    field LongNum count;
+    field LongNum cps;
+
+    field LongNum tempCost;
+    field LongNum tempParentesis;
+
+    // Initialize with set cost given to Upgrades
+    constructor Upgrades new(LongNum cost, LongNum amount, LongNum cookiesPerSecond) {
+        // Initialize variables to be used for later
+        let tempCost = LongNum.new(); // Cost of upgrade
+        let tempParentesis = LongNum.new(); // Parentesis for upgrade
+        
+        // Set up costToUpgrade and number of that upgrade as LongNum
+        let numbers = LongNumbers.new(); // Initialize numbers
+        let costOfUpgrade = LongNum.new(); // Cost of upgrade
+        do costOfUpgrade.addLong(cost);
+        // define the amount of upgrades (count)
+        let count = LongNum.new(); // Number of upgrades
+        do count.addLong(amount); // Number of upgrades
+        // Define the cookies per second (cps) variable
+        let cps = LongNum.new(); // Cookies per second
+        do cps.addLong(cookiesPerSecond); // Cookies per second
+        return this;
+    }
+
+    method LongNum getCost() {
+        return costOfUpgrade;
+    }
+
+    method LongNum getAmount() {
+        return count;
+    }
+
+    method LongNum getCPS() {
+        return cps;
+    }
+
+    // Upgrade by changing price and amount of upgrade
+    method void getUpgrade() {
+        // Do MATH To Calculate new CostOfUpgrade:
+        // costOfUpgrade = costOfUpgrade + (((costOfUpgrade / 100) + 1) * (multiplier - 100));
+        do tempCost.set(costOfUpgrade);
+
+        // Get first part of parentesis
+        do tempCost.divideLong(numbers.getOneHundred());
+        do tempCost.addLong(numbers.getOne());
+        do tempParentesis.set(tempCost);
+        // Get second part of parentesis
+        do tempParentesis.multiplyLong(numbers.getFifteen());
+        // Complete equation from above
+        do costOfUpgrade.addLong(tempParentesis);
+        // Update count by adding one
+        do count.addLong(numbers.getOne());
+
+        return;
+    }
+
+    method void dispose(){
+        // Free Memory
+        do Memory.deAlloc(this);
+        return;
+    }
+}

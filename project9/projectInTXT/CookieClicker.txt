@@ -41,7 +41,7 @@ class CookieClicker {
 
         // Initialize amount of cookies user starts with
         let cookies = LongNum.new(); // Initialize cookies
-        // do cookies.addLong(numbers.getFiveMillion()); // Add 5 million cookies
+        do cookies.addLong(numbers.getFiveMillion()); // Add 5 million cookies
 
         // Initialize cookies per second
         let cookiesPerSecond = LongNum.new(); 
@@ -136,11 +136,6 @@ class CookieClicker {
                             do ScoreBoard.printCookies(cookies); // Print the new cookies count
                             // let displayVisualOfCookies = true; // Set flag to display cookies
                         }
-                    }
-                    // Secret master key to add 5,000,000 cookies (for demonstration purposes)
-                    if (key = 115) {//S key pressed
-                        do cookies.addLong(numbers.getFiveMillion()); // Add 5 million cookies
-                        do ScoreBoard.printCookies(cookies); // Print the new cookies count
                     }
                     if (key = 32) { // Spacebar is pressed
                         do cookies.addLong(cookiesPerClick); // Add one cookie
