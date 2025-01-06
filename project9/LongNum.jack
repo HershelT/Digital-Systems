@@ -121,9 +121,17 @@ class LongNum {
             }
         }
         
-        // Perform subtraction similar to a chip
+        // Perform subtraction similar to a chip (do not use function to increase speed)
+        // Example: 8/3 = 8 (- 3 - 3) = 1 (cant subtract anyore so final answer is 2 because we subtracted 3 twice)
         while (greaterThanLong(other)) {
-            do subtractLong(other);
+            // Same function as subtracLong()
+            let rightSide = rightSide - other.getRightSide();
+            if (rightSide < 0) {
+                let leftSide = leftSide - 1;
+                let rightSide = rightSide + 10000;
+            }
+            let leftSide = leftSide - other.getLeftSide();
+            // edit our counter to see how many times it divides
             do zero.add(1);
         }
         do set(zero);
@@ -151,16 +159,22 @@ class LongNum {
                 do Memory.deAlloc(zero);
                 do Memory.deAlloc(temp);
                 return;
-            }
-              
+            }     
         }
         do zero.add(1);
         do temp.set(this);
         
-        // Perform addition similar to a chip
-        // ExampleL: 5*3 = 5 + 5 + 5
+        // Perform addition similar to a chip (do not use function call to increase speed)
+        // Example: 5*3 = 5 + 5 + 5
         while (other.greaterThanLong(zero)) {
-            do addLong(temp);
+            // same function as addLong()
+            let rightSide = rightSide + temp.getRightSide();
+            if (rightSide > 9999) {
+                let leftSide = leftSide + 1;
+                let rightSide = rightSide - 10000;
+            }
+            let leftSide = leftSide + temp.getLeftSide();
+            // edit our counter to end while loop 
             do zero.add(1);
         }
 

@@ -14,9 +14,6 @@ class CookieClicker {
     field int cookieRow; // Row where the cookie will be drawn
     field boolean isDrawingFullCookie; //Flag to track if cookie is pressed
 
-    //Displays cookie count at once
-    field boolean displayVisualOfUpgrades; //Flag to track if cookie is pressed
-
     //Prev ent spamming with checking if any key is pressed
     field boolean isAnyKeyPressed; // Flag to track if any key is pressed
     field boolean hasAnyUpgrade;
@@ -44,7 +41,7 @@ class CookieClicker {
 
         // Initialize amount of cookies user starts with
         let cookies = LongNum.new(); // Initialize cookies
-        // do cookies.addLong(numbers.getFiveMillion()); // Add 5 million cookies
+        do cookies.addLong(numbers.getFiveMillion()); // Add 5 million cookies
 
         // Initialize cookies per second
         let cookiesPerSecond = LongNum.new(); 
@@ -67,10 +64,6 @@ class CookieClicker {
         // Variable for flickering cookie
         let fullCookieTimer = 0;
         let isDrawingFullCookie = false; 
-
-        // Flags to display visuals of current cookie count and upgrades
-        let displayVisualOfUpgrades = true; // Initialize to false
-
 
         // Timer to count how many seconds have passed (45 frames = 1 second)
         let globalTimer = 0;
@@ -134,7 +127,7 @@ class CookieClicker {
                 if (~isAnyKeyPressed) { // If no key was pressed before
                     let isAnyKeyPressed = true; // Set flag to true
                     // If p is pressed multile cookiesPerClick by two and update cost to purchase next upgrade
-                    if (key = 112) {
+                    if (key = 112) { // Lettter p is pressed
                         if (cookies.greaterThanOrEqualLong(cookiesPerClickCost)) {
                             do cookies.subtractLong(cookiesPerClickCost); // Deduct cost
                             do cookiesPerClick.multiplyLong(numbers.getTwo()); // Multiply cookies per click by two
@@ -144,11 +137,10 @@ class CookieClicker {
                             // let displayVisualOfCookies = true; // Set flag to display cookies
                         }
                     }
-                    if (key = 32) { // Spacebar iis pressed
+                    if (key = 32) { // Spacebar is pressed
                         do cookies.addLong(cookiesPerClick); // Add one cookie
                         do ScoreBoard.printCookies(cookies); // Print the new cookies count
                         let isDrawingFullCookie = true; // Set flag to draw full cookie
-                        // let displayVisualOfCookies = true; // Set flag to display cookies
                         let fullCookieTimer = 0; // Reset timer
                     }
                     // Handle logic for pressing keys to buy upgrades
@@ -163,11 +155,11 @@ class CookieClicker {
                                     if (~hasAnyUpgrade) {
                                         let hasAnyUpgrade = true; // Set flag to true
                                     }
+                                    let key = i; // The key that was pressed
                                     // Perform operation to Trigger build Upgrade and update CPS
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
                                     do cookiesPerSecond.addLong(upgradeElement.getCPS()); // Add CPS from upgrade to cookies per second
-                                    let displayVisualOfUpgrades = true; // Set flag to display upgrades
-                                    let key = i; // The key that was pressed
+                                    do ScoreBoard.printUpgrades(numbers, cookiesPerSecond, upgrades, key);
                                     let i = totalAmountOfUpgrades; // Break out of loop
                                 }
                             }
@@ -200,11 +192,6 @@ class CookieClicker {
                     do CookieDrawings.drawBigPressedCookie(screenMid + (cookieRow * 32));
                     let fullCookieTimer = 0; // Reset timer
                 }
-            }
-            // Display new visual for new upgrades added
-            if (displayVisualOfUpgrades) {
-                do ScoreBoard.printUpgrades(numbers, cookiesPerSecond, upgrades, key);
-                let displayVisualOfUpgrades = false;
             }
             
             // Create a seconds counter where every 45 frames is one second

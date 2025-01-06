@@ -32,6 +32,8 @@ class ScoreBoard {
         // / Display Cookies per Second
         do Output.moveCursor(12,14);
         do Output.printString("CPS: ");
+        do Output.moveCursor(13,14);
+        do Output.printString("0");
         do Output.moveCursor(14,14);
         do Output.printString("-------------------------------------------------");
         
