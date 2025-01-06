@@ -18,7 +18,18 @@ class ScoreBoard {
         do Output.printString("CPS: ");
         
         // Draw keys
-        // do Output.
+        do Output.moveCursor(15, 14);
+        do Output.printString("C:");
+        do Output.moveCursor(16, 14);
+        do Output.printString("G:");
+        do Output.moveCursor(18, 14);
+        do Output.printString("F:");
+        do Output.moveCursor(19, 14);
+        do Output.printString("M:");
+        do Output.moveCursor(21, 14);
+        do Output.printString("W:");
+        do Output.moveCursor(22, 14);
+        do Output.printString("B:");
 
         // Display the template for all information
         do Output.moveCursor(0,0);
@@ -58,9 +69,8 @@ class ScoreBoard {
 
     // Print the upgrades
     function void printUpgrades(LongNumbers numbers, LongNum cps, Array upgrades, int index) {
-        // var LongNum counter;
+        // Set variables
         var LongNum tempNum;
-        var int i; //used for while loop
         var int position; //Store position of drawing elements
         var Upgrades upgrade; //Store the current upgrade elements
         
@@ -69,40 +79,29 @@ class ScoreBoard {
         do cps.toString();
         // Output the number of upgrades
         let tempNum = LongNum.new();
-        // let counter = LongNum.new();
-        let i = 0; // Counter for while loop (current upgrade element)
-        let position = 2; // Where to print to screen
-        while (i < 6) {
-            // do counter.set(numbers.getZero());
-            // Get current Upgrade to manage
-            // if (i = index) {
-                // Print the count of the upgrade
-                let upgrade = upgrades[i];
-                do Output.moveCursor(position, 20);
-                do tempNum.set(upgrade.getAmount());
-                do tempNum.toString();
-                // Print the upgrades icons by how many there are
-                // Set a hard limit of only showing 25 (that is what fits and don't need to display more)
-                if (tempNum.getRightSide() > 0) {
-                    if (tempNum.getRightSide() < 24) {
-                        do UpgradeDrawings.drawAtEle(i, (32*(position+8)*16) + tempNum.getRightSide() + 7);
-                    }
-                }
-                // Print the cost of the upgrade
-                do Output.moveCursor(position, 30);
-                do tempNum.set(upgrade.getCost());
-                do tempNum.toString();                
-            // }
-            let i = i + 1;
-            let position = position + 1;
+        let position = 2 + index; // Where to print to screen
+        let upgrade = upgrades[index];
+        // Print the cost of the upgrade
+        do Output.moveCursor(position, 30);
+        do tempNum.set(upgrade.getCost());
+        do tempNum.toString();  
+        // Print the count of the upgrade
+        do Output.moveCursor(position, 20);
+        do tempNum.set(upgrade.getAmount());
+        do tempNum.toString();
+        // Print the upgrades icons by how many there are
+        // Set a hard limit of only showing 25 (that is what fits and don't need to display more)
+        let index = tempNum.getRightSide();
+        if (index > 0) {
+            if (index < 24) {
+                do UpgradeDrawings.drawAtEle((position-2), (32*(position+8)*16) + index + 7);
+            }
         }
-
+        
         // Free memory
-        // do Memory.deAlloc(counter);
-        // do Memory.deAlloc(tempNum);
-        // do Memory.deAlloc(i);
-        // do Memory.deAlloc(position);
-        // do Memory.deAlloc(upgrade);
+        do Memory.deAlloc(tempNum);
+        do Memory.deAlloc(position);
+        do Memory.deAlloc(upgrade);
 
 
         return;
