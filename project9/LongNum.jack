@@ -12,6 +12,18 @@ class LongNum {
         return this;
     }
 
+    method LongNum get() {
+        return this;
+    }
+
+    method int getLeftSide() {
+        return leftSide;
+    }
+
+    method int getRightSide() {
+        return rightSide;
+    }
+    
     // Add two longs
     method void addLong(LongNum other) {
         // Add the right side
@@ -44,9 +56,6 @@ class LongNum {
         return;
     }
 
-    method LongNum get() {
-        return this;
-    }
 
     // Set the value of the long
     method void set(LongNum other) {
@@ -242,13 +251,6 @@ class LongNum {
 
 
 
-    method int getLeftSide() {
-        return leftSide;
-    }
-
-    method int getRightSide() {
-        return rightSide;
-    }
 
     method void toString() {
         // Total zeros before right side

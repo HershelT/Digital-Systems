@@ -8,6 +8,21 @@ function LongNum.new 0
     pop this 1
     push pointer 0
     return
+function LongNum.get 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    return
+function LongNum.getLeftSide 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    return
+function LongNum.getRightSide 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
 function LongNum.addLong 0
     push argument 0
     pop pointer 0
@@ -79,11 +94,6 @@ label LongNum_4
     goto LongNum_4
 label LongNum_5
     push constant 0
-    return
-function LongNum.get 0
-    push argument 0
-    pop pointer 0
-    push pointer 0
     return
 function LongNum.set 0
     push argument 0
@@ -497,16 +507,6 @@ label LongNum_55
 label LongNum_54
 label LongNum_52
     push constant 0
-    return
-function LongNum.getLeftSide 0
-    push argument 0
-    pop pointer 0
-    push this 0
-    return
-function LongNum.getRightSide 0
-    push argument 0
-    pop pointer 0
-    push this 1
     return
 function LongNum.toString 3
     push argument 0

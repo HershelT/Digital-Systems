@@ -111,7 +111,7 @@ class CookieClicker {
                 // let cookieop = ;
                 do cookies.addLong(cps());
                 let displayVisualOfCookies = true;
-                let isDrawingFullCookie = true;
+                // let isDrawingFullCookie = true;
             }
         }
         return;

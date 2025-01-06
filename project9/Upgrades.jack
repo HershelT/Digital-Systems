@@ -59,8 +59,8 @@ class Upgrades {
 
 
         do tempParentesis.multiplyLong(numbers.getFifteen());
-
-        do costOfUpgrade.addLong(numbers.getFifteen());
+        // Complete equation from above
+        do costOfUpgrade.addLong(tempParentesis);
 
 
         // Update count by adding one
@@ -76,14 +76,3 @@ class Upgrades {
         return;
     }
 }
-        // do division without divideLong call
-        // while (tempCost.greaterThanLong(numbers.getOneHundred())) {
-        //     do tempCost.subtractLong(numbers.getOneHundred());
-        //     let divide = divide + 1;
-        // }
-        // let tempCost = numbers.getZero();
-        // do tempCost.add(divide);
-        // while (tempAmount.lessThanLong(tempMulti)) {
-        //     do tempAmount.addLong(numbers.getOne());
-        //     do tempParentesis.addLong(tempCost);
-        // }

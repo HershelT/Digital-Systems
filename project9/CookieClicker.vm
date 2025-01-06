@@ -215,9 +215,6 @@ function CookieClicker.handleUpgradeLogic 0
     push constant 1
     neg
     pop this 6
-    push constant 1
-    neg
-    pop this 5
     goto CookieClicker_2
 label CookieClicker_3
 label CookieClicker_2
