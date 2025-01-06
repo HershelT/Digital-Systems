@@ -166,8 +166,8 @@ class LongNumbers {
 
 
 
-    method void deAlloc(int amount) {
-        // Memory.deAlloc(amount);
+    method void deAlloc() {
+        do Memory.deAlloc(this);
         return;
     }
 }

@@ -268,7 +268,7 @@ class LongNum {
         if (leftSide > 0) {
             do Output.printInt(leftSide);
             let i = 0;
-            // Add the zeros before the next number
+            // Add the zeros before the next number (if none then skip)
             while (i < totalZerosBeforeRight) {
                 do Output.printString("0");
                 let i = i + 1;

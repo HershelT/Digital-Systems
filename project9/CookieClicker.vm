@@ -192,7 +192,7 @@ function CookieClicker.new 0
     pop that 0
     push pointer 0
     return
-function CookieClicker.run 6
+function CookieClicker.run 4
     push argument 0
     pop pointer 0
     call ScoreBoard.printTheText 0
@@ -270,20 +270,15 @@ label CookieClicker_8
     pop pointer 1
     push that 0
     pop local 3
-    call LongNum.new 0
-    pop local 5
-    push local 5
+    push this 0
     push local 3
     call Upgrades.getCost 1
-    call LongNum.addLong 2
-    pop temp 0
-    push this 0
-    push local 5
     call LongNum.greaterThanOrEqualLong 2
     not
     if-goto CookieClicker_13
     push this 0
-    push local 5
+    push local 3
+    call Upgrades.getCost 1
     call LongNum.subtractLong 2
     pop temp 0
     push this 9
@@ -299,23 +294,18 @@ label CookieClicker_14
     push local 3
     call Upgrades.getUpgrade 1
     pop temp 0
-    push local 5
-    push local 3
-    call Upgrades.getOriginalCPS 1
-    call LongNum.set 2
-    pop temp 0
     push this 1
-    push local 5
+    push local 3
+    call Upgrades.getCPS 1
     call LongNum.addLong 2
     pop temp 0
     push constant 1
     neg
     pop this 7
+    push local 2
+    pop local 0
     push this 11
     pop local 2
-    push constant 5
-    call Sys.wait 1
-    pop temp 0
     goto CookieClicker_12
 label CookieClicker_13
 label CookieClicker_12
@@ -416,7 +406,8 @@ label CookieClicker_24
     push this 2
     push this 1
     push this 13
-    call ScoreBoard.printUpgrades 3
+    push local 0
+    call ScoreBoard.printUpgrades 4
     pop temp 0
     push constant 0
     pop this 7

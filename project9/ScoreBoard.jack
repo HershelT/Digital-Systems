@@ -5,7 +5,7 @@ class ScoreBoard {
     function void printCookies(LongNum cookies) {
         do Output.moveCursor(10, 14);
         do cookies.toString();
-        // do Output.printString("         ");
+        do Output.printString("         ");
         return;
     }
     // // Erase the cookie line
@@ -30,17 +30,17 @@ class ScoreBoard {
         do Output.printString("-----------------||-------||---------------||-------");
         // Display the template
         do Output.moveCursor(2, 0);
-        do Output.printString("'C' - Cursors    ||       ||               ||      ");
+        do Output.printString("'C' - Cursors    || 0     ||  15           ||      ");
         do Output.moveCursor(3, 0);
-        do Output.printString("'G' - Grandmas   ||       ||               ||      ");
+        do Output.printString("'G' - Grandmas   || 0     ||  100          ||      ");
         do Output.moveCursor(4, 0);
-        do Output.printString("'F' - Farms      ||       ||               ||      ");
+        do Output.printString("'F' - Farms      || 0     ||  1000         ||      ");
         do Output.moveCursor(5, 0);
-        do Output.printString("'M' - Mines      ||       ||               ||      ");
+        do Output.printString("'M' - Mines      || 0     ||  5000         ||      ");
         do Output.moveCursor(6, 0);
-        do Output.printString("'W' - Warehouses ||       ||               ||      ");
+        do Output.printString("'W' - Warehouses || 0     ||  10000        ||      ");
         do Output.moveCursor(7, 0);
-        do Output.printString("'B' - Banks      ||       ||               ||      ");
+        do Output.printString("'B' - Banks      || 0     ||  100000       ||      ");
         // Draw the icons
         do UpgradeDrawings.drawAtEle(0, 439); // Equation = 32*1*13 + 2 + 21 = 439
         do UpgradeDrawings.drawAtEle(1, 792); // Equation = 32*2*12 + 1 + 23 = 792
@@ -60,9 +60,8 @@ class ScoreBoard {
     }
 
     // Print the upgrades
-    function void printUpgrades(LongNumbers numbers, LongNum cps, Array upgrades) {
+    function void printUpgrades(LongNumbers numbers, LongNum cps, Array upgrades, int index) {
         var LongNum counter;
-        var int offset;
         var LongNum tempNum;
         var int i; //used for while loop
         var int position; //Store position of drawing elements
@@ -77,10 +76,12 @@ class ScoreBoard {
         let position = 2; // Where to print to screen
         while (i < 6) {
             // Get current Upgrade to manage
-            let upgrade = upgrades[i];
-            do Output.moveCursor(position, 20);
-            let tempNum = upgrade.getAmount();
-            do tempNum.toString();
+            if (i = index) {
+                let upgrade = upgrades[i];
+                do Output.moveCursor(position, 20);
+                let tempNum = upgrade.getAmount();
+                do tempNum.toString();
+            }
             let i = i + 1;
             let position = position + 1;
         }
@@ -90,12 +91,14 @@ class ScoreBoard {
         let i = 0; // Counter for while loop (current upgrade element)
         let position = 2; // Where to print to screen
         while (i < 6) {
-            // Get current Upgrade to manage
-            let upgrade = upgrades[i];
-            do Output.moveCursor(position, 30);
-            let tempNum = LongNum.new();
-            let tempNum = upgrade.getCost();
-            do tempNum.toString();
+            if (i = index) {
+                // Get current Upgrade to manage
+                let upgrade = upgrades[i];
+                do Output.moveCursor(position, 30);
+                let tempNum = LongNum.new();
+                let tempNum = upgrade.getCost();
+                do tempNum.toString();
+            }
             if (i = 16) {
                 let position = position + 1;
             }
@@ -111,21 +114,22 @@ class ScoreBoard {
         let i = 0; // Counter for while loop (current upgrade element)
         let position = 10; // Where to print to screen
         while (i < 6) {
-            // Get current Upgrade to manage
-            let upgrade = upgrades[i];
-
-            let counter = LongNum.new();
-            let tempNum = LongNum.new();
-            let tempNum = upgrade.getAmount();
-            while (counter.lessThanLong(numbers.getTwentyFive())) {
-                if (tempNum.greaterThanLong(counter)) {
-                    // Draw the correct purchased upgrade
-                    do UpgradeDrawings.drawAtEle(i, (32*position*16) + counter.getRightSide() + 7);
-                }
-                else {
-                    let counter = numbers.getOneHundred();
-                }
-                do counter.addLong(numbers.getOne());
+            if (i = index) {
+                // Get current Upgrade to manage
+                let upgrade = upgrades[i];
+                let counter = LongNum.new();
+                let tempNum = LongNum.new();
+                let tempNum = upgrade.getAmount();
+                while (counter.lessThanLong(numbers.getTwentyFive())) {
+                    if (tempNum.greaterThanLong(counter)) {
+                        // Draw the correct purchased upgrade
+                        do UpgradeDrawings.drawAtEle(i, (32*position*16) + counter.getRightSide() + 7);
+                    }
+                    else {
+                        let counter = numbers.getOneHundred();
+                    }
+                    do counter.addLong(numbers.getOne());
+                }   
             }
             let i = i + 1;
             let position = position + 1;
@@ -137,6 +141,7 @@ class ScoreBoard {
         do Memory.deAlloc(i);
         do Memory.deAlloc(position);
         do Memory.deAlloc(upgrade);
+
 
         return;
     }

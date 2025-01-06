@@ -21,8 +21,8 @@ class CookieClicker {
     // count of upgrades
     field int fullCookieTimer; //Timer to track how long the cookie is shown for after pressed
 
-    // Store keys in an array and corresponding upgrades
-    field int totalAmountOfUpgrades; // Total amount of upgrades - keys you can get
+    // Map the keys from keyboard to an associated upgrade
+    field int totalAmountOfUpgrades; // Total amount of upgrades  you can get
     field Array keys;
     field Array upgrades;
     
@@ -61,7 +61,7 @@ class CookieClicker {
 
         // Flags to display visuals
         let displayVisualOfCookies = true; // Initialize to false
-        let displayVisualOfUpgrades = true;
+        let displayVisualOfUpgrades = true; // Initialize to false
 
 
         // Timer to count how many seconds have passed (45 frames = 1 second)
@@ -106,8 +106,8 @@ class CookieClicker {
         var int frameCounter;
         var int i;
         var Upgrades upgradeElement;
-        var LongNum tempLongNum;
-        var LongNum tempCost;
+        // var LongNum tempLongNum;
+        // var LongNum tempCost;
         // Draw text onto scren that will stay the entire game
         do ScoreBoard.printTheText(); // Print the text
 
@@ -127,7 +127,6 @@ class CookieClicker {
                     let isAnyKeyPressed = true; // Set flag to true
                     if (key = 32) { // Spacebar iis pressed
                         do cookies.addLong(numbers.getOne()); // Add one cookie
-                        // let cookies = cookies + 1;
                         let isDrawingFullCookie = true; // Set flag to draw full cookie
                         let displayVisualOfCookies = true; // Set flag to display cookies
                         let fullCookieTimer = 0; // Reset timer
@@ -135,25 +134,20 @@ class CookieClicker {
                     // Handle logic for pressing keys to buy upgrades
                     else {
                         while (i < totalAmountOfUpgrades) {
-                            // If we are selecting any of the keys
+                            // If we are selecting any of the keys, go to upgrade mapped to that key
                             if (key = keys[i]) {
                                 let upgradeElement = upgrades[i];
-                                // create a temp long to store the cost of the upgrade
-                                let tempCost = LongNum.new();
-                                do tempCost.addLong(upgradeElement.getCost()); // Get the cost of the upgrade
-
                                 // Check if we have the correct amount of cookies to buy the upgrade
-                                if (cookies.greaterThanOrEqualLong(tempCost)) {
-                                    do cookies.subtractLong(tempCost); // Deduct cost
+                                if (cookies.greaterThanOrEqualLong(upgradeElement.getCost())) {
+                                    do cookies.subtractLong(upgradeElement.getCost()); // Deduct cost
                                     if (~hasAnyUpgrade) {
                                         let hasAnyUpgrade = true; // Set flag to true
                                     }
                                     do upgradeElement.getUpgrade(); // Upgrade cost and add an upgrade
-                                    do tempCost.set(upgradeElement.getCPS()); // Get the cost of the upgrade
-                                    do cookiesPerSecond.addLong(tempCost); // Add cookies per second
+                                    do cookiesPerSecond.addLong(upgradeElement.getCPS()); // Add CPS from upgrade to cookies per second
                                     let displayVisualOfUpgrades = true; // Set flag to display upgrades
+                                    let key = i; // The key that was pressed
                                     let i = totalAmountOfUpgrades; // Break out of loop
-                                    do Sys.wait(5); // Wait for 5 frames
                                 }
                             }
                             let i = i + 1;
@@ -195,7 +189,7 @@ class CookieClicker {
 
             if (displayVisualOfUpgrades) {
                 // Display and update the visuals of the upgrades
-                do ScoreBoard.printUpgrades(numbers, cookiesPerSecond, upgrades);
+                do ScoreBoard.printUpgrades(numbers, cookiesPerSecond, upgrades, key);
                 let displayVisualOfUpgrades = false;
             }
 

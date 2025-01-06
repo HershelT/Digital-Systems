@@ -2,6 +2,10 @@ function Upgrades.new 0
     push constant 6
     call Memory.alloc 1
     pop pointer 0
+    call LongNum.new 0
+    pop this 4
+    call LongNum.new 0
+    pop this 5
     call LongNumbers.new 0
     pop this 1
     call LongNum.new 0
@@ -34,7 +38,7 @@ function Upgrades.getAmount 0
     pop pointer 0
     push this 2
     return
-function Upgrades.getOriginalCPS 0
+function Upgrades.getCPS 0
     push argument 0
     pop pointer 0
     push this 3
@@ -42,13 +46,9 @@ function Upgrades.getOriginalCPS 0
 function Upgrades.getUpgrade 0
     push argument 0
     pop pointer 0
-    call LongNum.new 0
-    pop this 5
-    call LongNum.new 0
-    pop this 4
     push this 4
     push this 0
-    call LongNum.addLong 2
+    call LongNum.set 2
     pop temp 0
     push this 4
     push this 1
@@ -62,7 +62,7 @@ function Upgrades.getUpgrade 0
     pop temp 0
     push this 5
     push this 4
-    call LongNum.addLong 2
+    call LongNum.set 2
     pop temp 0
     push this 5
     push this 1
