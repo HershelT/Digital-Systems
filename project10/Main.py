@@ -31,6 +31,7 @@ class JackTokenizer:
         # self.current_token = ""
         self.current_line = 0
         self.tokenize() # Tokenize the input file
+        
 
     # Go through each line and add each token to the list
     def tokenize(self):
@@ -121,17 +122,8 @@ class ComplilationEngine:
         self.write(f"<type> {self.tokenizer.identifier()} </type>")
         self.advance()
 
-    # writeKeyword = lambda self: self.write( f"<keyword> {self.tokenizer.keyWord()} </keyword>"), advance()
-    # writeSymbol = lambda self: self.write( f"<symbol> {self.tokenizer.symbol()} </symbol>"), advance()
-    # writeIdentifier = lambda self: self.write( f"<identifier> {self.tokenizer.identifier()} </identifier>"), advance()
-    # writeIntVal = lambda self: self.write( f"<integerConstant> {self.tokenizer.intVal()} </integerConstant>"), advance()
-    # writeStringVal = lambda self: self.write( f"<stringConstant> {self.tokenizer.stringVal()} </stringConstant>"), advance()
-    # writeType = lambda self: self.write( f"<type> {self.tokenizer.identifier()} </type>"), advance()
-
 
     # Compiles a complete class
-
-
     def compileClass(self):
         self.write("<class>")
         self.indent += 1
@@ -162,6 +154,8 @@ class ComplilationEngine:
         # If keyword is not a type, then it's an identifier
         if self.tokenizer.tokenType() == "IDENTIFIER":
             self.writeIdentifier()
+        elif self.tokenizer.tokenType() == "KEYWORD":
+            self.writeKeyword()
         else:
             self.writeType()
 
@@ -185,8 +179,11 @@ class ComplilationEngine:
         self.write("<subroutineDec>")
         self.indent += 1
         self.writeKeyword()
-        
-        self.writeKeyword()
+        # Check if keyword is a type
+        if self.tokenizer.tokenType() == "KEYWORD":
+            self.writeKeyword()
+        else:
+            self.writeIdentifier()
         
         self.writeIdentifier()
         
@@ -209,9 +206,14 @@ class ComplilationEngine:
                     break
                 elif self.tokenizer.symbol() == ",":
                     self.writeSymbol()
-            elif self.tokenizer.tokenType() == "IDENTIFIER":
-                self.writeType()
+                else:
+                    self.writeSymbol()
+            else:
+                self.writeKeyword()
                 self.writeIdentifier()
+            
+            
+
         self.indent -= 1
         self.write("</parameterList>")
     
@@ -387,6 +389,7 @@ class ComplilationEngine:
         self.indent += 1
         self.compileTerm()
         while self.tokenizer.hasMoreTokens():
+            print("inside expression", self.tokenizer.current_token)
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() in ["+", "-", "*", "/", "&", "|", "<", ">", "="]:
                     # If we have > or <, we need to trnslate to &gt; and &lt;
@@ -396,6 +399,11 @@ class ComplilationEngine:
                     elif self.tokenizer.symbol() == ">":
                         self.write("<symbol> &gt; </symbol>")
                         self.advance()
+                    elif self.tokenizer.symbol() == "&":
+                        self.write("<symbol> &amp; </symbol>")
+                        self.advance()
+                    # elif self.tokenizer.symbol() == "=":
+
                     else:
                         self.writeSymbol()
                     
@@ -404,6 +412,8 @@ class ComplilationEngine:
                     self.compileTerm()
                 else:
                     break
+            else:
+                break
         self.indent -= 1
         self.write("</expression>")
     
@@ -416,14 +426,20 @@ class ComplilationEngine:
         self.indent += 1
         while self.tokenizer.hasMoreTokens():
             if self.tokenizer.tokenType() == "SYMBOL":
-                if self.tokenizer.symbol() in ["(", "-", "~"]:
+                if self.tokenizer.symbol() == "(":
                     self.writeSymbol()
                     self.compileExpression()
                     self.writeSymbol()
                     break
-                else:
-                    # self.writeSymbol()
+                elif self.tokenizer.symbol() in ["-", "~"]:
+                    self.writeSymbol()
+                    self.compileTerm()
                     break
+
+                else:
+                    break    
+                # # self.writeSymbol()
+                    # break
             elif self.tokenizer.tokenType() == "IDENTIFIER":
                 self.writeIdentifier()
                 if self.tokenizer.tokenType() == "SYMBOL":
@@ -458,12 +474,17 @@ class ComplilationEngine:
         self.write("<expressionList>")
         self.indent += 1
         while self.tokenizer.hasMoreTokens():
+            print(self.tokenizer.current_token)
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() == ")":
                     break
+                elif self.tokenizer.symbol() == "(":
+                    self.compileExpression()
                 elif self.tokenizer.symbol() == ",":
                     self.writeSymbol()
+                    self.compileExpression()
             else:
+                print("Compiing list")
                 self.compileExpression()
             
         self.indent -= 1
