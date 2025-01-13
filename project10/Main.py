@@ -391,7 +391,7 @@ class ComplilationEngine:
             
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() == ";":
-                    # self.writeSymbol()
+                    self.writeSymbol()
                     break
                 else:
                     self.writeSymbol()
