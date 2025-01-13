@@ -3,22 +3,16 @@
 
 import re
 import sys
+import os
 
 
-tokens = {
-    "KEYWORD": ["class", "constructor", "function", "method", "field", "static", "var", "int", "char", "boolean", "void", "true", "false", "null", "this", "let", "do", "if", "else", "while", "return"],
-    "SYMBOL": ["{", "}", "(", ")", "[", "]", ".", ",", ";", "+", "-", "*", "/", "&", "|", "<", ">", "=", "~"],
-    "INT_CONST": [],
-    "STRING_CONST": [],
-    "IDENTIFIER": []
-}
-
-
-
-
-
-
-
+# tokens = {
+#     "KEYWORD": ["class", "constructor", "function", "method", "field", "static", "var", "int", "char", "boolean", "void", "true", "false", "null", "this", "let", "do", "if", "else", "while", "return"],
+#     "SYMBOL": ["{", "}", "(", ")", "[", "]", ".", ",", ";", "+", "-", "*", "/", "&", "|", "<", ">", "=", "~"],
+#     "INT_CONST": [],
+#     "STRING_CONST": [],
+#     "IDENTIFIER": []
+# }
 
 
 class JackTokenizer:
@@ -44,10 +38,10 @@ class JackTokenizer:
             tokens = re.findall(r'"[^"]*"|\w+[:?]?|[\d]+|[\W]', line)
             for token in tokens:
                 if token.startswith('"') and token.endswith('"'):
-                    print(token)
+                    # print(token)
                     self.tokens.append(token)
                 elif token.strip():
-                    print(token)
+                    # print(token)
                     self.tokens.append(token.strip())
         self.current_token = self.tokens[0]
     # Are there more tokens in the input
@@ -226,7 +220,7 @@ class ComplilationEngine:
         self.write("<subroutineBody>")
         self.indent += 1
         self.writeSymbol()
-        print(self.tokenizer.tokens) 
+        # print(self.tokenizer.tokens) 
         while self.tokenizer.hasMoreTokens():
             if self.tokenizer.tokenType() == "KEYWORD":
                 if self.tokenizer.keyWord() == "var":
@@ -271,7 +265,7 @@ class ComplilationEngine:
         self.write("<statements>")
         self.indent += 1
         while self.tokenizer.hasMoreTokens():
-            print(self.tokenizer.current_token)
+            # print(self.tokenizer.current_token)
             if self.tokenizer.tokenType() == "KEYWORD":
                 if self.tokenizer.keyWord() == "let":
                     self.compileLet()
@@ -395,7 +389,18 @@ class ComplilationEngine:
         while self.tokenizer.hasMoreTokens():
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() in ["+", "-", "*", "/", "&", "|", "<", ">", "="]:
-                    self.writeSymbol()
+                    # If we have > or <, we need to trnslate to &gt; and &lt;
+                    if self.tokenizer.symbol() == "<":
+                        self.write("<symbol> &lt; </symbol>")
+                        self.advance()
+                    elif self.tokenizer.symbol() == ">":
+                        self.write("<symbol> &gt; </symbol>")
+                        self.advance()
+                    else:
+                        self.writeSymbol()
+                    
+                    
+                    # self.writeSymbol()
                     self.compileTerm()
                 else:
                     break
@@ -417,6 +422,7 @@ class ComplilationEngine:
                     self.writeSymbol()
                     break
                 else:
+                    # self.writeSymbol()
                     break
             elif self.tokenizer.tokenType() == "IDENTIFIER":
                 self.writeIdentifier()
@@ -465,10 +471,21 @@ class ComplilationEngine:
 
 # How to run: python Main.py file.jack
 if __name__ == "__main__":
-    file = sys.argv[1]
-    tokenizer = JackTokenizer(file)
-    output = open(file.replace(".jack", "T.xml"), "w")
-    engine = ComplilationEngine(tokenizer, output)
-    output.close()
+    path = sys.argv[1]
+    files = []
+
+    if os.path.isdir(path):
+        for file in os.listdir(path):
+            if file.endswith(".jack"):
+                files.append(os.path.join(path, file))
+    else:
+        files.append(path)
+
+    print(files)
+    for file in files:
+        tokenizer = JackTokenizer(file)
+        output = open(file.replace(".jack", "T.xml"), "w")
+        engine = ComplilationEngine(tokenizer, output)
+        output.close()
 
     
