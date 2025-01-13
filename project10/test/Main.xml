@@ -20,13 +20,13 @@
       </varDec>
       <varDec>
         <keyword> var </keyword>
-        <identifier> int </identifier>
+        <keyword> int </keyword>
         <identifier> length </identifier>
         <symbol> ; </symbol>
       </varDec>
       <varDec>
         <keyword> var </keyword>
-        <identifier> int </identifier>
+        <keyword> int </keyword>
         <identifier> i </identifier>
         <symbol> , </symbol>
         <identifier> sum </identifier>
@@ -95,7 +95,7 @@
             <term>
               <identifier> i </identifier>
             </term>
-            <symbol> < </symbol>
+            <symbol> &lt; </symbol>
             <term>
               <identifier> length </identifier>
             </term>
@@ -179,7 +179,7 @@
             <term>
               <identifier> i </identifier>
             </term>
-            <symbol> < </symbol>
+            <symbol> &lt; </symbol>
             <term>
               <identifier> length </identifier>
             </term>
@@ -276,9 +276,10 @@
         </doStatement>
         <returnStatement>
           <keyword> return </keyword>
+          <symbol> ; </symbol>
         </returnStatement>
       </statements>
-      <symbol> ; </symbol>
+      <symbol> } </symbol>
     </subroutineBody>
   </subroutineDec>
   <symbol> } </symbol>
