@@ -431,10 +431,10 @@
               <expression>
                 <term>
                   <identifier> size </identifier>
-                  <symbol> - </symbol>
-                  <term>
-                    <integerConstant> 2 </integerConstant>
-                  </term>
+                </term>
+                <symbol> - </symbol>
+                <term>
+                  <integerConstant> 2 </integerConstant>
                 </term>
               </expression>
               <symbol> ; </symbol>
@@ -564,10 +564,10 @@
               <expression>
                 <term>
                   <identifier> y </identifier>
-                  <symbol> - </symbol>
-                  <term>
-                    <integerConstant> 2 </integerConstant>
-                  </term>
+                </term>
+                <symbol> - </symbol>
+                <term>
+                  <integerConstant> 2 </integerConstant>
                 </term>
               </expression>
               <symbol> ; </symbol>
@@ -938,10 +938,10 @@
               <expression>
                 <term>
                   <identifier> x </identifier>
-                  <symbol> - </symbol>
-                  <term>
-                    <integerConstant> 2 </integerConstant>
-                  </term>
+                </term>
+                <symbol> - </symbol>
+                <term>
+                  <integerConstant> 2 </integerConstant>
                 </term>
               </expression>
               <symbol> ; </symbol>

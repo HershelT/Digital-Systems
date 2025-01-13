@@ -99,27 +99,35 @@ class ComplilationEngine:
         self.output = output
         self.indent = 0
         self.compileClass()
-    
+        self.last_token = ""
     advance = lambda self: self.tokenizer.advance()
+    
+    
     write = lambda self, text: self.output.write("  " * self.indent + text + "\n")
     # Make iall write keywords advance the tokenizer
     def writeKeyword(self):
         self.write(f"<keyword> {self.tokenizer.keyWord()} </keyword>")
+        self.last_token = self.tokenizer.keyWord()
         self.advance()
     def writeSymbol(self):
         self.write(f"<symbol> {self.tokenizer.symbol()} </symbol>")
+        self.last_token = self.tokenizer.symbol()
         self.advance()
     def writeIdentifier(self):
         self.write(f"<identifier> {self.tokenizer.identifier()} </identifier>")
+        self.last_token = self.tokenizer.identifier()
         self.advance()
     def writeIntVal(self):
         self.write(f"<integerConstant> {self.tokenizer.intVal()} </integerConstant>")
+        self.last_token = self.tokenizer.intVal()
         self.advance()
     def writeStringVal(self):
         self.write(f"<stringConstant> {self.tokenizer.stringVal()} </stringConstant>")
+        self.last_token = self.tokenizer.stringVal()
         self.advance()
     def writeType(self):
         self.write(f"<type> {self.tokenizer.identifier()} </type>")
+        self.last_token = self.tokenizer.identifier()
         self.advance()
 
 
@@ -430,16 +438,20 @@ class ComplilationEngine:
                     self.writeSymbol()
                     self.compileExpression()
                     self.writeSymbol()
+                    # self.compileTerm()
                     break
-                elif self.tokenizer.symbol() in ["-", "~"]:
+                elif self.tokenizer.symbol() == "-":
+                    if (self.last_token == "("):
+                        self.writeSymbol()
+                        self.compileTerm()
+                    break
+                elif self.tokenizer.symbol() == "~":
                     self.writeSymbol()
                     self.compileTerm()
                     break
-
                 else:
+                    # self.writeSymbol()
                     break    
-                # # self.writeSymbol()
-                    # break
             elif self.tokenizer.tokenType() == "IDENTIFIER":
                 self.writeIdentifier()
                 if self.tokenizer.tokenType() == "SYMBOL":
