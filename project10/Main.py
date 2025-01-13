@@ -170,10 +170,9 @@ class ComplilationEngine:
             self.writeIdentifier()
         else:
             self.writeType()
-        
+
         self.writeIdentifier()
         while self.tokenizer.hasMoreTokens():
-            # self.tokenizer.advance()
             if self.tokenizer.tokenType() == "SYMBOL":
                 current_symbol = self.tokenizer.symbol()    
                 if current_symbol == ";":
@@ -211,7 +210,6 @@ class ComplilationEngine:
         self.write("<parameterList>")
         self.indent += 1
         while self.tokenizer.hasMoreTokens():
-            
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() == ")":
                     break
@@ -219,7 +217,6 @@ class ComplilationEngine:
                     self.writeSymbol()
             elif self.tokenizer.tokenType() == "IDENTIFIER":
                 self.writeType()
-                
                 self.writeIdentifier()
         self.indent -= 1
         self.write("</parameterList>")
@@ -231,14 +228,12 @@ class ComplilationEngine:
         self.writeSymbol()
         print(self.tokenizer.tokens) 
         while self.tokenizer.hasMoreTokens():
-            
             if self.tokenizer.tokenType() == "KEYWORD":
                 if self.tokenizer.keyWord() == "var":
                     self.compileVarDec()
                 else:
                     break
 
-        print(self.tokenizer.tokens) 
         self.compileStatements()
         self.writeSymbol()
         self.indent -= 1
@@ -249,12 +244,14 @@ class ComplilationEngine:
         self.write("<varDec>")
         self.indent += 1
         self.writeKeyword()
-        
-        self.writeIdentifier()
-        
+        # If keyword is not a type, then it's an identifier
+        if self.tokenizer.tokenType() == "KEYWORD":
+            self.writeKeyword()
+        else:
+            self.writeIdentifier()
+
         self.writeIdentifier()
         while self.tokenizer.hasMoreTokens():
-            
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() == ";":
                     self.writeSymbol()
@@ -290,8 +287,6 @@ class ComplilationEngine:
                     break
             else:
                 break
-            
-
         self.indent -= 1
         self.write("</statements>")
 
@@ -300,10 +295,8 @@ class ComplilationEngine:
         self.write("<letStatement>")
         self.indent += 1
         self.writeKeyword()
-        
         self.writeIdentifier()
         while self.tokenizer.hasMoreTokens():
-            
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() == "[":
                     self.writeSymbol()
@@ -313,8 +306,6 @@ class ComplilationEngine:
                     self.writeSymbol()
                     self.compileExpression()
                     break
-            
-                
         self.writeSymbol()
         self.indent -= 1
         self.write("</letStatement>")
@@ -333,10 +324,8 @@ class ComplilationEngine:
         self.compileStatements()
         self.writeSymbol()
         if self.tokenizer.hasMoreTokens():
-            
             if self.tokenizer.keyWord() == "else":
                 self.writeKeyword()
-                
                 self.writeSymbol()
                 self.compileStatements()
                 self.writeSymbol()
@@ -356,6 +345,7 @@ class ComplilationEngine:
         self.writeSymbol()
         self.compileStatements()
         self.writeSymbol()
+
         self.indent -= 1
         self.write("</whileStatement>")
     
@@ -364,10 +354,8 @@ class ComplilationEngine:
         self.write("<doStatement>")
         self.indent += 1
         self.writeKeyword()
-        
         self.writeIdentifier()
         while self.tokenizer.hasMoreTokens():
-            
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() == "(":
                     self.writeSymbol()
@@ -388,7 +376,6 @@ class ComplilationEngine:
         self.indent += 1
         self.writeKeyword()
         while self.tokenizer.hasMoreTokens():
-            
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() == ";":
                     self.writeSymbol()
@@ -406,14 +393,12 @@ class ComplilationEngine:
         self.indent += 1
         self.compileTerm()
         while self.tokenizer.hasMoreTokens():
-            
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() in ["+", "-", "*", "/", "&", "|", "<", ">", "="]:
                     self.writeSymbol()
                     self.compileTerm()
                 else:
                     break
-            
         self.indent -= 1
         self.write("</expression>")
     
@@ -456,9 +441,7 @@ class ComplilationEngine:
                 self.writeStringVal()
             elif self.tokenizer.tokenType() == "KEYWORD":
                 self.writeKeyword()
-
-
-
+        
         self.indent -= 1
         self.write("</term>")
 
@@ -469,11 +452,8 @@ class ComplilationEngine:
         self.write("<expressionList>")
         self.indent += 1
         while self.tokenizer.hasMoreTokens():
-            
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() == ")":
-                    # self.writeSymbol()
-                    
                     break
                 elif self.tokenizer.symbol() == ",":
                     self.writeSymbol()
