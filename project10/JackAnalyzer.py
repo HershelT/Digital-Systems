@@ -6,15 +6,6 @@ import sys
 import os
 
 
-# tokens = {
-#     "KEYWORD": ["class", "constructor", "function", "method", "field", "static", "var", "int", "char", "boolean", "void", "true", "false", "null", "this", "let", "do", "if", "else", "while", "return"],
-#     "SYMBOL": ["{", "}", "(", ")", "[", "]", ".", ",", ";", "+", "-", "*", "/", "&", "|", "<", ">", "=", "~"],
-#     "INT_CONST": [],
-#     "STRING_CONST": [],
-#     "IDENTIFIER": []
-# }
-
-
 class JackTokenizer:
     # Constructor: opens the input .jack file /stream and gets ready to tokenize it
     def __init__(self, file):
@@ -28,7 +19,6 @@ class JackTokenizer:
                     self.lines.append(line)
         self.current_token = ""
         self.tokens = []
-        # self.current_token = ""
         self.current_line = 0
         self.tokenize() # Tokenize the input file
         
@@ -39,10 +29,8 @@ class JackTokenizer:
             tokens = re.findall(r'"[^"]*"|\w+[:?]?|[\d]+|[\W]', line)
             for token in tokens:
                 if token.startswith('"') and token.endswith('"'):
-                    # print(token)
                     self.tokens.append(token)
                 elif token.strip():
-                    # print(token)
                     self.tokens.append(token.strip())
         self.current_token = self.tokens[0]
     # Are there more tokens in the input
@@ -98,13 +86,15 @@ class ComplilationEngine:
         # File object to write the output to
         self.output = output
         self.indent = 0
-        self.compileClass()
         self.last_token = ""
+        # Start compiling the class (recursivley)
+        self.compileClass()
+    
+    # Function to advance the tokenizer
     advance = lambda self: self.tokenizer.advance()
-    
-    
+    # Function to write to the output file
     write = lambda self, text: self.output.write("  " * self.indent + text + "\n")
-    # Make iall write keywords advance the tokenizer
+    # Functions to write the different tokens
     def writeKeyword(self):
         self.write(f"<keyword> {self.tokenizer.keyWord()} </keyword>")
         self.last_token = self.tokenizer.keyWord()
@@ -141,7 +131,6 @@ class ComplilationEngine:
         
         self.writeSymbol()
         while self.tokenizer.hasMoreTokens():
-            # self.advance()
             if self.tokenizer.tokenType() == "KEYWORD":
                 if self.tokenizer.keyWord() in ["constructor", "function", "method"]:
                     self.compileSubroutine()
@@ -192,7 +181,7 @@ class ComplilationEngine:
             self.writeKeyword()
         else:
             self.writeIdentifier()
-        
+        # Write the identifier
         self.writeIdentifier()
         
         self.writeSymbol()
@@ -212,16 +201,12 @@ class ComplilationEngine:
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() == ")":
                     break
-                elif self.tokenizer.symbol() == ",":
-                    self.writeSymbol()
                 else:
                     self.writeSymbol()
             else:
                 self.writeKeyword()
                 self.writeIdentifier()
             
-            
-
         self.indent -= 1
         self.write("</parameterList>")
     
@@ -230,7 +215,6 @@ class ComplilationEngine:
         self.write("<subroutineBody>")
         self.indent += 1
         self.writeSymbol()
-        # print(self.tokenizer.tokens) 
         while self.tokenizer.hasMoreTokens():
             if self.tokenizer.tokenType() == "KEYWORD":
                 if self.tokenizer.keyWord() == "var":
@@ -275,7 +259,6 @@ class ComplilationEngine:
         self.write("<statements>")
         self.indent += 1
         while self.tokenizer.hasMoreTokens():
-            # print(self.tokenizer.current_token)
             if self.tokenizer.tokenType() == "KEYWORD":
                 if self.tokenizer.keyWord() == "let":
                     self.compileLet()
@@ -397,7 +380,6 @@ class ComplilationEngine:
         self.indent += 1
         self.compileTerm()
         while self.tokenizer.hasMoreTokens():
-            print("inside expression", self.tokenizer.current_token)
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() in ["+", "-", "*", "/", "&", "|", "<", ">", "="]:
                     # If we have > or <, we need to trnslate to &gt; and &lt;
@@ -410,13 +392,9 @@ class ComplilationEngine:
                     elif self.tokenizer.symbol() == "&":
                         self.write("<symbol> &amp; </symbol>")
                         self.advance()
-                    # elif self.tokenizer.symbol() == "=":
-
                     else:
                         self.writeSymbol()
-                    
-                    
-                    # self.writeSymbol()
+
                     self.compileTerm()
                 else:
                     break
@@ -438,7 +416,6 @@ class ComplilationEngine:
                     self.writeSymbol()
                     self.compileExpression()
                     self.writeSymbol()
-                    # self.compileTerm()
                     break
                 elif self.tokenizer.symbol() == "-":
                     if (self.last_token == "("):
@@ -450,7 +427,6 @@ class ComplilationEngine:
                     self.compileTerm()
                     break
                 else:
-                    # self.writeSymbol()
                     break    
             elif self.tokenizer.tokenType() == "IDENTIFIER":
                 self.writeIdentifier()
@@ -486,7 +462,6 @@ class ComplilationEngine:
         self.write("<expressionList>")
         self.indent += 1
         while self.tokenizer.hasMoreTokens():
-            print(self.tokenizer.current_token)
             if self.tokenizer.tokenType() == "SYMBOL":
                 if self.tokenizer.symbol() == ")":
                     break
@@ -496,7 +471,6 @@ class ComplilationEngine:
                     self.writeSymbol()
                     self.compileExpression()
             else:
-                print("Compiing list")
                 self.compileExpression()
             
         self.indent -= 1
@@ -514,10 +488,10 @@ if __name__ == "__main__":
     else:
         files.append(path)
 
-    print(files)
+    print("List of Files: ", files)
     for file in files:
         tokenizer = JackTokenizer(file)
-        output = open(file.replace(".jack", "T.xml"), "w")
+        output = open(file.replace(".jack", ".xml"), "w")
         engine = ComplilationEngine(tokenizer, output)
         output.close()
 
