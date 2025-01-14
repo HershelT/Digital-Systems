@@ -11,4 +11,4 @@
 ## What should I change in this file to make it work with my project?
 # IMPORTANT: This file assumes that the main is contained in "JackAnalyzer.py".
 #            If your main is contained elsewhere, you will need to change this.
-python3 JackAnalyzer.py $*
+python3 Main.py $*
