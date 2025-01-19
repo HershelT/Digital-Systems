@@ -494,5 +494,6 @@ if __name__ == "__main__":
         output = open(file.replace(".jack", ".xml"), "w")
         engine = ComplilationEngine(tokenizer, output)
         output.close()
+    print("Done!")
 
     
