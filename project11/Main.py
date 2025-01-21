@@ -657,7 +657,7 @@ if __name__ == "__main__":
     print("List of Files: ", files)
     for file in files:
         tokenizer = JackTokenizer(file)
-        output_file = file.replace(".jack", "C.vm")
+        output_file = file.replace(".jack", ".vm")
         with open(output_file, "w") as output:
             # Print a stripped version of the file name without the extension and the path
             engine = ComplilationEngine(tokenizer, output, os.path.basename(file).replace(".jack", ""))

@@ -406,7 +406,7 @@ function Main.main 3
     push constant 0
     eq
     not
-    if-goto Main_0
+    if-goto Main_1
     push local 0
     push constant 10
     call Main.fill 2
@@ -463,9 +463,9 @@ function Main.main 3
     pop pointer 1
     push temp 0
     pop that 0
-    goto Main_1
-label Main_0
+    goto Main_0
 label Main_1
+label Main_0
     push constant 44
     call String.new 1
     push constant 84

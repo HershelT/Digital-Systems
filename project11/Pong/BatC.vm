@@ -28,8 +28,8 @@ function Bat.dispose 0
 function Bat.show 0
     push argument 0
     pop pointer 0
-    push constant 0
-    not
+    push constant 1
+    neg
     call Screen.setColor 1
     pop temp 0
     push pointer 0
@@ -102,7 +102,7 @@ function Bat.move 0
     push constant 1
     eq
     not
-    if-goto Bat_0
+    if-goto Bat_1
     push this 0
     push constant 4
     sub
@@ -111,11 +111,11 @@ function Bat.move 0
     push constant 0
     lt
     not
-    if-goto Bat_1
+    if-goto Bat_3
     push constant 0
     pop this 0
     goto Bat_2
-label Bat_1
+label Bat_3
 label Bat_2
     push constant 0
     call Screen.setColor 1
@@ -136,8 +136,8 @@ label Bat_2
     add
     call Screen.drawRectangle 4
     pop temp 0
-    push constant 0
-    not
+    push constant 1
+    neg
     call Screen.setColor 1
     pop temp 0
     push this 0
@@ -150,8 +150,8 @@ label Bat_2
     add
     call Screen.drawRectangle 4
     pop temp 0
-    goto Bat_3
-label Bat_0
+    goto Bat_0
+label Bat_1
     push this 0
     push constant 4
     add
@@ -162,14 +162,14 @@ label Bat_0
     push constant 511
     gt
     not
-    if-goto Bat_4
+    if-goto Bat_5
     push constant 511
     push this 2
     sub
     pop this 0
-    goto Bat_5
-label Bat_4
+    goto Bat_4
 label Bat_5
+label Bat_4
     push constant 0
     call Screen.setColor 1
     pop temp 0
@@ -185,8 +185,8 @@ label Bat_5
     add
     call Screen.drawRectangle 4
     pop temp 0
-    push constant 0
-    not
+    push constant 1
+    neg
     call Screen.setColor 1
     pop temp 0
     push this 0
@@ -203,6 +203,6 @@ label Bat_5
     add
     call Screen.drawRectangle 4
     pop temp 0
-label Bat_3
+label Bat_0
     push constant 0
     return
