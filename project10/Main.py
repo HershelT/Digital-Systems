@@ -14,7 +14,7 @@ class JackTokenizer:
         with open(file, 'r') as f:
             for line in f:
                 line = line.strip()
-                if not line.startswith("//") and line != "" and not line.startswith("/**") and not line.startswith("*/") and not line.startswith("*") and not line.startswith("/*"):
+                if not line.startswith("//") and line != "" and not line.startswith("/**") and not line.startswith("*/") and not line.startswith("*") and not line.startswith("/*") and not line.endswith("*/") and not line.startswith("*"):
                     line = line.split("//")[0].strip()
                     self.lines.append(line)
         self.current_token = ""
