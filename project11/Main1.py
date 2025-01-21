@@ -163,7 +163,7 @@ class VMWriter:
         self.output_file.close()
 
 class ComplilationEngine:
-    def __init__(self, tokenizer, output):
+    def __init__(self, tokenizer, output, path):
         # Input: tokenizer object
         self.tokenizer: JackTokenizer = tokenizer
         # File object to write the output to
@@ -173,12 +173,12 @@ class ComplilationEngine:
         self.symbol_table = SymbolTable()
         self.label_index = 0
         self.class_name = ""
+        self.file_name = path
         # Start compiling the class (recursivley)
         self.compileClass()
 
     # Function to advance the tokenizer
     advance = lambda self: self.tokenizer.advance()
-
 
     def printSymbolTable(self):
         print("Class Table")
@@ -293,7 +293,7 @@ class ComplilationEngine:
                     self.writeSymbol()
             else:
                 type = self.tokenizer.keyWord() if self.tokenizer.tokenType() == "KEYWORD" else self.tokenizer.identifier()
-                self.writeKeyword()  # type
+                self.writeKeyword() if self.tokenizer.tokenType() == "KEYWORD" else self.writeIdentifier()  # type
                 name = self.tokenizer.identifier()
                 self.symbol_table.define(name, type, "argument")
                 self.writeIdentifier()  # varName
@@ -409,12 +409,11 @@ class ComplilationEngine:
         label2 = self.generate_label()
         self.output.writeGoto(label2)  # goto L2
         self.output.writeLabel(label1)  # label L1
-        if self.tokenizer.hasMoreTokens():
-            if self.tokenizer.keyWord() == "else":
-                self.writeKeyword()
-                self.writeSymbol()  # {
-                self.compileStatements()
-                self.writeSymbol()  # }
+        if self.tokenizer.hasMoreTokens() and self.tokenizer.tokenType() == "KEYWORD" and self.tokenizer.keyWord() == "else":
+            self.writeKeyword()
+            self.writeSymbol()  # {
+            self.compileStatements()
+            self.writeSymbol()  # }
         self.output.writeLabel(label2)  # label L2
 
     # Compiles a while statement
@@ -542,11 +541,18 @@ class ComplilationEngine:
                     self.writeSymbol()  # )
                     self.output.writeCall(name, nArgs)
                 else:
-                    self.output.writePush(
-                        self.get_segment(name), self.symbol_table.indexOf(name))
+                    segment = self.get_segment(name)
+                    if segment:
+                        self.output.writePush(segment, self.symbol_table.indexOf(name))
+                    else:
+                        self.output.writePush("constant", 0)
+
             else:
-                self.output.writePush(
-                    self.get_segment(name), self.symbol_table.indexOf(name))
+                segment = self.get_segment(name)
+                if segment:
+                     self.output.writePush(segment, self.symbol_table.indexOf(name))
+                else:
+                    self.output.writePush("constant", 0)
 
         elif self.tokenizer.tokenType() == "INT_CONST":
             self.output.writePush("constant", self.tokenizer.intVal())
@@ -593,8 +599,9 @@ class ComplilationEngine:
         return nArgs
 
     def generate_label(self):
+        label = f"{self.file_name}_{self.label_index}"
         self.label_index += 1
-        return f"LABEL_{self.label_index}"
+        return label
 
     def get_segment(self, name):
         kind = self.symbol_table.kindOf(name)
@@ -652,7 +659,8 @@ if __name__ == "__main__":
         tokenizer = JackTokenizer(file)
         output_file = file.replace(".jack", "C.vm")
         with open(output_file, "w") as output:
-            engine = ComplilationEngine(tokenizer, output)
+            # Print a stripped version of the file name without the extension and the path
+            engine = ComplilationEngine(tokenizer, output, os.path.basename(file).replace(".jack", ""))
         print(f"Compiled {file} to {output_file}")
         engine.printSymbolTable()
 
