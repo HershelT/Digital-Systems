@@ -1,0 +1,32 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/3/a/RAM64.hdl
+/**
+ * Memory of sixty four 16-bit registers.
+ * If load is asserted, the value of the register selected by
+ * address is set to in; Otherwise, the value does not change.
+ * The value of the selected register is emitted by out.
+ */
+CHIP RAM64 {
+    IN in[16], load, address[6];
+    OUT out[16];
+
+    PARTS:
+    //// Replace this comment with your code.
+    //Get the address of one of the RAM8's
+    DMux8Way(in= load, sel= address[3..5], a= OneLoad, b= TwoLoad, c= ThreeLoad, d= FourLoad, e= FiveLoad, f= SixLoad, g= SevenLoad, h= EightLoad);
+    
+    //Now use the other part of the address to get one of the registers within the RAM8
+    RAM8(in= in, load= OneLoad, address= address[0..2], out= OneOut);
+    RAM8(in= in, load= TwoLoad, address= address[0..2], out= TwoOut);
+    RAM8(in= in, load= ThreeLoad, address= address[0..2], out= ThreeOut);
+    RAM8(in= in, load= FourLoad, address= address[0..2], out= FourOut);
+    RAM8(in= in, load= FiveLoad, address= address[0..2], out= FiveOut);
+    RAM8(in= in, load= SixLoad, address= address[0..2], out= SixOut);
+    RAM8(in= in, load= SevenLoad, address= address[0..2], out= SevenOut);
+    RAM8(in= in, load= EightLoad, address= address[0..2], out= EightOut);
+
+    //Output the correct REgister using address
+    Mux8Way16(a= OneOut, b= TwoOut, c= ThreeOut, d= FourOut, e= FiveOut, f= SixOut, g= SevenOut, h= EightOut, sel= address[3..5], out= out);
+}
